@@ -1,0 +1,66 @@
+\documentclass[letterpaper,10pt,draftclsnofoot,onecolumn]{IEEEtran}
+
+\usepackage{titling}
+\usepackage[margin=0.75in]{geometry}
+
+\def\name{E. Reilly Collins, Sophia Liu, Jesse Hanson}
+\def\group{Group 22 (NASA JPL)}
+\def\course{CS 461 Fall 2016}
+% Title page information
+\title{Problem Statement}
+\author{\name}
+\date{Group 22 [NASA JPL]}
+
+\begin{document}
+\begin{titlingpage}
+\maketitle
+\vspace*{10em}
+\centering
+\course
+\vspace*{4em}
+\begin{abstract} 
+Millions of digital images are taken on mobile phones daily, some of which contain outdoor scenes. Combining this volume of mobile users' landscape images with camera metadata provides an untapped resource for inferring atmospheric phenomenon. The purpose of this project is to develop an application that supports the ability to understand content from these digital outdoor images. To accomplish this, we aim to create a mobile application which consistently feeds users' images captured by mobile devices into machine learning methods that couple the observations and metadata with meteorological information. Our goal is to produce near-real time monitoring of atmospheric conditions.
+\end{abstract}
+\end{titlingpage}
+\clearpage
+\section{Problem Definition}
+Currently, the available image feature detection software uses a standard shape definition to identify features. There is a need for a tool that enables feature detection based on an image's color distribution.
+
+\section{Proposed Solution}
+The purpose of this project is to be able to process visible images and infer the atmospheric (optical or otherwise) phenomenon. The difference in our image feature detection is that the knowledge of how color is distributed in an image will be used for identifying features, rather than a standard shape definition. This will be accomplished by developing a full mobile app that utilizes an open source algorithm translating how the human brain interprets images using RGB values. Our app will have a "citizen science" component: images will be collected from members of the general public (the app users) as part of a collaborative project with our team in order to analyze atmospheric data.
+
+\section{Performance Metrics}
+We will measure whether our solution meets our defined needs and functions by creating (at minimum) a mobile application that correctly identifies sunsets and sunrises in pre-loaded images. If we are able to determine a sunset/sunrise digital photo using our color detection algorithm, we can continue with processing user-uploaded images and/or identifying other atmospheric phenomenon. The team will also learn research methodologies and hope to produce a short conference proceeding a paper on the work done in the algorithm..  
+\clearpage
+
+\section*{Signatures}
+
+\subsection*{Kim Whitehall} % Suppress section numbering with the *
+
+\begin{tabular}{ l p{10pt} l }
+Signature: && \hspace{0.5cm} \makebox[3in]{\hrulefill} \\ \\[3pt]
+Date: && \hspace{0.5cm} \today
+\end{tabular}
+
+\subsection*{E. Reilly Collins}
+
+\begin{tabular}{ l p{10pt} l }
+Signature: && \hspace{0.5cm} \makebox[3in]{\hrulefill} \\ \\[3pt]
+Date: && \hspace{0.5cm} \today
+\end{tabular}
+
+\subsection*{Sophia Liu}
+
+\begin{tabular}{ l p{10pt} l }
+Signature: && \hspace{0.5cm} \makebox[3in]{\hrulefill} \\ \\[3pt]
+Date: && \hspace{0.5cm} \today
+\end{tabular}
+
+\subsection*{Jesse Hanson}
+
+\begin{tabular}{ l p{10pt} l }
+Signature: && \hspace{0.5cm} \makebox[3in]{\hrulefill} \\ \\[3pt]
+Date: && \hspace{0.5cm} \today
+\end{tabular}
+
+\end{document}
