@@ -16,7 +16,7 @@ The users of the mobile application will be able to monitor the air composition 
 
 ## Community and Development
 ### Mailing list
-To become involved or if you require help using the project request to join our project [Google Group](aerolyzer@googlegroups.com)
+To become involved or if you require help using the project request to join our project [Google Group](https://groups.google.com/forum/#!forum/aerolyzer)
 
 ### Issue tracker
 If you have issue using Aerolyzer, or suggestions for improvements please log a ticket in our [issue tracker](https://github.com/Aerolyzer/Aerolyzer/issues)
