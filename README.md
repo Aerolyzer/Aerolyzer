@@ -22,4 +22,4 @@ To become involved or if you require help using the project request to join our 
 If you have issue using Aerolyzer, or suggestions for improvements please log a ticket in our [issue tracker](https://github.com/Aerolyzer/Aerolyzer/issues)
 
 ### License
-**Aerolyzer** is licensed under the [Apache License v2.0](http://www.apache.org/licenses/LICENSE-2.0).
+**Aerolyzer** is licensed under the [Apache License v2.0](http://www.apache.org/licenses/LICENSE-2.0), a copy of which is shipped within this source code.
