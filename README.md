@@ -1,4 +1,7 @@
 # Aerolyzer
+
+[![license](https://img.shields.io/github/license/Aerolyzer/Aerolyzer.svg?maxAge=2592000?style=plastic)](http://www.apache.org/licenses/LICENSE-2.0)
+
 Oregon State University 2016 - 2017 Computer Science Capstone Project
 
 Group Members: E. Reilly Collins, Jesse Hanson, Sophia Liu
@@ -22,4 +25,4 @@ To become involved or if you require help using the project request to join our 
 If you have issue using Aerolyzer, or suggestions for improvements please log a ticket in our [issue tracker](https://github.com/Aerolyzer/Aerolyzer/issues)
 
 ### License
-**Aerolyzer** is licensed under the [Apache License v2.0](http://www.apache.org/licenses/LICENSE-2.0), a copy of which is shipped within this source code.
+**Aerolyzer** is licensed under the [Apache License v2.0](http://www.apache.org/licenses/LICENSE-2.0), a copy of which is shipped with this source code.
