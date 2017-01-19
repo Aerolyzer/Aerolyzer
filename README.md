@@ -1,6 +1,9 @@
 # Aerolyzer
 
 [![license](https://img.shields.io/github/license/Aerolyzer/Aerolyzer.svg?maxAge=2592000?style=plastic)](http://www.apache.org/licenses/LICENSE-2.0)
+[![Build Status](https://travis-ci.org/Aerolyzer/Aerolyzer.svg?branch=master)](https://travis-ci.org/Aerolyzer/Aerolyzer)
+[![Coverage Status](https://coveralls.io/repos/github/Aerolyzer/Aerolyzer/badge.svg?branch=master)](https://coveralls.io/github/Aerolyzer/Aerolyzer?branch=master)
+
 
 Oregon State University 2016 - 2017 Computer Science Capstone Project
 
