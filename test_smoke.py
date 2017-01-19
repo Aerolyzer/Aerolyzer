@@ -16,4 +16,4 @@
 # limitations under the License.
 #
 
-print 'Welcome to Aerolyzer test bed!'
+print('Welcome to Aerolyzer test bed!')
