@@ -158,6 +158,8 @@ Date: && \hspace{0.5cm} \today
 \hline
 1 Dec 2016 & 1.0 & Added DropzoneJS section & Jesse Hanson\\
 \hline
+12 Jan 2017 & 1.0 & Updated database section & E. Reilly Collins\\
+\hline
 \end{tabular}
 \end{table}
 
@@ -323,18 +325,18 @@ Our team has spent some time in our development cycle to narrow down a coding st
 \bigskip
 
 \subsection{Design viewpoint - Dependency}
-\subsubsection{Design view - MySQL} \ \\
-\textbf{Introduction} The Aerolyzer system will required use of a database management system to perform data retrieval through a query language, securely store data, allow for concurrent access by multiple users, and keep data backed-up. The DBMS we have selected is MySQL. The maintained storage will consist of uploaded landscape images and their associated metadata, meteorological data, and geo-related data. Access to this database is necessary for a range of users, including members of the Aerolyzer development team (for improving the core algorithm) and any researchers who would like to make use of our collected data. The database will need to be backed-up regularly in the event of data loss or other situation that required data recovery.
+\subsubsection{Design view - Solr} \ \\
+\textbf{Introduction} The Aerolyzer system will required use of a database management system to perform data retrieval through a query language, securely store data, allow for concurrent access by multiple users, and keep data backed-up. The DBMS we have selected is Apache Solr. The maintained storage will consist of uploaded landscape images and their associated metadata, meteorological data, and geo-related data. Access to this database is necessary for a range of users, including members of the Aerolyzer development team (for improving the core algorithm) and any researchers who would like to make use of our collected data. The database will need to be backed-up regularly in the event of data loss or other situation that required data recovery.
 
 \medskip
 
-\textbf{Design element - MySQL data store} The database design is illustrated in Figure \ref{fig:mysql}. It is divided into four entities: a table for image data, acquired via EXIF metadata extraction; a table for geo-related data, acquired via MISR; a table for weather data, acquired from Weather Underground; and a table for the core algorithm’s output, acquired after running the core algorithm successfully and receiving output. The primary key that relates an image to its associated geo, weather, and aerosol data is \texttt{image\_id}. This simple setup and division into four tables was a design decision made based on the desired functionality of querying different data sets: queries related to uploaded images, weather data, satellite data, or the atmospheric conditions is separated to achieve a cohesive framework.
+\textbf{Design element - Solr data store} The database design is illustrated in Figure \ref{fig:mysql}. It is divided into four entities: a table for image data, acquired via EXIF metadata extraction; a table for geo-related data, acquired via MISR; a table for weather data, acquired from Weather Underground; and a table for the core algorithm’s output, acquired after running the core algorithm successfully and receiving output. The primary key that relates an image to its associated geo, weather, and aerosol data is \texttt{image\_id}. This simple setup and division into four tables was a design decision made based on the desired functionality of querying different data sets: queries related to uploaded images, weather data, satellite data, or the atmospheric conditions is separated to achieve a cohesive framework.
 
 
 \begin{figure}[H]
 \centering
   \includegraphics[width=\textwidth]{mysql.eps}
-  \caption{MySQL data store design}
+  \caption{Solr data store initial design}
   \label{fig:mysql}
 \end{figure}
 
@@ -378,7 +380,7 @@ The Aerolyzer application will need a centralized storing location for images, a
 
 \medskip
 
-The deciding factor for using MySQL as a database management system is security. MySQL has not had any discovered security vulnerabilities in 2016. \cite{23} The system was initially released in 1995, meaning it has stood the test of time and benefitted from years of continued improvement. \cite{22} Additionally, MySQL utilizes a fine-grained authorization concept allow us to further secure our data and tailor user accessibility to the security needs of our system. There is also support for making data persistent, which will be useful for our needs as we will likely not modify the images and associated metadata. Lastly, this DBMS is free and currently maintained.
+The deciding factor for using Solr as a database management system was scalability. Comparisons using this criteria reveal that Solr is not only highly scalable, but is the best option for performing searches and even implements realtime search. \cite{5} Scalability will be very important for our app moving forward - we need to be able to store several pieces of data for each processed image and require searching for research purposes. Combining the scalability advantage with the fact that Solr is completely open source, stands behind the Apache brand, and supports data persistence makes it the ideal choice.
 
 \subsection{Design viewpoint - Composition}
 The purpose of the Composition viewpoint is to describe the way the design subject is (recursively) structured into constituent parts and establish the roles of those parts.  Key concerns for our project that are addressed in the following design views are obtaining accurate results both for the user and research purposes for the development team by using data sources that provide accurate image metadata and real-time atmospheric data. These concerns will be used to evaluate the effectiveness of our design regarding this specific viewpoint.

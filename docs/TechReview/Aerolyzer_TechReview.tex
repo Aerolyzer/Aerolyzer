@@ -1,43 +1,99 @@
-\documentclass[letterpaper,10pt,draftclsnofoot,onecolumn]{IEEEtran}
-
-\usepackage{listings}
+\documentclass[onecolumn, draftclsnofoot,10pt, compsoc]{IEEEtran}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{setspace}
 \usepackage[margin=0.75in]{geometry}
-\usepackage[hidelinks]{hyperref}
 \setlength{\parindent}{0pt}
+\usepackage[hidelinks]{hyperref}
+\usepackage{listings}
+\usepackage{float}
 
 \renewcommand\thesection{\Roman{section}}
 \renewcommand\thesubsection{\Alph{subsection}}
+\renewcommand\thesubsubsection{\arabic{subsubsection}}
 
-\setcounter{secnumdepth}{2}
-\def\name{E. Reilly Collins, Sophia Liu, Jesse Hanson}
-\def\team{Aerolyzer }
-\def\group{Group 22}
-\def\course{CS 461 Fall 2016}
-\def\assign{Technology Review and Implementation Plan}
+\usepackage{etoolbox}
+\patchcmd{\thebibliography}{\refname}{}{}{}
 
-% Title page information
-\title{\sffamily \assign}
-\author{\sffamily \LARGE \team \\ \group}
 
+\usepackage{geometry}
+\geometry{textheight=9.5in, textwidth=7in}
+
+% 1. Fill in these details
+\def \CapstoneTeamName{		Aerolyzer}
+\def \CapstoneTeamNumber{		22}
+\def \GroupMemberOne{			E. Reilly Collins}
+\def \GroupMemberTwo{			Sophia Liu}
+\def \GroupMemberThree{			Jesse Hanson}
+\def \CapstoneProjectName{		Aerosol Analyzer Mobile Web Application}
+\def \CapstoneSponsorCompany{	NASA JPL}
+\def \CapstoneSponsorPerson{		Kim Whitehall, Lewis McGibbney}
+
+% 2. Uncomment the appropriate line below so that the document type works
+\def \DocType{		%Problem Statement
+				%Requirements Document
+				Technology Review
+				%Design Document
+				%Progress Report
+				}
+			
+\newcommand{\NameSigPair}[1]{\par
+\makebox[2.75in][r]{#1} \hfil 	\makebox[3.25in]{\makebox[2.25in]{\hrulefill} \hfill		\makebox[.75in]{\hrulefill}}
+\par\vspace{-12pt} \textit{\tiny\noindent
+\makebox[2.75in]{} \hfil		\makebox[3.25in]{\makebox[2.25in][r]{Signature} \hfill	\makebox[.75in][r]{Date}}}}
+% 3. If the document is not to be signed, uncomment the RENEWcommand below
+\renewcommand{\NameSigPair}[1]{#1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
-\maketitle
-\centering
-\vspace*{10em}
-\textsf{\large \sffamily \name \\ \course \\ \today
-\vfill
-\begin{abstract} 
- \sffamily This document examines potential technologies for use in different pieces of the Aerolyzer project. Technology for each piece is narrowed down to three choices based on the goals of our project, then the three options are compared in more detail using predetermined criteria. After conducting research and analyzing trade-offs or pointing out features that offer extra benefits, the selected technology is identified for each piece. An explanation is given based on the unbiased and well-considered analysis.
-\end{abstract}
-}
-\clearpage
-
-\begin{flushleft}
-
+\begin{titlepage}
+    \pagenumbering{gobble}
+    \begin{singlespace}
+    	%\includegraphics[height=4cm]{coe_v_spot1}
+        \hfill 
+        % 4. If you have a logo, use this includegraphics command to put it on the coversheet.
+        %\includegraphics[height=4cm]{CompanyLogo}   
+        \par\vspace{.2in}
+        \centering
+        \scshape{
+            \huge CS Capstone \DocType \par
+            {\large\today}\par
+            \vspace{.5in}
+            \textbf{\Huge\CapstoneProjectName}\par
+            \vfill
+            {\large Prepared for}\par
+            \Huge \CapstoneSponsorCompany\par
+            \vspace{5pt}
+            {\Large\NameSigPair{\CapstoneSponsorPerson}\par}
+            {\large Prepared by }\par
+            Group\CapstoneTeamNumber\par
+            % 5. comment out the line below this one if you do not wish to name your team
+            \CapstoneTeamName\par 
+            \vspace{5pt}
+            {\Large
+                \NameSigPair{\GroupMemberOne}\par
+                \NameSigPair{\GroupMemberTwo}\par
+                \NameSigPair{\GroupMemberThree}\par
+            }
+            \vspace{20pt}
+        }
+        \begin{abstract}
+        % 6. Fill in your abstract    
+        	Aerolyzer is a mobile web application capable of processing visible images and inferring atmospheric phenomena to provide the general public with near-real time monitoring of aerosol conditions. 
+            This document outlines the software design descriptions for the Aerolyzer mobile web application and acts as a representation of a software design to be used for communicating design information to stakeholders. 
+            A written description of the Aerolyzer software product is provided. 
+        \end{abstract}     
+    \end{singlespace}
+\end{titlepage}
+\newpage
+\pagenumbering{arabic}
 \tableofcontents
+% 7. uncomment this (if applicable). Consider adding a page break.
 \clearpage
-
+%\listoffigures
 \listoftables
 \clearpage
+\begin{flushleft}
 
 \section{Introduction}
 
@@ -51,20 +107,18 @@ Jesse Hanson: Technologies 7, 8, and 9
 
 
 \section{Coding Environment}
-\subsection{pyLint}
+\subsection{Available Technologies}
 Since our team will be using Python to implement the Aerolyzer web application, we need a style guide that is Python-specific.
-One such existing technology that would accomplish this aim is Pylint. Pylint is a tool that searches for style errors in Python code in order to enforce a coding standard. \cite{1}
-It defines a default coding style and can also look for specified coding errors, as well as provide refactoring suggestions. 
-The software tries to avoid false positives while attempting to detect “dangerous” code blocks. 
-After analyzing the Python code, Pylint offers an overall grade for the code based on the amount and severity of warnings or errors. 
-Pylint is not perfect solution for enforcing a cohesive coding standard – it can be too verbose with warnings and slow with its analysis. \cite{2} 
-However, Pylint is certainly an option for unifying the Aerolyzer team’s coding practices in order to be more efficient. 
+Three such existing technologies that would accomplish this aim are Pylint, PyChecker, and Pyflakes. These tools search for errors in Python code in order to enforce a coding standard. \cite{1}
+They define a default coding style and provide refactoring suggestions while avoiding false positives and attempting to detect "dangerous" code blocks. 
+After analyzing the Python code, the Python code checkers offer feedback for improving the code syntax and/or style.
+
 
 
 \subsection{Goals}
 
 With regards to our coding environment, we are mainly striving for readability: we want our code to be easily read and understood by every member of the development team. 
-Another goal for the use of Pylint in our design is to be able to catch syntax errors in order to avoid bugs. 
+Another goal for the use of a code checker in our design is to be able to catch syntax errors in order to avoid bugs. 
 Python uses indentation to denote blocks, and significant logic errors can arise when whitespace is accidentally misused. 
 We want to avoid such errors and reduce time spent on bugs that have a quick fix. 
 A final goal for technology used in our coding environment is ensuring maintainability. The Aerolyzer software should live beyond our senior capstone class; this means other programmers will potentially need to read and add to our code. The handover and upholding process will be much smoother for our client (and result in better-quality software) if all code follows a specific format that can be learned by future team members.
@@ -72,12 +126,27 @@ A final goal for technology used in our coding environment is ensuring maintaina
 
 
 \subsection{Criteria}
-The merits of using technology for our coding environment will be evaluated based on several factors. These include cost, availability, and speed. In order to keep our costs for this project at zero, we need to take advantage of technology that is free - preferably something that is open source. Along the same lines, we want to use technology that will be available and maintained long-term. If our coding environment software becomes deprecated or defunct, our own Aerolyzer software will have to spend time searching for and incorporating a different technology (which is something we definitely want to avoid). Finally, the speed of technology used in our coding environment is an important feature: it would be pointless to exchange time spent finding errors manually for running slow tools that check for errors. 
+The merits of using technology for our coding environment will be evaluated based on several factors. These include cost, availability, and thoroughness. In order to keep our costs for this project at zero, we need to take advantage of technology that is free - preferably something that is open source. Along the same lines, we want to use technology that will be available and maintained long-term. If our coding environment software becomes deprecated or defunct, our own Aerolyzer software will have to spend time searching for and incorporating a different technology (which is something we definitely want to avoid). Finally, we will need to utilize a code checker that is thorough enough for our needs and enables us to produce code that is both maintainable and able to be modified for our team's style.
 
-
+Table \ref{table:5} compares the three technologies based on the described criteria. \cite{26}\cite{27}\cite{28}
+\begin{table}[h!]
+\caption{Python code checker technologies compared}\label{table:5}
+\centering
+	\begin{tabular}{| c | c |  p{6cm}  | p{6cm} |} 
+		\hline
+		 & Cost & Availability & Thoroughness \\ [0.5ex] 
+		\hline
+		\textbf{Pylint} & Free & Currently maintained, last updated 7/2016 (v. 3.5) & Uses Python's own style guide and additional commands/plugins can be added, highly configurable\\ 
+		\hline
+		\textbf{PyChecker} & Free & Last updated 8/2008 (v. 0.8.19) & Website shows a list of bugs\\
+		\hline
+		\textbf{Pyflakes} & Free & Currently maintained, last updated 12/2016 (v. 1.4) & Fast but limited in what it checks (does not check style)  \\
+		\hline
+	\end{tabular}
+\end{table}
 
 \subsection{Selection}
-In discussions prior to this Technology Review, our team and clients had already made the decision to make use of Pylint for enforcing a Python coding standard within our project. Therefore, as indicated by our professor, we did not need to research other coding environment technologies - we have presently begun moving forward with a Pylint configuration based on our client’s setup and previous experience. Justification for this decision is based on the many benefits of using Pylint discovered through dialogue with our client, as well as my own research. These include its ability to catch bugs ranging from small to serious, more easily provide our team with a unified coding style, and offer refactoring features. Furthermore, Pylint is freely available, currently maintained with no evidence of becoming obsolete \cite{4}, and has plenty of easily understood documentation. \cite{3} 
+We have presently begun moving forward with a Pylint configuration based on the above criteria, as well as our client's setup and previous experience. Justification for this decision is based on the many benefits of using Pylint discovered through dialogue with our client and research into our specific needs. These include its ability to catch bugs ranging from small to serious, more easily provide our team with a unified coding style, and offer refactoring features. Furthermore, Pylint is freely available, currently maintained with no evidence of becoming obsolete \cite{4}, has plenty of easily understood documentation \cite{3}, and is easily customizable to allow for the thoroughness we require.  
 
 \medskip
 
@@ -86,7 +155,7 @@ No tool is without flaws: a common complaint with the Pylint software is that no
 
 \section{Image and Metadata Storage}
 \subsection{Available Technologies}
-The Aerolyzer application will need a centralized storing location for images, associated metadata, and output from the color-analyzing core algorithm. Although we could make use of something simple, such as files in a shared directory, a database would be best suited for our needs: being able to maintain a repository of collected images and corresponding aerosol information will allow us to build up data for use in research, compare users’ results against real aerosol content, and query the data set for specific information that would be useful for our team and the research community. Three database options we decided to research are Apache Solr, MongoDB, and MySQL. Apache Solr is a standalone search server with a REST-like API \cite{5}; MongoDB is a NoSQL database \cite{6}; and MySQL is a SQL database management system\cite{7}. All of these technologies are open source and support Python and concurrency. \cite{8}
+The Aerolyzer application will need a centralized storing location for images, associated metadata, and output from the color-analyzing core algorithm. Although we could make use of something simple, such as files in a shared directory, a database would be best suited for our needs: being able to maintain a repository of collected images and corresponding aerosol information will allow us to build up data for use in research, compare users' results against real aerosol content, and query the data set for specific information that would be useful for our team and the research community. Three database options we decided to research are Apache Solr, MongoDB, and MySQL. Apache Solr is a standalone search server with a REST-like API \cite{5}; MongoDB is a NoSQL database \cite{6}; and MySQL is a SQL database management system\cite{7}. All of these technologies are open source and support Python and concurrency. \cite{8}
 
 
 
@@ -104,15 +173,15 @@ Table \ref{table:1} compares the three technologies based on the described crite
 \begin{table}[h!]
 \caption{Image and metadata storage technologies compared}\label{table:1}
 \centering
-	\begin{tabular}{| c | c |  p{5cm}  |  p{5cm}  | c |} 
+	\begin{tabular}{| c | c |  p{4cm}  |  p{4cm}  | p{4cm} |} 
 		\hline
-		 & Cost & Availability & Security & Other \\ [0.5ex] 
+		 & Cost & Availability & Security & Scalability \\ [0.5ex] 
 		\hline
-		\textbf{Solr} & Free & Currently maintained, initially released in 2004, support for making data persistent & 3 vulnerabilities reported in 2016 & RESTful HTTP API \\ 
+		\textbf{Solr} & Free & Currently maintained (initial release 2004), support for making data persistent & 3 vulnerabilities reported in 2016 & Highly scalable, supports searches \\ 
 		\hline
-		\textbf{MySQL} & Free & Currently maintained, initially released in 1995, support for making data persistent & Users with fine-grained authorization concept, susceptible to SQL injection-type attacks, 0 vulnerabilities reported in 2016 & \\
+		\textbf{MySQL} & Free & Currently maintained (initial release 1995), support for data persistence & Susceptible to SQL injection-type attacks, 0 vulnerabilities reported in 2016 &  Scalability requires significant, custom engineering work\\
 		\hline
-		\textbf{MongoDB} & Free & Currently maintained, initially released in 2004, support for making data persistent & Access rights for users and roles, JSON documents can be altered maliciously, 1 vulnerability reported in 2016 & Proprietary protocol using JSON \\
+		\textbf{MongoDB} & Free & Currently maintained (initial release 2004), support for data persistence & JSON documents can be altered maliciously, 1 vulnerability reported in 2016 & Highly scalable, not designed for searching \\
 		\hline
 	\end{tabular}
 \end{table}
@@ -120,7 +189,7 @@ Table \ref{table:1} compares the three technologies based on the described crite
 
 
 \subsection{Selection}
-Based on research revealed in the above table, we will be using a MySQL database management system. Though the three technologies are very different, they each have similar features based on specific criteria needed for Aerolyzer's data storage. The deciding factor for our purposes is security. Comparing security vulnerabilities, MySQL has not had any discovered issues in 2016. Although SQL injection-type attacks are possible when using a SQL database (MongoDB and Solr are not SQL implementations), there are steps developers can take to independently prevent these. Lastly, MySQL utilizes a fine-grained authorization concept allow us to further secure our data and tailor user accessibility to the security needs of our system.
+Based on research revealed in the above table, we will be using the Solr system. Though the three technologies are very different, they each have similar features based on specific criteria needed for Aerolyzer's data storage. The deciding factor for our purposes is scalability. Comparisons using this criteria reveal that Solr is not only highly scalable, but is the best option for performing searches and even implements realtime search. \cite{5} Scalability will be very important for our app moving forward - we need to be able to store several pieces of data for each processed image and require searching for research purposes. Combining the scalability advantage with the fact that Solr is completely open source, stands behind the Apache brand, and supports data persistence makes it the ideal choice.
 
 
 \section{EXIF Metadata Extraction}
@@ -139,7 +208,7 @@ Table \ref{table:2} compares the three technologies based on the described crite
 \begin{table}[h!]
 \caption{EXIF metadata extraction technologies compared}\label{table:2}
 \centering
-	\begin{tabular}{| c | c |  p{5cm}  |  p{5cm}  |} 
+	\begin{tabular}{| c | p{3cm} |  p{6cm}  |  p{6cm}  |} 
 		\hline
 		 & Cost & Availability & Metadata returned\\ [0.5ex] 
 		\hline
@@ -159,7 +228,7 @@ Comparing the technologies in the above table reveals various strengths for each
 
 \section{Web interface}
 \subsection{Available Technologies}
-Since the Aerolyzer application is going to be a web application, having a solid web framework is  key to a successful application. Our team is using Python to implement the Aerolyzer web application which makes Django the first option. Django is a high-level Python Web framework that “encourages rapid development and clean, pragmatic design”\cite{10}. Our second option is Flask, flask is a microframework for Python that is based off of Werkzeug, and Jinja 2\cite{11}. Our third option is web2py, web2py is a open source full-stack web framework that allows the fast, scalable, secure, and portable database-driven web-based applications\cite{12}.
+Since the Aerolyzer application is going to be a web application, having a solid web framework is  key to a successful application. Our team is using Python to implement the Aerolyzer web application which makes Django the first option. Django is a high-level Python Web framework that "encourages rapid development and clean, pragmatic design" \cite{10}. Our second option is Flask, flask is a microframework for Python that is based off of Werkzeug, and Jinja 2\cite{11}. Our third option is web2py, web2py is a open source full-stack web framework that allows the fast, scalable, secure, and portable database-driven web-based applications\cite{12}.
 
 
  
@@ -183,9 +252,9 @@ Table \ref{table:3} compares the three technologies based on the described crite
 \begin{table}[h!]
 \caption{Web interface technologies compared}\label{table:3}
 \centering
-	\begin{tabular}{| c | c |  p{5cm}  |  p{5cm}  |} 
+	\begin{tabular}{| c | c |  p{3cm}  |  p{7cm}  |} 
 		\hline
-		 & Cost & Availability &Tools\\ [0.5ex] 
+		 & Cost & Availability & Tools\\ [0.5ex] 
 		\hline
 		\textbf{Django} & Free & Latest update date is 2016-09-01 & FullStack, has security features, scalable to large projects, caching framework, design your own templates. \\ 
 		\hline
@@ -223,13 +292,13 @@ The criteria of our technology forgetting meteorological data will be evaluated 
 
 
 \subsection{Selection}
-In discussions prior to this Technology Review, our team and clients had already made the decision to make use of Weather Underground. Wunderground is the only API that is free, fast and efficient. While there are some other similar API’s, Wunderground can process the most calls for free. However it still does have the limiting factor that it can only process 500 photos a day, and 10 calls per minutes \cite{17}. Our client uses this API in her daily work and highly recommended it, so to our team that is a great justification to use this tool. We  also did our own research and concluded that Wunderground API is the best tool for our application.
+In discussions prior to this Technology Review, our team and clients had already made the decision to make use of Weather Underground. Wunderground is the only API that is free, fast and efficient. While there are some other similar API's, Wunderground can process the most calls for free. However it still does have the limiting factor that it can only process 500 photos a day, and 10 calls per minutes \cite{17}. Our client uses this API in her daily work and highly recommended it, so to our team that is a great justification to use this tool. We  also did our own research and concluded that Wunderground API is the best tool for our application.
 
 
 \section{Testing}
 
 \subsection{Travis CI and Coveralls}
-An important part of developing an application is testing. Making sure that all of your code is being covered by tests is really important to avoid bugs in the future. Since we are using Github, the best tools to do this are Travis CI and Coveralls. Travis CI is an open-source integration system that is used to build and test projects in GitHub \cite{18}. Coveralls is an open-source tool that shows what parts of the code isn’t covered by the test suite  \cite{19}.
+An important part of developing an application is testing. Making sure that all of your code is being covered by tests is really important to avoid bugs in the future. Since we are using Github, the best tools to do this are Travis CI and Coveralls. Travis CI is an open-source integration system that is used to build and test projects in GitHub \cite{18}. Coveralls is an open-source tool that shows what parts of the code isn't covered by the test suite  \cite{19}.
 
 
 
@@ -253,7 +322,7 @@ Since we are using Github, TravisCI and Coveralls are the best option for testin
 %Jesse's stuff here
 \section{Uploading Photos}
 \subsection{Available Technologies}
-In order for our application to properly analyze images provided by a user, we will need to make use of an API that allows users to upload images to our web application. This is a crucial part of our application because without it, we would have no way of retrieving images and would therefore be unable to properly analyze a user’s image. To fulfill this requirement, we examined three different image upload APIs that provide a multitude of different advantages. These APIs include DropzoneJS, Ospry, and Cloudinary. DropzoneJS is an open source library which provides its users with drag and drop image uploads as well as image previews\cite{14}. Ospry on the other hand is a very simple way for developers to upload images to the cloud while providing additional tools which makes manipulation of the image very easy\cite{16}. Lastly, Cloudinary provides image management in the cloud, and provides end-to-end solutions for web and mobile developers\cite{15}.
+In order for our application to properly analyze images provided by a user, we will need to make use of an API that allows users to upload images to our web application. This is a crucial part of our application because without it, we would have no way of retrieving images and would therefore be unable to properly analyze a user's image. To fulfill this requirement, we examined three different image upload APIs that provide a multitude of different advantages. These APIs include DropzoneJS, Ospry, and Cloudinary. DropzoneJS is an open source library which provides its users with drag and drop image uploads as well as image previews\cite{14}. Ospry on the other hand is a very simple way for developers to upload images to the cloud while providing additional tools which makes manipulation of the image very easy\cite{16}. Lastly, Cloudinary provides image management in the cloud, and provides end-to-end solutions for web and mobile developers\cite{15}.
 \subsection{Goals}
 The upload image functionality of our application should be simple and easy to use. However, it should simultaneously allow users to upload high quality images in order for us to adequately analyze the content of the image being uploaded. We need an API for image uploading that is compatible with our code, and allows users to upload images from both the web and via a mobile device.
 \medskip
@@ -263,7 +332,7 @@ Table \ref{table:4} compares the three technologies based on the described crite
 \begin{table}[h!]
 \caption{Upload photos technologies compared}\label{table:4}
 \centering
-	\begin{tabular}{| c | c |  p{5cm}  |  p{5cm}  | c |} 
+	\begin{tabular}{| c | c | c | p{7cm} |} 
 		\hline
 		 & Cost & Availability & Tools/Advantages \\ [0.5ex] 
 		\hline
@@ -277,7 +346,7 @@ Table \ref{table:4} compares the three technologies based on the described crite
 \end{table}
 
 \subsection{Criteria}
-When searching for an API which we will use for image uploading, we must keep in mind certain criteria. First of all, we want to ensure that uploading the image is a simple process for the user, and can be performed from both the web and via a mobile device. Moreover, we need to make sure that the API being used allows for the upload of large images, and adequately maintains all of the image’s data. This is a crucial aspect of this technology because we need to be able to accurately analyze the data provided by the image if we wish to determine the aerosol content from its features.
+When searching for an API which we will use for image uploading, we must keep in mind certain criteria. First of all, we want to ensure that uploading the image is a simple process for the user, and can be performed from both the web and via a mobile device. Moreover, we need to make sure that the API being used allows for the upload of large images, and adequately maintains all of the image's data. This is a crucial aspect of this technology because we need to be able to accurately analyze the data provided by the image if we wish to determine the aerosol content from its features.
 \subsection{Selection}
 After extensive research on the aforementioned available technologies, our Aerolyzer application will make use of the DropzoneJS API for various reasons. First and foremost, DropzoneJS does not depend on any outside libraries and is highly customizable, which means we can manipulate it to fit our specific needs. Moreover, while DropzoneJS does not provide the server side implementation of handling the images, its does provide a simplistic file upload and allows for file dropzones to be created programmatically. This API is also compatible with most main browsers including Chrome, IE, Firefox, and Safari\cite{14}. While Ospry and Cloudinary also provided desirable features such as reliable cloud storage and security, we chose to go with DropzoneJS because we prefered the drag and drop functionality and favored the fact that it was an open source technology. 
 
@@ -290,17 +359,17 @@ The goal of using a geo-related tool is to obtain accurate information of the ae
 \subsection{Criteria}
 The criteria of our geo-related tool includes cost, availability, and accuracy. As an open source project, we aim to minimize costs while providing accurate results. As for availability, our application requires that the API supplying geo-related information and data be consistently running, otherwise our ability to determine aerosol content would be drastically reduced. Looking at our accuracy requirement, we need an API that will supply geo-related information not only on time, but accurately. If we receive information that is not accurate, our algorithm will have poor performance results and be incapable of adequately determining the aerosol content of user uploaded images.
 \subsection{Selection}
-After discussing available technologies with our client, we decided that we will be using MISR for gathering geo-related data. It is the only satellite available for public use of the information, and more importantly it also provides highly accurate data. Our client works at NASA JPL,  the company which currently commissions the satellite. Therefore, we will have someone on our team with prior knowledge on how to properly analyze and use all of the data. Moreover, this API satisfies all of our criteria mentioned above. The results from MISR are public information, so there is no cost associated with using MISR data. MISR also has no plans of being decommissioned, so the data will consistently be available assuming MISR is not decommissioned. Finally, MISR has 9 angles from which it analyzes Earth’s atmosphere, so the results and data provided by MISR are highly accurate. Ultimately, it is clear that MISR is the ideal API for our geo-related data needs.
+After discussing available technologies with our client, we decided that we will be using MISR for gathering geo-related data. It is the only satellite available for public use of the information, and more importantly it also provides highly accurate data. Our client works at NASA JPL,  the company which currently commissions the satellite. Therefore, we will have someone on our team with prior knowledge on how to properly analyze and use all of the data. Moreover, this API satisfies all of our criteria mentioned above. The results from MISR are public information, so there is no cost associated with using MISR data. MISR also has no plans of being decommissioned, so the data will consistently be available assuming MISR is not decommissioned. Finally, MISR has 9 angles from which it analyzes Earth's atmosphere, so the results and data provided by MISR are highly accurate. Ultimately, it is clear that MISR is the ideal API for our geo-related data needs.
 
 \section{Documentation/Development of API Documents}
 \subsection{Sphinx}
-When it comes to the documentation and development of our API documents, our team requires the use of an API to create professional, informative, and concise documents. Sphinx is a documentation tool which allows its users to create both intelligent and aesthetically pleasing documents. This API’s output formats include HTML, LaTeX, and several others. Moreover, it allows its users to perform semantic markups, as well as use automatic links for citations, glossary terms, etc. It also provides a hierarchical structure as well as code handling tools. Overall this API provides a multitude of functions that serve us well when completing our documentation phase.
+When it comes to the documentation and development of our API documents, our team requires the use of an API to create professional, informative, and concise documents. Sphinx is a documentation tool which allows its users to create both intelligent and aesthetically pleasing documents. This API's output formats include HTML, LaTeX, and several others. Moreover, it allows its users to perform semantic markups, as well as use automatic links for citations, glossary terms, etc. It also provides a hierarchical structure as well as code handling tools. Overall this API provides a multitude of functions that serve us well when completing our documentation phase.
 \subsection{Goals}
 The goal of using an API for documentation and the development of API documents is to produce documents that will be both professional and informative. As we develop our Aerolyzer application and once it has been completed, we will need to develop both coding and usage documentation for our users. Without documentation on our code and how to use our application, Aerolyzer will be minimally effective as users will be unable to adequately upload images and receive information on their aersol content. Therefore, it is imperative that we use a documentation API which provides the tools and functions necessary to develop clear, concise, and professional documents.
 \subsection{Criteria}
-As for the criteria of our application’s documentation and development of API documents, there are several factors that we must take into consideration when choosing which API to use. Such features include price, availability, and tools provided. As an open source project, we need to ensure that the API being used for documentation is affordable. Moreover, we need to ensure that the API is consistently available throughout our documentation phases and produces outputs that are compatible for all users. Finally, we need to make sure that the specific tools and functions of the documentation API we choose provide us with the abilities necessary to create professional and informative documents that will satisfy our documentation requirements.
+As for the criteria of our application's documentation and development of API documents, there are several factors that we must take into consideration when choosing which API to use. Such features include price, availability, and tools provided. As an open source project, we need to ensure that the API being used for documentation is affordable. Moreover, we need to ensure that the API is consistently available throughout our documentation phases and produces outputs that are compatible for all users. Finally, we need to make sure that the specific tools and functions of the documentation API we choose provide us with the abilities necessary to create professional and informative documents that will satisfy our documentation requirements.
 \subsection{Selection}
-After conferring with our client, we determined that Sphinx would suffice as our documentation API for several reasons. First of all, the quality of the documents produced by Sphinx will exceed our expectations for code and usage documentation. Moreover, the tools provided for semantic markup, automatic links, and other various functions will aid in our documentation process greatly. Sphinx’s ability to output documents in HTML, LaTeX, and various other formats meets our documentation compatibility needs, providing most users with access to our documentation. Overall, Sphinx will be a great addition to our set of technologies used for the Aerolyzer development process.
+After conferring with our client, we determined that Sphinx would suffice as our documentation API for several reasons. First of all, the quality of the documents produced by Sphinx will exceed our expectations for code and usage documentation. Moreover, the tools provided for semantic markup, automatic links, and other various functions will aid in our documentation process greatly. Sphinx's ability to output documents in HTML, LaTeX, and various other formats meets our documentation compatibility needs, providing most users with access to our documentation. Overall, Sphinx will be a great addition to our set of technologies used for the Aerolyzer development process.
 
 \section{Conclusion}
 In conclusion, several technologies will be used to fully implement the Aerolyzer application. Our chosen technologies for application-side functionality include Django for the web interface, MySQL for storage, ExifRead for EXIF data extraction, Dropzone JS for uploading images, and Weather Underground and MISR for weather-related data. For the development team, we will be making use of  Travis CI and Coveralls for testing, PyLint for our enforcing a coding style, and Sphinx for documentation. These selections were made based on research into different options and using criteria specific to our needs. A few of our technologies for pieces of the project have already been chosen and put into use; as a result, comparisons were not needed for these cases.\cite{21} 
