@@ -1,296 +1,361 @@
 {
+    "categories": "rainbow,from the sky", 
     "date": "Thursday January 19, 2017", 
-    "file": "1484944838_1_514.jpg", 
+    "file": "1484949746_1_514.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/c/cmrbg06/514.jpg", 
     "link": "https://www.wunderground.com//wximage/cmrbg06/514?gallery=VIPPICT"
 }{
+    "categories": "winter", 
     "date": "Thursday January 19, 2017", 
-    "file": "1484944838_2_0.jpg", 
+    "file": "1484949747_2_0.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/u/uhoffmann/0.jpg", 
     "link": "https://www.wunderground.com//wximage/uhoffmann/0?gallery=VIPPICT"
 }{
+    "categories": "winter,sky", 
     "date": "Wednesday January 18, 2017", 
-    "file": "1484944839_3_751.jpg", 
+    "file": "1484949747_3_751.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/r/rccarlson/751.jpg", 
     "link": "https://www.wunderground.com//wximage/rccarlson/751?gallery=VIPPICT"
 }{
+    "categories": "snow,sunrise sunset,winter,sky,trees", 
     "date": "Tuesday January 17, 2017", 
-    "file": "1484944840_4_10510.jpg", 
+    "file": "1484949748_4_10510.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/k/katy99780/10510.jpg", 
     "link": "https://www.wunderground.com//wximage/katy99780/10510?gallery=VIPPICT"
 }{
+    "categories": "ice storm,winter,trees", 
     "date": "Tuesday January 17, 2017", 
-    "file": "1484944840_5_2382.jpg", 
+    "file": "1484949749_5_2382.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/r/ruralartist/2382.jpg", 
     "link": "https://www.wunderground.com//wximage/ruralartist/2382?gallery=VIPPICT"
 }{
+    "categories": "ice storm,winter", 
     "date": "Tuesday January 17, 2017", 
-    "file": "1484944841_6_503.jpg", 
+    "file": "1484949749_6_503.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/i/ichbinhier2/503.jpg", 
     "link": "https://www.wunderground.com//wximage/ichbinhier2/503?gallery=VIPPICT"
 }{
+    "categories": "cold snap,snow,sunrise sunset,winter,architecture", 
     "date": "Monday January 16, 2017", 
-    "file": "1484944842_7_31.jpg", 
+    "file": "1484949750_7_31.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/t/Tagabukid/31.jpg", 
     "link": "https://www.wunderground.com//wximage/Tagabukid/31?gallery=VIPPICT"
 }{
+    "categories": "cold snap,winter,water", 
     "date": "Sunday January 15, 2017", 
-    "file": "1484944843_8_0.jpg", 
+    "file": "1484949750_8_0.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/m/mckones/0.jpg", 
     "link": "https://www.wunderground.com//wximage/mckones/0?gallery=VIPPICT"
 }{
+    "categories": "ice storm,winter", 
     "date": "Monday January 16, 2017", 
-    "file": "1484944843_9_2376.jpg", 
+    "file": "1484949751_9_2376.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/r/ruralartist/2376.jpg", 
     "link": "https://www.wunderground.com//wximage/ruralartist/2376?gallery=VIPPICT"
 }{
+    "categories": "tornado,clouds", 
     "date": "Monday January 16, 2017", 
-    "file": "1484944844_10_16.jpg", 
+    "file": "1484949752_10_16.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/r/RobandCarol/16.jpg", 
     "link": "https://www.wunderground.com//wximage/RobandCarol/16?gallery=VIPPICT"
 }{
+    "categories": "ice storm", 
     "date": "Monday January 16, 2017", 
-    "file": "1484944844_11_1.jpg", 
+    "file": "1484949752_11_1.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/a/ariamed/1.jpg", 
     "link": "https://www.wunderground.com//wximage/ariamed/1?gallery=VIPPICT"
 }{
+    "categories": "storm damage,rain", 
     "date": "Monday January 16, 2017", 
-    "file": "1484944845_12_0.jpg", 
+    "file": "1484949753_12_0.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/p/photoandglass/0.jpg", 
     "link": "https://www.wunderground.com//wximage/photoandglass/0?gallery=VIPPICT"
 }{
+    "categories": "beach,mountains,water,waves", 
     "date": "Thursday January 19, 2017", 
-    "file": "1484944846_13_192.jpg", 
+    "file": "1484949754_13_192.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/b/Bobber/192.jpg", 
     "link": "https://www.wunderground.com//wximage/Bobber/192?gallery=EDITORSPICK"
 }{
+    "categories": "clouds,sunrise sunset,winter,mountains,trees", 
     "date": "Thursday January 19, 2017", 
-    "file": "1484944847_14_559.jpg", 
+    "file": "1484949755_14_559.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/p/platinum2/559.jpg", 
     "link": "https://www.wunderground.com//wximage/platinum2/559?gallery=EDITORSPICK"
 }{
+    "categories": "fog,trees", 
     "date": "Tuesday January 17, 2017", 
-    "file": "1484944848_15_13610.jpg", 
+    "file": "1484949756_15_13610.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/l/llpj04/13610.jpg", 
     "link": "https://www.wunderground.com//wximage/llpj04/13610?gallery=EDITORSPICK"
 }{
+    "categories": "clouds,sunrise sunset,sky,trees", 
     "date": "Tuesday January 17, 2017", 
-    "file": "1484944849_16_1175.jpg", 
+    "file": "1484949757_16_1175.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/b/bbend/1175.jpg", 
     "link": "https://www.wunderground.com//wximage/bbend/1175?gallery=EDITORSPICK"
 }{
+    "categories": "sunrise sunset,birds,water", 
     "date": "Thursday January 19, 2017", 
-    "file": "1484944849_17_15725.jpg", 
+    "file": "1484949758_17_15725.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/n/Nikongranny/15725.jpg", 
     "link": "https://www.wunderground.com//wximage/Nikongranny/15725?gallery=EDITORSPICK"
 }{
+    "categories": "birds,wild animals", 
     "date": "Thursday January 19, 2017", 
-    "file": "1484944851_18_6899.jpg", 
+    "file": "1484949759_18_6899.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/d/Doesiedoats/6899.jpg", 
     "link": "https://www.wunderground.com//wximage/Doesiedoats/6899?gallery=EDITORSPICK"
 }{
+    "categories": "clouds,sunrise sunset,winter,sky,water", 
     "date": "Thursday January 19, 2017", 
-    "file": "1484944852_19_2615.jpg", 
+    "file": "1484949760_19_2615.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/g/GVIslander/2615.jpg", 
     "link": "https://www.wunderground.com//wximage/GVIslander/2615?gallery=EDITORSPICK"
 }{
+    "categories": "snow,mountains,trees", 
     "date": "Sunday January 15, 2017", 
-    "file": "1484944853_20_47.jpg", 
+    "file": "1484949761_20_47.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/m/motohawk/47.jpg", 
     "link": "https://www.wunderground.com//wximage/motohawk/47?gallery=EDITORSPICK"
 }{
+    "categories": "architecture", 
     "date": "Thursday January 19, 2017", 
-    "file": "1484944853_21_12.jpg", 
+    "file": "1484949762_21_12.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/b/Boricuaimport/12.jpg", 
     "link": "https://www.wunderground.com//wximage/Boricuaimport/12?gallery=EDITORSPICK"
 }{
+    "categories": "snow,trees", 
     "date": "Thursday January 19, 2017", 
-    "file": "1484944854_22_413.jpg", 
+    "file": "1484949763_22_413.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/r/revmtnjoe/413.jpg", 
     "link": "https://www.wunderground.com//wximage/revmtnjoe/413?gallery=EDITORSPICK"
 }{
+    "categories": "winter,lighthouses,water", 
     "date": "Thursday January 19, 2017", 
-    "file": "1484944855_23_447.jpg", 
+    "file": "1484949763_23_447.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/s/Susie77/447.jpg", 
     "link": "https://www.wunderground.com//wximage/Susie77/447?gallery=EDITORSPICK"
 }{
+    "categories": "flowers,trees", 
     "date": "Thursday January 19, 2017", 
-    "file": "1484944856_24_5882.jpg", 
+    "file": "1484949765_24_5882.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/m/Mooween/5882.jpg", 
     "link": "https://www.wunderground.com//wximage/Mooween/5882?gallery=EDITORSPICK"
 }{
+    "categories": "cold snap,snow,winter,architecture,mountains,trees", 
     "date": "Saturday January 14, 2017", 
-    "file": "1484944857_25_60.jpg", 
+    "file": "1484949765_25_60.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/s/Stankec1983/60.jpg", 
     "link": "https://www.wunderground.com//wximage/Stankec1983/60?gallery=TOPFAVORITES"
 }{
+    "categories": "ice storm,cold snap,winter,architecture,sky,water", 
     "date": "Monday January 16, 2017", 
-    "file": "1484944857_26_1003.jpg", 
+    "file": "1484949766_26_1003.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/w/walcek/1003.jpg", 
     "link": "https://www.wunderground.com//wximage/walcek/1003?gallery=TOPFAVORITES"
 }{
+    "categories": "snow,winter,sky,trees", 
     "date": "Tuesday January 17, 2017", 
-    "file": "1484944858_27_557.jpg", 
+    "file": "1484949766_27_557.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/p/platinum2/557.jpg", 
     "link": "https://www.wunderground.com//wximage/platinum2/557?gallery=TOPFAVORITES"
 }{
+    "categories": "winter", 
     "date": "Sunday January 15, 2017", 
-    "file": "1484944858_28_8.jpg", 
+    "file": "1484949767_28_8.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/a/Alexsport/8.jpg", 
     "link": "https://www.wunderground.com//wximage/Alexsport/8?gallery=TOPFAVORITES"
 }{
+    "categories": "cold snap,winter,birds,wild animals", 
     "date": "Friday January 13, 2017", 
-    "file": "1484944859_29_4208.jpg", 
+    "file": "1484949768_29_4208.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/b/backwardguy/4208.jpg", 
     "link": "https://www.wunderground.com//wximage/backwardguy/4208?gallery=TOPFAVORITES"
 }{
+    "categories": "clouds,rain,sunrise sunset,winter,birds,mountains,trees", 
     "date": "Friday January 13, 2017", 
-    "file": "1484944860_30_525.jpg", 
+    "file": "1484949768_30_525.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/p/platinum2/525.jpg", 
     "link": "https://www.wunderground.com//wximage/platinum2/525?gallery=TOPFAVORITES"
 }{
+    "categories": "clouds,rain,sunrise sunset,winter,birds,trees", 
     "date": "Friday January 13, 2017", 
-    "file": "1484944860_31_526.jpg", 
+    "file": "1484949769_31_526.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/p/platinum2/526.jpg", 
     "link": "https://www.wunderground.com//wximage/platinum2/526?gallery=TOPFAVORITES"
 }{
+    "categories": "ice storm,winter,trees,water,waves", 
     "date": "Sunday January 15, 2017", 
-    "file": "1484944861_32_12573.jpg", 
+    "file": "1484949770_32_12573.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/g/gardner48197/12573.jpg", 
     "link": "https://www.wunderground.com//wximage/gardner48197/12573?gallery=TOPFAVORITES"
 }{
+    "categories": "snow,winter,architecture,city skyline,mountains,trees", 
     "date": "Saturday January 14, 2017", 
-    "file": "1484944861_33_8989.jpg", 
+    "file": "1484949770_33_8989.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/j/joealaska/8989.jpg", 
     "link": "https://www.wunderground.com//wximage/joealaska/8989?gallery=TOPFAVORITES"
 }{
+    "categories": "winter,pets", 
     "date": "Monday January 16, 2017", 
-    "file": "1484944862_34_899.jpg", 
+    "file": "1484949771_34_899.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/m/mdlpic/899.jpg", 
     "link": "https://www.wunderground.com//wximage/mdlpic/899?gallery=TOPFAVORITES"
 }{
+    "categories": "fog,insects", 
     "date": "Friday January 13, 2017", 
-    "file": "1484944863_35_13590.jpg", 
+    "file": "1484949771_35_13590.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/l/llpj04/13590.jpg", 
     "link": "https://www.wunderground.com//wximage/llpj04/13590?gallery=TOPFAVORITES"
 }{
+    "categories": "birds,water", 
     "date": "Sunday January 15, 2017", 
-    "file": "1484944863_36_48.jpg", 
+    "file": "1484949772_36_48.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/d/dutch/48.jpg", 
     "link": "https://www.wunderground.com//wximage/dutch/48?gallery=TOPFAVORITES"
 }{
-    "date": "Friday January 20, 2017", 
-    "file": "1484944864_37_1633.jpg", 
-    "img": "https://icons.wxug.com/data/wximagenew/j/jlync/1633.jpg", 
-    "link": "https://www.wunderground.com//wximage/jlync/1633?gallery=CURRWEATHER"
-}{
+    "categories": "clouds,winter,architecture,city skyline,sky", 
     "date": "Thursday January 19, 2017", 
-    "file": "1484944865_38_415.jpg", 
+    "file": "1484949773_37_15292.jpg", 
+    "img": "https://icons.wxug.com/data/wximagenew/f/Feather3/15292.jpg", 
+    "link": "https://www.wunderground.com//wximage/Feather3/15292?gallery=CURRWEATHER"
+}{
+    "categories": "sunrise sunset,archeology,trees,water", 
+    "date": "Friday January 20, 2017", 
+    "file": "1484949774_38_5884.jpg", 
+    "img": "https://icons.wxug.com/data/wximagenew/m/Mooween/5884.jpg", 
+    "link": "https://www.wunderground.com//wximage/Mooween/5884?gallery=CURRWEATHER"
+}{
+    "categories": "clouds,winter,mountains,sky,trees", 
+    "date": "Friday January 20, 2017", 
+    "file": "1484949775_39_70.jpg", 
+    "img": "https://icons.wxug.com/data/wximagenew/w/WunderWeatherUser13/70.jpg", 
+    "link": "https://www.wunderground.com//wximage/WunderWeatherUser13/70?gallery=CURRWEATHER"
+}{
+    "categories": "clouds,rain,winter,sky,trees", 
+    "date": "Friday January 20, 2017", 
+    "file": "1484949776_40_88.jpg", 
+    "img": "https://icons.wxug.com/data/wximagenew/b/BobHanshaw/88.jpg", 
+    "link": "https://www.wunderground.com//wximage/BobHanshaw/88?gallery=CURRWEATHER"
+}{
+    "categories": "sunrise sunset", 
+    "date": "Friday January 20, 2017", 
+    "file": "1484949777_41_417.jpg", 
+    "img": "https://icons.wxug.com/data/wximagenew/j/juxtaposition/417.jpg", 
+    "link": "https://www.wunderground.com//wximage/juxtaposition/417?gallery=CURRWEATHER"
+}{
+    "categories": "ice storm,clouds,cold snap,snow,winter,mountains,sky,trees", 
+    "date": "Friday January 20, 2017", 
+    "file": "1484949778_42_11477.jpg", 
+    "img": "https://icons.wxug.com/data/wximagenew/l/lorik/11477.jpg", 
+    "link": "https://www.wunderground.com//wximage/lorik/11477?gallery=CURRWEATHER"
+}{
+    "categories": "clouds,sunrise sunset,winter,agriculture,architecture,sky,trees,tropical,water", 
+    "date": "Friday January 20, 2017", 
+    "file": "1484949779_43_1611.jpg", 
+    "img": "https://icons.wxug.com/data/wximagenew/j/jlync/1611.jpg", 
+    "link": "https://www.wunderground.com//wximage/jlync/1611?gallery=CURRWEATHER"
+}{
+    "categories": "snow,mountains,water", 
+    "date": "Thursday January 19, 2017", 
+    "file": "1484949780_44_415.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/r/revmtnjoe/415.jpg", 
     "link": "https://www.wunderground.com//wximage/revmtnjoe/415?gallery=CURRWEATHER"
 }{
+    "categories": "fog,snow,sky,trees,water", 
     "date": "Friday January 20, 2017", 
-    "file": "1484944866_39_14800.jpg", 
+    "file": "1484949781_45_14800.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/d/DCMaki/14800.jpg", 
     "link": "https://www.wunderground.com//wximage/DCMaki/14800?gallery=CURRWEATHER"
 }{
+    "categories": "snow,winter,mountains,sky,trees", 
     "date": "Thursday January 19, 2017", 
-    "file": "1484944867_40_10521.jpg", 
+    "file": "1484949781_46_10521.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/k/katy99780/10521.jpg", 
     "link": "https://www.wunderground.com//wximage/katy99780/10521?gallery=CURRWEATHER"
 }{
+    "categories": "clouds,sunrise sunset,mountains,trees,water", 
     "date": "Thursday January 19, 2017", 
-    "file": "1484944867_41_12612.jpg", 
+    "file": "1484949782_47_12612.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/n/noneinc/12612.jpg", 
     "link": "https://www.wunderground.com//wximage/noneinc/12612?gallery=CURRWEATHER"
 }{
+    "categories": "clouds,fog,mountains,trees", 
     "date": "Tuesday January 17, 2017", 
-    "file": "1484944868_42_12610.jpg", 
+    "file": "1484949783_48_12610.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/n/noneinc/12610.jpg", 
     "link": "https://www.wunderground.com//wximage/noneinc/12610?gallery=CURRWEATHER"
 }{
-    "date": "Monday January 16, 2017", 
-    "file": "1484944869_43_12608.jpg", 
-    "img": "https://icons.wxug.com/data/wximagenew/n/noneinc/12608.jpg", 
-    "link": "https://www.wunderground.com//wximage/noneinc/12608?gallery=CURRWEATHER"
-}{
-    "date": "Saturday January 14, 2017", 
-    "file": "1484944871_44_12606.jpg", 
-    "img": "https://icons.wxug.com/data/wximagenew/n/noneinc/12606.jpg", 
-    "link": "https://www.wunderground.com//wximage/noneinc/12606?gallery=CURRWEATHER"
-}{
-    "date": "Friday January 13, 2017", 
-    "file": "1484944872_45_12605.jpg", 
-    "img": "https://icons.wxug.com/data/wximagenew/n/noneinc/12605.jpg", 
-    "link": "https://www.wunderground.com//wximage/noneinc/12605?gallery=CURRWEATHER"
-}{
+    "categories": "winter,birds,trees", 
     "date": "Friday January 20, 2017", 
-    "file": "1484944873_46_1362.jpg", 
-    "img": "https://icons.wxug.com/data/wximagenew/m/MinnesotaNorthwoods/1362.jpg", 
-    "link": "https://www.wunderground.com//wximage/MinnesotaNorthwoods/1362?gallery=CURRWEATHER"
+    "file": "1484949784_49_15294.jpg", 
+    "img": "https://icons.wxug.com/data/wximagenew/f/Feather3/15294.jpg", 
+    "link": "https://www.wunderground.com//wximage/Feather3/15294?gallery=CURRNONWEATHER"
 }{
-    "date": "Wednesday January 18, 2017", 
-    "file": "1484944873_47_13612.jpg", 
-    "img": "https://icons.wxug.com/data/wximagenew/l/llpj04/13612.jpg", 
-    "link": "https://www.wunderground.com//wximage/llpj04/13612?gallery=CURRWEATHER"
+    "categories": "winter,architecture,flowers,sky,trees,tropical", 
+    "date": "Thursday January 19, 2017", 
+    "file": "1484949785_50_1635.jpg", 
+    "img": "https://icons.wxug.com/data/wximagenew/j/jlync/1635.jpg", 
+    "link": "https://www.wunderground.com//wximage/jlync/1635?gallery=CURRNONWEATHER"
 }{
+    "categories": "winter", 
     "date": "Friday January 20, 2017", 
-    "file": "1484944874_48_909.jpg", 
+    "file": "1484949786_51_909.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/m/mdlpic/909.jpg", 
     "link": "https://www.wunderground.com//wximage/mdlpic/909?gallery=CURRNONWEATHER"
 }{
+    "categories": "birds,sky", 
     "date": "Friday January 20, 2017", 
-    "file": "1484944875_49_1631.jpg", 
+    "file": "1484949787_52_1631.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/j/jlync/1631.jpg", 
     "link": "https://www.wunderground.com//wximage/jlync/1631?gallery=CURRNONWEATHER"
 }{
+    "categories": "snow,winter,birds", 
     "date": "Thursday January 19, 2017", 
-    "file": "1484944876_50_10522.jpg", 
+    "file": "1484949788_53_10522.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/k/katy99780/10522.jpg", 
     "link": "https://www.wunderground.com//wximage/katy99780/10522?gallery=CURRNONWEATHER"
 }{
+    "categories": "flowers", 
     "date": "Tuesday January 17, 2017", 
-    "file": "1484944877_51_12613.jpg", 
+    "file": "1484949788_54_12613.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/n/noneinc/12613.jpg", 
     "link": "https://www.wunderground.com//wximage/noneinc/12613?gallery=CURRNONWEATHER"
 }{
+    "categories": "birds,trees", 
     "date": "Wednesday January 18, 2017", 
-    "file": "1484944878_52_12611.jpg", 
+    "file": "1484949789_55_12611.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/n/noneinc/12611.jpg", 
     "link": "https://www.wunderground.com//wximage/noneinc/12611?gallery=CURRNONWEATHER"
 }{
+    "categories": "birds,trees", 
     "date": "Sunday January 15, 2017", 
-    "file": "1484944878_53_12607.jpg", 
+    "file": "1484949790_56_12607.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/n/noneinc/12607.jpg", 
     "link": "https://www.wunderground.com//wximage/noneinc/12607?gallery=CURRNONWEATHER"
 }{
-    "date": "Thursday January 19, 2017", 
-    "file": "1484944879_54_1625.jpg", 
-    "img": "https://icons.wxug.com/data/wximagenew/j/jlync/1625.jpg", 
-    "link": "https://www.wunderground.com//wximage/jlync/1625?gallery=CURRNONWEATHER"
-}{
+    "categories": "winter,agriculture,architecture,flowers", 
     "date": "Monday January 16, 2017", 
-    "file": "1484944880_55_5103.jpg", 
+    "file": "1484949791_57_5103.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/k/Kennebunker/5103.jpg", 
     "link": "https://www.wunderground.com//wximage/Kennebunker/5103?gallery=CURRNONWEATHER"
 }{
+    "categories": "birds", 
     "date": "Wednesday January 18, 2017", 
-    "file": "1484944881_56_341.jpg", 
+    "file": "1484949792_58_341.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/r/rdragon/341.jpg", 
     "link": "https://www.wunderground.com//wximage/rdragon/341?gallery=CURRNONWEATHER"
 }{
+    "categories": "beach,mountains,water,waves", 
     "date": "Thursday January 19, 2017", 
-    "file": "1484944882_57_192.jpg", 
+    "file": "1484949793_59_192.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/b/Bobber/192.jpg", 
     "link": "https://www.wunderground.com//wximage/Bobber/192?gallery=CURRNONWEATHER"
 }{
+    "categories": "birds", 
     "date": "Thursday January 19, 2017", 
-    "file": "1484944882_58_908.jpg", 
+    "file": "1484949794_60_908.jpg", 
     "img": "https://icons.wxug.com/data/wximagenew/m/mdlpic/908.jpg", 
     "link": "https://www.wunderground.com//wximage/mdlpic/908?gallery=CURRNONWEATHER"
-}{
-    "date": "Thursday January 19, 2017", 
-    "file": "1484944883_59_13386.jpg", 
-    "img": "https://icons.wxug.com/data/wximagenew/w/WeatherWise/13386.jpg", 
-    "link": "https://www.wunderground.com//wximage/WeatherWise/13386?gallery=CURRNONWEATHER"
 }

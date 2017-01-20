@@ -15,8 +15,8 @@ if __name__ == '__main__':
     print "Starting retrieval"
     if len(sys.argv) > 1:
         RETRIEVE_FROM = sys.argv[1]
-    ImageData = namedtuple('ImageData', 'file, img, link, date')
-    IMG_FIELDS = ['file', 'img', 'link', 'date']
+    ImageData = namedtuple('ImageData', 'file, img, link, date, categories')
+    IMG_FIELDS = ['file', 'img', 'link', 'date', 'categories']
     DATA_LIST = []
     URL = urllib.urlopen(RETRIEVE_FROM).read()
     soup = BeautifulSoup(URL, "lxml")
@@ -30,6 +30,10 @@ if __name__ == '__main__':
         soup = BeautifulSoup(URL, "lxml")
         images = soup.findAll('img')
         date = soup.findAll('p')[4]
+        categories = soup.findAll('a', class_="panel category radius")
+        full_category = ""
+        for category in categories:
+            full_category = full_category + category.text + ","
         full_date = re.sub(P_TAGS, "", str(date))
         for image in images:
             full_image = image.get('data-interchange')
@@ -39,7 +43,7 @@ if __name__ == '__main__':
                 filename = str(int(time.time())) + "_" + str(i) + "_" + full_image.split('/')[-1]
                 if filename.endswith(IMAGE_TYPE):
                     i = i + 1
-                    data = ImageData(filename, full_image, full_link, full_date)
+                    data = ImageData(filename, full_image, full_link, full_date, full_category[:-1])
                     DATA_LIST.append(data)
     print "Writing to file and downloading images"
     DATA_FILE = open('image_data' + str(int(time.time())) + ".txt", 'w')
