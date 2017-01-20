@@ -7,7 +7,7 @@ import re
 import json
 from bs4 import BeautifulSoup
 
-RETRIEVE_FROM = 'https://www.wunderground.com/wximage/imagegallery'
+RETRIEVE_FROM = 'https://www.wunderground.com/wximage/'
 P_TAGS = "(<p>|<\/p>)"
 IMAGE_TYPE = ".jpg"
 
@@ -35,7 +35,7 @@ if __name__ == '__main__':
             full_image = image.get('data-interchange')
             if full_image is not None:
                 full_image = "https:" + image.nextSibling.nextSibling.img['src']
-                print "     %s" % (full_image)
+                # print "     %s" % (full_image)
                 filename = str(int(time.time())) + "_" + str(i) + "_" + full_image.split('/')[-1]
                 if filename.endswith(IMAGE_TYPE):
                     i = i + 1
@@ -44,7 +44,7 @@ if __name__ == '__main__':
     print "Writing to file and downloading images"
     DATA_FILE = open('image_data' + str(int(time.time())) + ".txt", 'w')
     for data in DATA_LIST:
-        print "     " + data.file
+        # print "     " + data.file
         urllib.urlretrieve(data.img, data.file)
         DATA_FILE.write(json.dumps(dict(zip(IMG_FIELDS, data)), sort_keys=True, indent=4))
     DATA_FILE.close()
