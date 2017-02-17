@@ -116,11 +116,16 @@ An algorithm will use the image's colors and associated metadata, combined with 
 
 \subsection{Constraints}
 \begin{enumerate}
-	\item Although the system is a web application, uploaded images must be taken on phones in order for the algorithm to give correct output. Images from mobile phones include associated metadata that will be needed for the aerosol analyzing algorithm, and this metadata is not present on non-mobile cameras.
-	\item Images uploaded to Aerolyzer cannot be “cleaned up” before being uploaded, as this could distort the color. This means no filters or other image editing tools can be used on the images. 
-	\item Only direct landscape images with the sky in view can be uploaded to Aerolyzer. For example, images taken from inside a window or a picture of grass will not give accurate output about current aerosol conditions. 
+        \item The image must be a mobile image.
+        \item The image cannot be edited or filtered in any way.
+        \item The image must be a picture of a direct landscape with a sky and view.
+        \item The image must be no larger than 200kb.
+        \item The file type of the image must be .jpg or .png.
+        \item The image must exceed the minimum resolution.
+        \item Location services must be enabled for the camera.
+        \item The device used must be a supported device.
 \end{enumerate}
-More information about constraints of the system will be added as needed to this requirements specification document.
+More information about the above image restrictions will be added as needed to this requirements specification document.
 \subsection{Assumptions and Dependencies}
 \begin{enumerate}
 	\item We assume users are willing to give permission for having their images accessed and processed.
