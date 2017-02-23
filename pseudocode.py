@@ -37,10 +37,15 @@ Returns:        Boolean
 Assumptions:    N/A
 '''
 def accept_device(exifData, acceptedMobileDevices):
-    for device in range(len(acceptedMobileDevices)):
-        if (exifData[DEVICE] == acceptedMobileDevices[device]):
-            return true
-    return false
+    #check to make sure the key-value pair exists in exifData to prevent errors
+    if (exifData['DEVICE'] == null):
+        return false
+    
+    if any(exifData['DEVICE'].lower() in device for device in acceptedMobileDevices):
+        return true
+    else:
+        return false
+
 
 '''
 Purpose:        The purpose of this function is to determine whether or not the image was
@@ -50,8 +55,12 @@ Outputs:        None
 Returns:        Boolean
 Assumptions:    N/A
 '''
-def not_edited(exifData):
-    if (exifData[Create Date] == exifData[Modify Date]):
+def is_edited(exifData):
+    #check to make sure the key-value pair exists in exifData to prevent errors
+    if (exifData['Create Date'] == null or exifData['Modify Date'] == null):
+        return false
+    
+    if (exifData['Create Date'] == exifData['Modify Date']):
         return true
     else:
         return false
@@ -75,8 +84,12 @@ Outputs:        None
 Returns:        Boolean
 Assumptions:    N/A
 '''
-def meets_size_limit(exifData, imgMaxSize):
-    if (exifData[File Size] <= imgMaxSize): #parsing may be necessary here "200 kB"
+def accept_size(exifData, imgMaxSize):
+    #check to make sure the key-value pair exists in exifData to prevent errors
+    if(exifData['File Size'] == null):
+        return false
+    
+    if (exifData['File Size'] <= imgMaxSize): #parsing may be necessary here "200 kB"
         return true
     else:
         return false
@@ -89,10 +102,13 @@ Outputs:        None
 Returns:        Boolean
 Assumptions:    N/A
 '''
-def accepted_file_type(exifData, acceptedFileTypes):
-    for fileType in range(len(acceptedFileTypes)):
-        if (exifData[File Type] == acceptedMobileDevices[fileType]):
-            return true
+def accept_file_type(exifData, acceptedFileTypes):
+    #check to make sure the key-value pair exists in exifData to prevent errors
+    if(exifData['File Type'] == null):
+        return false
+
+    if any(exifData['File Type'].upper() in fileType for fileType in acceptedFileTypes):
+        return true
     else:
         return false
 
@@ -104,8 +120,12 @@ Outputs:        None
 Returns:        Boolean
 Assumptions:    N/A
 '''
-def meets_resolution_limit(exifData, imgWidthMin, imgHeightMin):
-    if (exifData[Exif Image Width] >= imgWidthMin  && exifData[Exif Image Height] >= imgHeightMin):
+def accept_resolution(exifData, imgWidthMin, imgHeightMin):
+    #check to make sure the key-value pair exists in exifData to prevent errors
+    if(exifData['Exif Image Width'] == null or exifData['Exif Image Height'] == null):
+        return false
+    
+    if (exifData['Exif Image Width'] >= imgWidthMin  && exifData['Exif Image Height'] >= imgHeightMin):
         return true
     else:
         return false
@@ -118,9 +138,8 @@ Outputs:        None
 Returns:        Boolean
 Assumptions:    N/A
 '''
-def location_services_on(exifData):
-    #may need to check that keys Latitude/Longitude exist before calling them below
-    if (exifData[Latitude] != null && exif_data[Longitude] != null):
-        return true
-    else:
+def is_location_services(exifData):
+    if(exifData['GPS Latitude'] == null or exifData['GPS Latitude'] == null):
         return false
+    else:
+        return true
