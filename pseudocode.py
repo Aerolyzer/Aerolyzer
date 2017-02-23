@@ -27,6 +27,8 @@ acceptedMobileDevices = ["i5", "i5s", "i6", "i6s", "i7"]
 imgMaxSize = 200;
 imgWidthMin = xxx;
 imgHeightMin = xxx;
+imgWidthMax = xxx;
+imgHeightMax = xxx;
 
 '''
 Purpose:        The purpose of this function is to determine whether or not the device the
@@ -38,7 +40,7 @@ Assumptions:    N/A
 '''
 def accept_device(exifData, acceptedMobileDevices):
     #check to make sure the key-value pair exists in exifData to prevent errors
-    if (exifData['DEVICE'] == null):
+    if (!('DEVICE' in exifData.keys())):
         return false
     
     if any(exifData['DEVICE'].lower() in device for device in acceptedMobileDevices):
@@ -50,14 +52,12 @@ def accept_device(exifData, acceptedMobileDevices):
 '''
 Purpose:        The purpose of this function is to determine whether or not the image was
                 altered from its original form. I.e. do the modification and creation dates coincide.
-Inputs:         dict exifData
-Outputs:        None
 Returns:        Boolean
 Assumptions:    N/A
 '''
 def is_edited(exifData):
     #check to make sure the key-value pair exists in exifData to prevent errors
-    if (exifData['Create Date'] == null or exifData['Modify Date'] == null):
+    if (!('Create Date' in exifData.keys()) or !('Modify Date' in exifData.keys())):
         return false
     
     if (exifData['Create Date'] == exifData['Modify Date']):
@@ -86,7 +86,7 @@ Assumptions:    N/A
 '''
 def accept_size(exifData, imgMaxSize):
     #check to make sure the key-value pair exists in exifData to prevent errors
-    if(exifData['File Size'] == null):
+    if(!('File Size' in exifData.keys())):
         return false
     
     if (exifData['File Size'] <= imgMaxSize): #parsing may be necessary here "200 kB"
@@ -104,7 +104,7 @@ Assumptions:    N/A
 '''
 def accept_file_type(exifData, acceptedFileTypes):
     #check to make sure the key-value pair exists in exifData to prevent errors
-    if(exifData['File Type'] == null):
+    if(!('File Type' in exifData.keys())):
         return false
 
     if any(exifData['File Type'].upper() in fileType for fileType in acceptedFileTypes):
@@ -122,11 +122,12 @@ Assumptions:    N/A
 '''
 def accept_resolution(exifData, imgWidthMin, imgHeightMin):
     #check to make sure the key-value pair exists in exifData to prevent errors
-    if(exifData['Exif Image Width'] == null or exifData['Exif Image Height'] == null):
+    if(!('Exif Image Width' in exifData.keys()) or !('Exif Image Height'in exifData.keys())):
         return false
     
     if (exifData['Exif Image Width'] >= imgWidthMin  && exifData['Exif Image Height'] >= imgHeightMin):
-        return true
+        if (exifData['Exif Image Width'] <= imgWidthMax  && exifData['Exif Image Height'] <= imgHeightMax):
+            return true
     else:
         return false
 
@@ -139,7 +140,10 @@ Returns:        Boolean
 Assumptions:    N/A
 '''
 def is_location_services(exifData):
-    if(exifData['GPS Latitude'] == null or exifData['GPS Latitude'] == null):
+    if(!('GPS Latitude' in exifData.keys()) or !('GPS Longitude' in exifData.keys())):
         return false
-    else:
+    
+    if (exifData['GPS Latitude'] != '' and exifData['GPS Longitude'] != ''):
         return true
+    else:
+        return false
