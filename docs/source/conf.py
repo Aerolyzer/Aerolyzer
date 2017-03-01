@@ -56,8 +56,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Aerolyzer'
-copyright = u'2017, Jesse Hanson, Reilly Collins, Sophia Liu'
-author = u'Jesse Hanson, Reilly Collins, Sophia Liu'
+copyright = u'2017, Aerolyzer Development Team'
+author = u'Aerolyzer Development Team'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -137,7 +137,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'Aerolyzer.tex', u'Aerolyzer Documentation',
-     u'Jesse Hanson, Reilly Collins, Sophia Liu', 'manual'),
+     u'Aerolyzer Development Team', 'manual'),
 ]
 
 
