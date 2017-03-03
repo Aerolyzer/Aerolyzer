@@ -26,7 +26,6 @@ class imageRestrictionFunctions(object):
     Assumptions:    N/A
     '''
     def accept_device(self, exifData, acceptedMobileDevices):
-        #check to make sure the key-value pair exists in exifData to prevent errors
         if ('DEVICE' not in exifData.keys()):
             return False
         
@@ -43,7 +42,6 @@ class imageRestrictionFunctions(object):
     Assumptions:    N/A
     '''
     def is_edited(self, exifData):
-        #check to make sure the key-value pair exists in exifData to prevent errors
         if ('Create Date' not in exifData.keys() or 'Modify Date' not in exifData.keys()):
             return False
         
