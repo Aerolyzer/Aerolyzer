@@ -1,21 +1,17 @@
 '''
-Aerolyzer
-March 2, 2017
 Image Restriction Function File
 Description: This file contains all functions for the verifying image restrictions.
 '''
 
-'''
-import libraries
-'''
-import re
 import exifread
+import re
+import yaml
 
-class imageRestrictionFunctions(object):
+class imgRestFuncs(object):
     'Class containing all image restriction functions'
 
     def __init__(self):
-        pass
+        self.criteria = self._import_yaml("image_restriction_conf.yaml")
 
     '''
     Purpose:        The purpose of this function is to determine whether or not the device the
@@ -25,11 +21,11 @@ class imageRestrictionFunctions(object):
     Returns:        Boolean
     Assumptions:    N/A
     '''
-    def accept_device(self, exifData, acceptedMobileDevices):
+    def is_accepted_device(self, exifData):
         if ('DEVICE' not in exifData.keys()):
             return False
         
-        if any(exifData['DEVICE'].lower() in device for device in acceptedMobileDevices):
+        if any(exifData['DEVICE'].lower() in self.device for self.device in self.criteria['acceptedMobileDevices']):
             return True
         else:
             return False
@@ -71,49 +67,41 @@ class imageRestrictionFunctions(object):
     Returns:        Boolean
     Assumptions:    N/A
     '''
-    def accept_size(self, exifData, imgMaxSizeNumber, imgMaxSizeBytesShort, imgMaxSizeBytesLong,
-            imgSizesLong, imgSizesShort):
-        #check to make sure the key-value pair exists in exifData to prevent errors
+    def is_accepted_size(self, exifData):
         if('File Size' not in exifData.keys()):
             return False
       
         #parse File Size parameter into a list of the numbers, spaces, and letters
-        self.fileParameters = self.parse_file_size(exifData['File Size'])
+        self.fileParameters = self._parse_file_size(exifData['File Size'])
         
         #check to make sure parsing was successful
         if(self.fileParameters == [] or len(self.fileParameters) != 3):
             return False
         else:
-            #Case 1: File Size has same byte-type as the maximum value
-            if(self.fileParameters[2].lower() == imgMaxSizeBytesShort or fileParameters[2].lower() == imgMaxSizeBytesLong):
-                if(int(self.fileParameters[0]) <= imgMaxSize):
+            if(self.fileParameters[2].lower() == self.criteria['imgMaxSizeBytesShort'] or fileParameters[2].lower() == self.criteria['imgMaxSizeBytesLong']):
+                if(int(self.fileParameters[0]) <= self.criteria['imgMaxSizeNumber']):
                     return True
                 else:
                     return False
             else:                
-                #Determine img byte-size key
-                for self.key, self.value in imgSizesLong.iteritems():
+                for self.key, self.value in self.criteria['imgSizesLong'].iteritems():
                     if self.value == self.fileParameters[2].lower():
                         self.imgKey = self.key
                 
-                for self.key, self.value in imgSizesShort.iteritems():
+                for self.key, self.value in self.criteria['imgSizesShort'].iteritems():
                     if self.value == fileParameters[2].lower():
                         self.imgKey = self.key
                 
-                #Determine accepted img size byte-size key
-                for self.key, self.value in imgSizesShort.iteritems():
-                    if self.value == imgMaxSizeBytes:
+                for self.key, self.value in self.criteria['imgSizesShort'].iteritems():
+                    if self.value == self.criteria['imgMaxSizeBytesShort']:
                         self.acceptImgKey = self.key
 
-                #Case 2: File Size byte-type is smaller
                 if(self.imgKey < self.acceptImgKey):
                     return True
 
-                #Case 3: File Size byte-type is larger
                 elif(self.imgKey > self.acceptImgKey):
                     return False
 
-                #Case 4: File Size byte-type unrecognized
                 else:
                     return False
 
@@ -125,12 +113,11 @@ class imageRestrictionFunctions(object):
     Returns:        Boolean
     Assumptions:    N/A
     '''
-    def accept_file_type(self, exifData, acceptedFileTypes):
-        #check to make sure the key-value pair exists in exifData to prevent errors
+    def is_accepted_type(self, exifData):
         if('File Type' not in exifData.keys()):
             return False
 
-        if any(exifData['File Type'].upper() in self.fileType for self.fileType in acceptedFileTypes):
+        if any(exifData['File Type'].upper() in self.fileType for self.fileType in self.criteria['acceptedFileTypes']):
             return True
         else:
             return False
@@ -143,13 +130,12 @@ class imageRestrictionFunctions(object):
     Returns:        Boolean
     Assumptions:    N/A
     '''
-    def accept_resolution(self, exifData, imgWidthMin, imgHeightMin, imgWidthMax, imgHeightMax):
-        #check to make sure the key-value pair exists in exifData to prevent errors
+    def is_accepted_resolution(self, exifData):
         if('Exif Image Width' not in exifData.keys() or 'Exif Image Height'in exifData.keys()):
             return False
         
-        if (exifData['Exif Image Width'] >= imgWidthMin and exifData['Exif Image Height'] >= imgHeightMin):
-            if (exifData['Exif Image Width'] <= imgWidthMax and exifData['Exif Image Height'] <= imgHeightMax):
+        if (exifData['Exif Image Width'] >= self.criteria['imgWidthMin'] and exifData['Exif Image Height'] >= self.criteria['imgHeightMin']):
+            if (exifData['Exif Image Width'] <= self.criteria['imgWidthMax'] and exifData['Exif Image Height'] <= self.criteria['imgHeightMax']):
                 return True
         else:
             return False
@@ -179,7 +165,7 @@ class imageRestrictionFunctions(object):
     Returns:        list file_parameters (digits, spaces, letters)
     Assumptions:    N/A
     '''
-    def parse_file_size(self, fileSize):
+    def _parse_file_size(self, fileSize):
         self.match = re.match(r"([0-9]+)(\s*)([a-z]+)$", fileSize, re.I)
         if self.match:
             self.fileParameters = match.groups()
@@ -196,9 +182,9 @@ class imageRestrictionFunctions(object):
     Returns:        Error message or blank message
     Assumptions:    N/A
     '''
-    def error_message(self, boolean, imgRestrictionErrorText, error):
+    def err_msg(self, boolean, error):
         if not boolean:
-            return("Restriction Error: %s." % (imgRestrictionErrorText[error]))
+            return("Restriction Error: %s." % (self.criteria['imgRestrictionErrorText'][error]))
         else:
             return('')
 
@@ -216,22 +202,14 @@ class imageRestrictionFunctions(object):
         return self.tags
 
     '''
-    Purpose:        The purpose of this main function is to check all image restrictions and
-                    produce the correct error message should one occur.
-    Inputs:         None
+    Purpose:        The purpose of this function is to import the contents of the configuration file.
+    Inputs:         string conf_file
     Outputs:        None
-    Returns:        N/A
+    Returns:        reference to configuration file
     Assumptions:    N/A
     '''
-    def main():
-        #Retrieve exif data
-        exifData = get_exif(path)
-
-        #Call each function and check for false return values
-        error_message(accept_device(exifData, acceptedMobileDevices), imgRestrictionErrorText, 'accept_device')
-        error_message(is_edited(exifData), imgRestrictionErrorText, 'is_edited')
-        error_message(is_landscape(exifData), imgRestrictionErrorText, 'is_landscape')
-        error_message(accept_size(exifData, imgMaxSize), imgRestrictionErrorText, 'accept_size')
-        error_message(accept_file_type(exifData, acceptedFileTypes), imgRestrictionErrorText, 'accept_file_type')
-        error_message(accept_resolution(exifData, imgWidthMin, imgHeightMin, imgWidthMax, imgHeighMax), imgRestrictionErrorText, 'accept_resolution')
-        error_message(is_location_services(exifData), imgRestrictionErrorText, 'is_location_services')
+    def _import_yaml(self, conf_file):
+        with open(conf_file, 'r') as self.file:
+            self.doc = yaml.load(self.file)
+            self.file.close()
+        return self.doc
