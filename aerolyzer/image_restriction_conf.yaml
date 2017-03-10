@@ -36,13 +36,5 @@ imgWidthMin: 100
 imgHeightMin: 100
 imgWidthMax: 1000
 imgHeightMax: 1000
-imgRestrictionErrorText:
- is_accepted_device: "The image must be a mobile image from a supported device"
- is_edited: "The image cannot be edited or filtered in any way"
- is_landscape: "The image must be of a direct landscape with a sky and view"
- is_accepted_size: "The image must be no larger than 200kb"
- is_accepted_type: "The file type of the image must be .jpg or .png"
- is_accepted_resolution: "The image must be in the resolution range 1X1-1000X1000"
- is_location_services: "Location services must be enabled for the camera"
 
 ...

@@ -12,6 +12,7 @@ class imgRestFuncs(object):
 
     def __init__(self):
         self.criteria = self._import_yaml("image_restriction_conf.yaml")
+        assert (self.criteria['imgMaxSizeNumber'] == 200), "YAML import was not successful"
 
     '''
     Purpose:        The purpose of this function is to determine whether or not the device the
@@ -22,10 +23,12 @@ class imgRestFuncs(object):
     Assumptions:    N/A
     '''
     def is_accepted_device(self, exifData):
+        assert (type(exifData) == dict), "exifData not passed as a dictionary"
+
         if ('DEVICE' not in exifData.keys()):
-            return False
-        
-        if any(exifData['DEVICE'].lower() in self.device for self.device in self.criteria['acceptedMobileDevices']):
+            return False   
+
+        if any(exifData['DEVICE'].lower() in device for device in self.criteria['acceptedMobileDevices']):
             return True
         else:
             return False
@@ -38,8 +41,13 @@ class imgRestFuncs(object):
     Assumptions:    N/A
     '''
     def is_edited(self, exifData):
+        assert (type(exifData) == dict), "exifData not passed as a dictionary"
+
         if ('Create Date' not in exifData.keys() or 'Modify Date' not in exifData.keys()):
             return False
+
+        assert (type(exifData['Create Date']) == datetime), "Exif Image Width value not an integer"
+        assert (type(exifData['Modify Date']) == datetime), "Exif Image Height value not an integer"
         
         if (exifData['Create Date'] == exifData['Modify Date']):
             return True
@@ -55,6 +63,8 @@ class imgRestFuncs(object):
     Assumptions:    N/A
     '''
     def is_landscape(self, exifData):
+        assert (type(exifData) == dict), "exifData not passed as a dictionary"
+
         pass
         #UNKNOWN METHOD
 
@@ -68,38 +78,40 @@ class imgRestFuncs(object):
     Assumptions:    N/A
     '''
     def is_accepted_size(self, exifData):
+        assert (type(exifData) == dict), "exifData not passed as a dictionary"
+        
         if('File Size' not in exifData.keys()):
             return False
       
         #parse File Size parameter into a list of the numbers, spaces, and letters
-        self.fileParameters = self._parse_file_size(exifData['File Size'])
+        fileParameters = self._parse_file_size(exifData['File Size'])
         
         #check to make sure parsing was successful
-        if(self.fileParameters == [] or len(self.fileParameters) != 3):
+        if(fileParameters == [] or len(fileParameters) != 3):
             return False
         else:
-            if(self.fileParameters[2].lower() == self.criteria['imgMaxSizeBytesShort'] or fileParameters[2].lower() == self.criteria['imgMaxSizeBytesLong']):
-                if(int(self.fileParameters[0]) <= self.criteria['imgMaxSizeNumber']):
+            if(fileParameters[2].lower() == self.criteria['imgMaxSizeBytesShort'] or fileParameters[2].lower() == self.criteria['imgMaxSizeBytesLong']):
+                if(int(fileParameters[0]) <= self.criteria['imgMaxSizeNumber']):
                     return True
                 else:
                     return False
             else:                
-                for self.key, self.value in self.criteria['imgSizesLong'].iteritems():
-                    if self.value == self.fileParameters[2].lower():
-                        self.imgKey = self.key
+                for key, value in self.criteria['imgSizesLong'].iteritems():
+                    if value == fileParameters[2].lower():
+                        imgKey = key
                 
-                for self.key, self.value in self.criteria['imgSizesShort'].iteritems():
-                    if self.value == fileParameters[2].lower():
-                        self.imgKey = self.key
+                for key, value in self.criteria['imgSizesShort'].iteritems():
+                    if value == fileParameters[2].lower():
+                        imgKey = key
                 
-                for self.key, self.value in self.criteria['imgSizesShort'].iteritems():
-                    if self.value == self.criteria['imgMaxSizeBytesShort']:
-                        self.acceptImgKey = self.key
+                for key, value in self.criteria['imgSizesShort'].iteritems():
+                    if value == self.criteria['imgMaxSizeBytesShort']:
+                        acceptImgKey = key
 
-                if(self.imgKey < self.acceptImgKey):
+                if(imgKey < acceptImgKey):
                     return True
 
-                elif(self.imgKey > self.acceptImgKey):
+                elif(imgKey > acceptImgKey):
                     return False
 
                 else:
@@ -114,10 +126,14 @@ class imgRestFuncs(object):
     Assumptions:    N/A
     '''
     def is_accepted_type(self, exifData):
+        assert (type(exifData) == dict), "exifData not passed as a dictionary"
+
         if('File Type' not in exifData.keys()):
             return False
 
-        if any(exifData['File Type'].upper() in self.fileType for self.fileType in self.criteria['acceptedFileTypes']):
+        assert (type(exifData['File Type']) == str), "File Type value not a string"
+
+        if any(exifData['File Type'].upper() in fileType for fileType in self.criteria['acceptedFileTypes']):
             return True
         else:
             return False
@@ -131,9 +147,14 @@ class imgRestFuncs(object):
     Assumptions:    N/A
     '''
     def is_accepted_resolution(self, exifData):
-        if('Exif Image Width' not in exifData.keys() or 'Exif Image Height'in exifData.keys()):
+        assert (type(exifData) == dict), "exifData not passed as a dictionary"
+
+        if('Exif Image Width' not in exifData.keys() or 'Exif Image Height' not in exifData.keys()):
             return False
-        
+
+        assert (type(exifData['Exif Image Width']) == int), "Exif Image Width value not an integer"
+        assert (type(exifData['Exif Image Height']) == int), "Exif Image Height value not an integer"
+
         if (exifData['Exif Image Width'] >= self.criteria['imgWidthMin'] and exifData['Exif Image Height'] >= self.criteria['imgHeightMin']):
             if (exifData['Exif Image Width'] <= self.criteria['imgWidthMax'] and exifData['Exif Image Height'] <= self.criteria['imgHeightMax']):
                 return True
@@ -149,6 +170,8 @@ class imgRestFuncs(object):
     Assumptions:    N/A
     '''
     def is_location_services(self, exifData):
+        assert (type(exifData) == dict), "exifData not passed as a dictionary"
+
         if('GPS Latitude' not in exifData.keys() or 'GPS Longitude' not in exifData.keys()):
             return False
         
@@ -166,27 +189,14 @@ class imgRestFuncs(object):
     Assumptions:    N/A
     '''
     def _parse_file_size(self, fileSize):
-        self.match = re.match(r"([0-9]+)(\s*)([a-z]+)$", fileSize, re.I)
-        if self.match:
-            self.fileParameters = match.groups()
-        else:
-            self.fileParameters = []
-        return(self.fileParameters)
+        assert (type(fileSize) == str), "fileSize not passed as a string"
 
-
-    '''
-    Purpose:        The purpose of this function is to determine whether or not an image
-                    restriction was passed, and print out the correct error statement accordingly.
-    Inputs:         boolean bool, list imgRestrictionErrorText, key error
-    Outputs:        None
-    Returns:        Error message or blank message
-    Assumptions:    N/A
-    '''
-    def err_msg(self, boolean, error):
-        if not boolean:
-            return("Restriction Error: %s." % (self.criteria['imgRestrictionErrorText'][error]))
+        match = re.match(r"([0-9]+)(\s*)([a-z]+)$", fileSize, re.I)
+        if match:
+            fileParameters = match.groups()
         else:
-            return('')
+            fileParameters = []
+        return(fileParameters)
 
     '''
     Purpose:        The purpose of this main function is to check all image restrictions and
@@ -197,9 +207,10 @@ class imgRestFuncs(object):
     Assumptions:    N/A
     '''
     def get_exif(self, path):
-        self.img = open(path, 'rb')
-        self.tags = exifread.process_file(self.img)
-        return self.tags
+        assert (type(path) == str), "path not passed as a string"        
+        img = open(path, 'rb')
+        tags = exifread.process_file(img)
+        return tags
 
     '''
     Purpose:        The purpose of this function is to import the contents of the configuration file.
@@ -208,8 +219,9 @@ class imgRestFuncs(object):
     Returns:        reference to configuration file
     Assumptions:    N/A
     '''
-    def _import_yaml(self, conf_file):
-        with open(conf_file, 'r') as self.file:
-            self.doc = yaml.load(self.file)
-            self.file.close()
-        return self.doc
+    def _import_yaml(self, confFile):
+        assert (type(confFile) == str), "configuration file not passed as a string"        
+        with open(confFile, 'r') as file:
+            doc = yaml.load(file)
+            file.close()
+        return doc
