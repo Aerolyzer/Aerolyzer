@@ -22,7 +22,7 @@ class imgRestFuncs(object):
     Returns:        Boolean
     Assumptions:    N/A
     '''
-    def is_accepted_device(self, exifData):
+    def is_device(self, exifData):
         assert (type(exifData) == dict), "exifData not passed as a dictionary"
 
         if ('DEVICE' not in exifData.keys()):
@@ -77,7 +77,7 @@ class imgRestFuncs(object):
     Returns:        Boolean
     Assumptions:    N/A
     '''
-    def is_accepted_size(self, exifData):
+    def is_size(self, exifData):
         assert (type(exifData) == dict), "exifData not passed as a dictionary"
         
         if('File Size' not in exifData.keys()):
@@ -125,7 +125,7 @@ class imgRestFuncs(object):
     Returns:        Boolean
     Assumptions:    N/A
     '''
-    def is_accepted_type(self, exifData):
+    def is_type(self, exifData):
         assert (type(exifData) == dict), "exifData not passed as a dictionary"
 
         if('File Type' not in exifData.keys()):
@@ -146,7 +146,7 @@ class imgRestFuncs(object):
     Returns:        Boolean
     Assumptions:    N/A
     '''
-    def is_accepted_resolution(self, exifData):
+    def is_res(self, exifData):
         assert (type(exifData) == dict), "exifData not passed as a dictionary"
 
         if('Exif Image Width' not in exifData.keys() or 'Exif Image Height' not in exifData.keys()):
@@ -169,7 +169,7 @@ class imgRestFuncs(object):
     Returns:        Boolean
     Assumptions:    N/A
     '''
-    def is_location_services(self, exifData):
+    def is_loc(self, exifData):
         assert (type(exifData) == dict), "exifData not passed as a dictionary"
 
         if('GPS Latitude' not in exifData.keys() or 'GPS Longitude' not in exifData.keys()):
@@ -188,7 +188,7 @@ class imgRestFuncs(object):
     Returns:        list file_parameters (digits, spaces, letters)
     Assumptions:    N/A
     '''
-    def _parse_file_size(self, fileSize):
+    def _parse(self, fileSize):
         assert (type(fileSize) == str), "fileSize not passed as a string"
 
         match = re.match(r"([0-9]+)(\s*)([a-z]+)$", fileSize, re.I)
