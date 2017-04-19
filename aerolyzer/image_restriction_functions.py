@@ -17,18 +17,14 @@ class imgRestFuncs(object):
     '''
     Purpose:        The purpose of this function is to determine whether or not the device the
                     image was taken on is an accepted mobile device.
-    Inputs:         dict exifData, list acceptedMobileDevices
+    Inputs:         string device
     Outputs:        None
     Returns:        Boolean
     Assumptions:    N/A
     '''
-    def is_device(self, exifData):
-        assert (type(exifData) == dict), "exifData not passed as a dictionary"
-
-        if ('DEVICE' not in exifData.keys()):
-            return False   
-
-        if any(exifData['DEVICE'].lower() in device for device in self.criteria['acceptedMobileDevices']):
+    def is_device(self, device):
+        assert (type(device) == str), "Device value not a string"
+        if device in self.criteria['acceptedMobileDevices']):
             return True
         else:
             return False
@@ -37,19 +33,16 @@ class imgRestFuncs(object):
     '''
     Purpose:        The purpose of this function is to determine whether or not the image was
                     altered from its original form. I.e. do the modification and creation dates coincide.
+    Inputs:         datetime created, datetime modified
+    Outputs:        None
     Returns:        Boolean
     Assumptions:    N/A
     '''
-    def is_edited(self, exifData):
-        assert (type(exifData) == dict), "exifData not passed as a dictionary"
-
-        if ('Create Date' not in exifData.keys() or 'Modify Date' not in exifData.keys()):
-            return False
-
-        assert (type(exifData['Create Date']) == datetime), "Exif Image Width value not an integer"
-        assert (type(exifData['Modify Date']) == datetime), "Exif Image Height value not an integer"
+    def is_edited(self, created, modified):
+        assert (type(created) == datetime), "Exif Image Width value not an integer"
+        assert (type(modified) == datetime), "Exif Image Height value not an integer"
         
-        if (exifData['Create Date'] == exifData['Modify Date']):
+        if (created == modified):
             return True
         else:
             return False
@@ -63,8 +56,6 @@ class imgRestFuncs(object):
     Assumptions:    N/A
     '''
     def is_landscape(self, exifData):
-        assert (type(exifData) == dict), "exifData not passed as a dictionary"
-
         pass
         #UNKNOWN METHOD
 
@@ -72,36 +63,31 @@ class imgRestFuncs(object):
     Purpose:        The purpose of this function is to determine whether or not the size of
                     the image is less than or equal to 200kb.
     Inputs:         dict exifData, int imgMaxSize, int imgMaxSizeBytesShort,
-                    int imgMaxSizeBytesLong, dict imgSizesLong, dict imgSizesShort
+                    string fileSize
     Outputs:        None
     Returns:        Boolean
     Assumptions:    N/A
     '''
-    def is_size(self, exifData):
-        assert (type(exifData) == dict), "exifData not passed as a dictionary"
-        
-        if('File Size' not in exifData.keys()):
-            return False
-      
+    def is_size(self, fileSize):
         #parse File Size parameter into a list of the numbers, spaces, and letters
-        fileParameters = self._parse_file_size(exifData['File Size'])
+        fileParameters = self._parse_file_size(fileSize)
         
         #check to make sure parsing was successful
         if(fileParameters == [] or len(fileParameters) != 3):
             return False
         else:
-            if(fileParameters[2].lower() == self.criteria['imgMaxSizeBytesShort'] or fileParameters[2].lower() == self.criteria['imgMaxSizeBytesLong']):
+            if(fileParameters[2] == self.criteria['imgMaxSizeBytesShort'] or fileParameters[2] == self.criteria['imgMaxSizeBytesLong']):
                 if(int(fileParameters[0]) <= self.criteria['imgMaxSizeNumber']):
                     return True
                 else:
                     return False
             else:                
                 for key, value in self.criteria['imgSizesLong'].iteritems():
-                    if value == fileParameters[2].lower():
+                    if value == fileParameters[2]:
                         imgKey = key
                 
                 for key, value in self.criteria['imgSizesShort'].iteritems():
-                    if value == fileParameters[2].lower():
+                    if value == fileParameters[2]:
                         imgKey = key
                 
                 for key, value in self.criteria['imgSizesShort'].iteritems():
@@ -120,20 +106,15 @@ class imgRestFuncs(object):
     '''
     Purpose:        The purpose of this function  is to determine whether or not the image is
                     an accepted file type.
-    Inputs:         dict exifData, list acceptedFileTypes
+    Inputs:         string fileType
     Outputs:        None
     Returns:        Boolean
     Assumptions:    N/A
     '''
-    def is_type(self, exifData):
-        assert (type(exifData) == dict), "exifData not passed as a dictionary"
+    def is_type(self, fileType):
+        assert (type(fileType) == str), "File Type value not a string"
 
-        if('File Type' not in exifData.keys()):
-            return False
-
-        assert (type(exifData['File Type']) == str), "File Type value not a string"
-
-        if any(exifData['File Type'].upper() in fileType for fileType in self.criteria['acceptedFileTypes']):
+        if fileType in self.criteria['acceptedFileTypes']):
             return True
         else:
             return False
@@ -141,41 +122,32 @@ class imgRestFuncs(object):
     '''
     Purpose:        The purpose of this function is to determine whether or not the image
                     exceeds the minimum resolution.
-    Inputs:         dict exifData, int imgWidthMin, int imgHeightMin
+    Inputs:         int imageWidth, int imageHeight
     Outputs:        None
     Returns:        Boolean
     Assumptions:    N/A
     '''
-    def is_res(self, exifData):
-        assert (type(exifData) == dict), "exifData not passed as a dictionary"
+    def is_res(self, imageWidth, imageHeight):
+        assert (type(imageWidth) == int), "Exif Image Width value not an integer"
+        assert (type(imageHeight) == int), "Exif Image Height value not an integer"
 
-        if('Exif Image Width' not in exifData.keys() or 'Exif Image Height' not in exifData.keys()):
-            return False
-
-        assert (type(exifData['Exif Image Width']) == int), "Exif Image Width value not an integer"
-        assert (type(exifData['Exif Image Height']) == int), "Exif Image Height value not an integer"
-
-        if (exifData['Exif Image Width'] >= self.criteria['imgWidthMin'] and exifData['Exif Image Height'] >= self.criteria['imgHeightMin']):
-            if (exifData['Exif Image Width'] <= self.criteria['imgWidthMax'] and exifData['Exif Image Height'] <= self.criteria['imgHeightMax']):
+        if (imageWidth >= self.criteria['imgWidthMin'] and imageHeight >= self.criteria['imgHeightMin']):
+            if (imageWidth <= self.criteria['imgWidthMax'] and imageHeight <= self.criteria['imgHeightMax']):
                 return True
+            else:
         else:
             return False
 
     '''
     Purpose:        The purpose of this function is to determine whether or not the image was
                     taken by a device with location services enabled for the camera.
-    Inputs:         dict exifData
+    Inputs:         string gpsLat, string gpsLon
     Outputs:        None
     Returns:        Boolean
     Assumptions:    N/A
     '''
-    def is_loc(self, exifData):
-        assert (type(exifData) == dict), "exifData not passed as a dictionary"
-
-        if('GPS Latitude' not in exifData.keys() or 'GPS Longitude' not in exifData.keys()):
-            return False
-        
-        if (exifData['GPS Latitude'] != '' and exifData['GPS Longitude'] != ''):
+    def is_loc(self, gpsLat, gpsLon):
+        if (gpsLat != '' and gpsLon != ''):
             return True
         else:
             return False
@@ -197,20 +169,6 @@ class imgRestFuncs(object):
         else:
             fileParameters = []
         return(fileParameters)
-
-    '''
-    Purpose:        The purpose of this main function is to check all image restrictions and
-                    produce the correct error message should one occur.
-    Inputs:         None
-    Outputs:        None
-    Returns:        N/A
-    Assumptions:    N/A
-    '''
-    def get_exif(self, path):
-        assert (type(path) == str), "path not passed as a string"        
-        img = open(path, 'rb')
-        tags = exifread.process_file(img)
-        return tags
 
     '''
     Purpose:        The purpose of this function is to import the contents of the configuration file.
