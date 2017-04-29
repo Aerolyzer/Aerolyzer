@@ -1,0 +1,23 @@
+# Image Restriction Configuration File
+# Description: This configuration file stores information regarding image criteria that will be evaluated in the image restrictions code.
+
+---
+
+acceptedFileTypes:
+ - .jpeg
+ - .jpg
+ - .png
+
+acceptedMobileDevices:
+ - iPhone 5
+ - iPhone 5s
+ - iPhone 6
+ - iPhone 6s
+
+imgMaxSizeNumber: 200000
+imgWidthMin: 100
+imgHeightMin: 100
+imgWidthMax: 6000
+imgHeightMax: 6000
+
+...

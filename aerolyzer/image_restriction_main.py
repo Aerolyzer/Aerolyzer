@@ -17,50 +17,14 @@ Outputs:        restriction check results
 Returns:        N/A
 Assumptions:    N/A
 '''
-def program(exifData, fxn):
-    assert fxn.is_device(exifData), "The image must be a mobile image from a supported device"
-    assert fxn.is_edited(exifData), "The image cannot be edited or filtered in any way"
-    assert fxn.is_landscape(exifData), "The image must be of a direct landscape with a sky and view"
-    assert fxn.is_size(exifData), "The image must be no larger than 200kb"
-    assert fxn.is_type(exifData), "The file type of the image must be .jpg or .png"
-    assert fxn.is_res(exifData), "The image must be in the resolution range 1X1-1000X1000"
-    assert fxn.is_loc(exifData), "Location services must be enabled for the camera"
-
-'''
-Purpose:        The purpose of this function is to test restriction checks
-Inputs:         dict exifData, object functions
-Outputs:        restriction check results
-Returns:        N/A
-Assumptions:    N/A
-'''
-def test(fxn):
-    #Test function calls and assertions
-    #functions.is_accepted_device("Hello World")
-    #functions.is_accepted_size(200)
-    tempExif = {'DEVICE': 'i5s',
-                'File Size': '100 kb',
-                'File Type': 'JPG',
-                'Exif Image Width': 200,
-                'Exif Image Height': 700}
-    assert fxn.is_device(tempExif), "The image must be a mobile image from a supported device"
-    assert fxn.is_size(tempExif), "The image must be no larger than 200kb"
-    assert fxn.is_type(tempExif), "The file type of the image must be .jpg or .png"
-    assert fxn.is_res(tempExif), "The image must be in the resolution range 100X100-1000X1000"
-
-
-'''
-Purpose:        The purpose of this function is to test is_landscape function
-Inputs:         fxn reference, rgb list of lists
-Outputs:        None
-Returns:        Boolean
-Assumptions:    N/A
-'''
-def test_rgb(fxn, rgb):
-    if fxn.is_landscape(rgb):
-        return True
-    else:
-        return False 
-
+def program(fxn, data, exifData, pathname):
+    assert fxn.is_device(exifData['image model']), "The image must be a mobile image from a supported device"
+    assert fxn.is_edited(exifData['image datetime'], exifData['exif datetimeoriginal']), "The image cannot be edited or filtered in any way"
+    assert fxn.is_landscape(data.get_rgb(pathname)), "The image must be of a direct landscape with a sky and view"
+    assert fxn.is_size(exifData['file size']), "The image must be no larger than 200kb"
+    assert fxn.is_type(exifData['file type']), "The file type of the image must be .jpg or .png"
+    assert fxn.is_res(exifData['exif exifimagewidth'], exifData['exif exifimageheight']), "The image must be in the resolution range 1X1-1000X1000"
+    assert fxn.is_loc(exifData['gps gpslatitude'], exifData['gps gpslongitude']), "Location services must be enabled for the camera"
 
 '''
 Purpose:        The purpose of this main function is to check all image restrictions and
@@ -73,18 +37,17 @@ Assumptions:    N/A
 def main():
     #instantiate classes
     fxn     = Fxn()
-    data    = Data()
 
     #Retrieve exif data
     if(len(sys.argv) < 2):
         #use default image
+        data    = Data("images/img3.jpg")
         exifData = data.get_exif("images/img2.jpg")
-        rgb = data.get_rgb("images/img2.jpg")
-        print test_rgb(fxn, rgb)
+        program(fxn, data, exifData, "images/img3.jpg")
     elif(len(sys.argv) == 2):
+        data    = Data(sys.argv[1])
         exifData = data.get_exif(sys.argv[1])
-        rgb = data.get_rgb(sys.argv[1])
-        print test_rgb(fxn, rgb)
+        program(fxn, data, exifData, sys.argv[1])
     elif(len(sys.argv) > 2):
         #error
         print "Please pass only 1 image to this program as an argument"
