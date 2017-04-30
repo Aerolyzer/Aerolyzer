@@ -6,7 +6,7 @@ Description: This file contains all functions for the verifying image restrictio
 import re
 import cv2
 import yaml
-import datetime
+from datetime import datetime
 import exifread
 import numpy as np
 
@@ -26,7 +26,6 @@ class imgRestFuncs(object):
     '''
     def is_device(self, device):
         assert (type(device) == str), "Device value not a string"
-        device = str(device)
         if device in self.criteria['acceptedMobileDevices']:
             return True
         else:
@@ -65,10 +64,10 @@ class imgRestFuncs(object):
         mask[0:(img.shape[0]/2), 0:img.shape[1]] = 255
         masked_img = cv2.bitwise_and(img,img,mask = mask)
 
-        # Create histograms
-        hist_blue = cv2.calcHist([img],[0],mask,[256],[0,256])
-        hist_green = cv2.calcHist([img],[1],mask,[256],[0,256])
-        hist_red = cv2.calcHist([img],[2],mask,[256],[0,256])
+        # Create histograms with 16 bins in range 0-255
+        hist_blue = cv2.calcHist([img],[0],mask,[16],[0,255])
+        hist_green = cv2.calcHist([img],[1],mask,[16],[0,255])
+        hist_red = cv2.calcHist([img],[2],mask,[16],[0,255])
 
         return self._is_sky(hist_blue, hist_green, hist_red)
 
@@ -106,17 +105,17 @@ class imgRestFuncs(object):
     '''
     Purpose:        The purpose of this function is to determine whether or not the image
                     exceeds the minimum resolution.
-    Inputs:         int imageWidth, int imageHeight
+    Inputs:         int imageWidth, int imageLength
     Outputs:        None
     Returns:        Boolean
     Assumptions:    N/A
     '''
-    def is_res(self, imageWidth, imageHeight):
+    def is_res(self, imageWidth, imageLength):
         assert (type(imageWidth) == int), "EXIF ExifImageWidth value not an integer"
-        assert (type(imageHeight) == int), "EXIF ExifImageHeight value not an integer"
+        assert (type(imageLength) == int), "EXIF ExifImageLength value not an integer"
 
-        if (imageWidth >= self.criteria['imgWidthMin']) and (imageHeight >= self.criteria['imgHeightMin']):
-            if (imageWidth <= self.criteria['imgWidthMax']) and (imageHeight <= self.criteria['imgHeightMax']):
+        if (imageWidth >= self.criteria['imgWidthMin']) and (imageLength >= self.criteria['imgLengthMin']):
+            if (imageWidth <= self.criteria['imgWidthMax']) and (imageLength <= self.criteria['imgLengthMax']):
                 return True
         else:
             return False
@@ -145,10 +144,14 @@ class imgRestFuncs(object):
     Assumptions:    N/A
     '''
     def _is_sky(self, red, green, blue):
-        #enter code 
+        maxIndexRed = np.argmin(red)
+        maxIndexBlue = np.argmin(blue)
+        maxIndexGreen = np.argmin(green)
+
+        #insert code to determine if range of max values is accepted as a sky
+
         return True 
 
-    
     '''
     Purpose:        The purpose of this function is to import the contents of the configuration file.
     Inputs:         string conf_file
