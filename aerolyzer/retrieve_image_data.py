@@ -4,65 +4,65 @@ Description: This file contains all functions for retrieving data from an image.
 '''
 
 import os
+import cv2
 import yaml
+import datetime
 import exifread
-import matplotlib.image as mpimg
-from PIL import Image
 
 class RtrvData(object):
     'Class containing all image restriction functions'
 
-    def __init__(self):
-        self.data = self._import_yaml("configuration/retrieve_image_data_conf.yaml")
+    def __init__(self, pathPassed):
+        self.data = self._import_yaml("config/retrieve_image_data_conf.yaml")
+        try:
+            os.path.exists(pathPassed)
+        except ImportError:
+            pass
 
     '''
     Purpose:        The purpose of this function is to retrieve the EXIF data from an
                     image.
-    Inputs:         string path
+    Inputs:         string pathname
     Outputs:        None
     Returns:        dictionary of EXIF data tags
     Assumptions:    The image's path has been provided
     '''
-    def _get_all_exif(self, path):
-        img = open(path, 'rb')
+    def _get_all_exif(self, pathname):
+        img = open(pathname, 'rb')
         tags = exifread.process_file(img)
         return tags
 
     '''
     Purpose:        The purpose of this function is to retrieve the EXIF data from an
                     image.
-    Inputs:         string path
+    Inputs:         string pathname
     Outputs:        None
     Returns:        dictionary of EXIF data tags
     Assumptions:    The image's path has been provided
     '''
-    def get_exif(self, path):
+    def get_exif(self, pathname):
         tags = {};
-        allTags = self._get_all_exif(path)
+        tags['file size'] = self._get_file_size(pathname)
+        tags['file type'] = self._get_file_type(pathname).lower()
+        allTags = self._get_all_exif(pathname)
         for key, value in allTags.iteritems():
-            if key in self.data['selectTags']:
-                if type(value) == string:
-                    tags[key.lower()] = value.lower()
-                else:
+            for entry in self.data['selectTags']:
+                if (key == entry):
                     tags[key.lower()] = value
+        tags = self._set_types(tags)
         return tags
 
     '''
     Purpose:        The purpose of this function is to retrieve the RGB values from an
                     image.
-    Inputs:         string path
+    Inputs:         string pathname
     Outputs:        None
-    Returns:        list of lists of lists containing RGB values
+    Returns:        tuple of lists of lists containing RGB values
     Assumptions:    The image's path has been provided
     '''
-    def get_rgb(self, path):
-        #check path exists, then
-        img = mpimg.imread(path)
-        red = img[:,:,0]
-	green = img[:,:,1]
-	blue = img[:,:,2]
-	rgb = [red, green, blue]
-        return rgb
+    def get_rgb(self, pathname):
+        img = cv2.imread(pathname,1)
+        return img
 
     '''
     Purpose:        The purpose of this function is to import the contents of the configuration file.
@@ -77,3 +77,57 @@ class RtrvData(object):
             doc = yaml.load(file)
             file.close()
         return doc
+    
+    '''
+    Purpose:        The purpose of this function is to determine the size of the image
+    Inputs:         string pathname
+    Outputs:        None
+    Returns:        int size of file in bytes
+    Assumptions:    N/A
+    '''
+    def _get_file_size(self, pathname):
+        return os.path.getsize(pathname)
+    
+    '''
+    Purpose:        The purpose of this function is to determine the type of the image
+    Inputs:         string pathname
+    Outputs:        None
+    Returns:        string file type (.ext)
+    Assumptions:    N/A
+    '''
+    def _get_file_type(self, pathname):
+        filename, fileExtension = os.path.splitext(pathname)
+        return fileExtension
+    
+    '''
+    Purpose:        The purpose of this function is to set the tag values to the correct
+                    data type
+    Inputs:         string pathname
+    Outputs:        None
+    Returns:        string file type (.ext)
+    Assumptions:    N/A
+    '''
+    def _set_types(self, tags):
+        for key, value in tags.iteritems():
+            for entry in self.data['stringTags']:
+                if(key == entry):
+                    tags[key] = str(value)
+            for entry in self.data['datetimeTags']:
+                if(key == entry):
+                    tags[key] = self._set_datetime(value)
+            for entry in self.data['intTags']:
+                if(key == entry):
+                    tags[key] = int(value)
+        return tags
+    
+    '''
+    Purpose:        The purpose of this function is to convert the date tag values to the
+                    datetime data type
+    Inputs:         instance dateTag
+    Outputs:        None
+    Returns:        datetime dateTag
+    Assumptions:    N/A
+    '''
+    def _set_datetime(self, dateTag):
+        #enter code
+        return dateTag
