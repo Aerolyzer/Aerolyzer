@@ -6,8 +6,8 @@ Description: This file contains all functions for retrieving data from an image.
 import os
 import cv2
 import yaml
-import datetime
 import exifread
+from datetime import datetime
 
 class RtrvData(object):
     'Class containing all image restriction functions'
@@ -42,14 +42,14 @@ class RtrvData(object):
     '''
     def get_exif(self, pathname):
         tags = {};
-        tags['file size'] = self._get_file_size(pathname)
-        tags['file type'] = self._get_file_type(pathname).lower()
         allTags = self._get_all_exif(pathname)
         for key, value in allTags.iteritems():
             for entry in self.data['selectTags']:
                 if (key == entry):
                     tags[key.lower()] = value
         tags = self._set_types(tags)
+        tags['file size'] = self._get_file_size(pathname)
+        tags['file type'] = self._get_file_type(pathname).lower()
         return tags
 
     '''
@@ -114,20 +114,10 @@ class RtrvData(object):
                     tags[key] = str(value)
             for entry in self.data['datetimeTags']:
                 if(key == entry):
-                    tags[key] = self._set_datetime(value)
+                    stringDate = str(value)
+                    tags[key] = datetime.strptime(stringDate, '%Y:%m:%d %H:%M:%S')
             for entry in self.data['intTags']:
                 if(key == entry):
-                    tags[key] = int(value)
+                    strKey = str(value)
+                    tags[key] = int(strKey)
         return tags
-    
-    '''
-    Purpose:        The purpose of this function is to convert the date tag values to the
-                    datetime data type
-    Inputs:         instance dateTag
-    Outputs:        None
-    Returns:        datetime dateTag
-    Assumptions:    N/A
-    '''
-    def _set_datetime(self, dateTag):
-        #enter code
-        return dateTag

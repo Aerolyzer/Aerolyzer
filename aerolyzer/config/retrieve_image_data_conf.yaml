@@ -8,22 +8,21 @@ selectTags:
  - Image DateTime
  - EXIF DateTimeOriginal
  - EXIF ExifImageWidth
- - EXIF ExifImageHeight
+ - EXIF ExifImageLength
  - GPS GPSLatitude
  - GPS GPSLongitude
 
 stringTags:
  - image model 
- - GPS GPSLatitude
- - GPS GPS Longitude
+ - gps gpslatitude
+ - gps gpslongitude
    
 datetimeTags:
- - Image DateTime
- - EXIF DateTimeOriginal
+ - image datetime
+ - exif datetimeoriginal
 
 intTags:
- - EXIF ExifImageWidth
- - EXIF ExifImageHeight
-
+ - exif exifimagewidth
+ - exif exifimagelength
 
 ...
