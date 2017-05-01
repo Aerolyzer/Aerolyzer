@@ -15,7 +15,7 @@ from setuptools import find_packages, setup
 
 # Package data
 # ------------
-_author = 'Aerolyzer Develeopers'
+_author = 'Aerolyzer Developers'
 _author_email = 'aerolyzer@googlegroups.com'
 _classifiers = [
     'Environment :: Console',
@@ -30,33 +30,20 @@ _classifiers = [
     'Topic :: Software Development :: Libraries :: Python Modules',
 ]
 _description = 'Aerolyzer analyzes images to infer atmospheric composition'
-_download_url = 'http://pypi.python.org/pypi/aerolyzer/'
-_requirements = []
+_download_url = 'https://github.com/Aerolyzer/Aerolyzer/archive/0.0.5.tar.gz'
+_requirements = ['exifread', 'numpy', 'opencv']
 _keywords = ['atmospheric composition', 'sunsets', 'image analysis', 'aerosols']
 _license = 'Apache License, Version 2.0'
-_long_description = 'A python suite for analyzing images to infer aerosol types in the image.'
+_long_description = 'A Python suite for analyzing images to infer aerosol types in the image.'
 _name = 'aerolyzer'
 _namespaces = []
 _test_suite = 'aerolyzer.tests'
 _url = 'https://github.com/Aerolyzer/Aerolyzer'
-_version = '0.1'
+_version = '0.0.5'
 _zip_safe = False
 
 # Setup Metadata
 # --------------
-
-
-def _read(*rnames):
-    return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
-
-_header = '*' * len(_name) + '\n' + _name + '\n' + '*' * len(_name)
-_longDescription = '\n\n'.join([
-    _header,
-    _read('README.md')
-])
-open('doc.txt', 'w').write(_longDescription)
-
-
 setup(
     author=_author,
     author_email=_author_email,
