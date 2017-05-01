@@ -37,6 +37,7 @@ _license = 'Apache License, Version 2.0'
 _long_description = 'A Python suite for analyzing images to infer aerosol types in the image.'
 _name = 'aerolyzer'
 _namespaces = []
+_packages = ['aerolyzer']
 _test_suite = 'aerolyzer.tests'
 _url = 'https://github.com/Aerolyzer/Aerolyzer'
 _version = '0.0.0.1'
@@ -57,7 +58,7 @@ setup(
     long_description=_long_description,
     name=_name,
     namespace_packages=_namespaces,
-    packages=find_packages(),
+    packages=_packages,
     test_suite=_test_suite,
     url=_url,
     version=_version,
