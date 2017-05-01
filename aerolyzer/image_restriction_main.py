@@ -23,7 +23,7 @@ def program(fxn, data, exifData, pathname):
     assert fxn.is_landscape(data.get_rgb(pathname)), "The image must be of a direct landscape with a sky and view"
     assert fxn.is_size(exifData['file size']), "The image must be no larger than 200kb"
     assert fxn.is_type(exifData['file type']), "The file type of the image must be .jpg or .png"
-    assert fxn.is_res(exifData['exif exifimagewidth'], exifData['exif exifimageheight']), "The image must be in the resolution range 1X1-1000X1000"
+    assert fxn.is_res(exifData['exif exifimagewidth'], exifData['exif exifimagelength']), "The image must be in the resolution range 1X1-1000X1000"
     assert fxn.is_loc(exifData['gps gpslatitude'], exifData['gps gpslongitude']), "Location services must be enabled for the camera"
 
 '''
@@ -41,9 +41,9 @@ def main():
     #Retrieve exif data
     if(len(sys.argv) < 2):
         #use default image
-        data    = Data("images/img3.jpg")
+        data    = Data("images/img2.jpg")
         exifData = data.get_exif("images/img2.jpg")
-        program(fxn, data, exifData, "images/img3.jpg")
+        program(fxn, data, exifData, "images/img2.jpg")
     elif(len(sys.argv) == 2):
         data    = Data(sys.argv[1])
         exifData = data.get_exif(sys.argv[1])
