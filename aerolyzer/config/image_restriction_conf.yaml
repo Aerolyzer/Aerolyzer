@@ -14,10 +14,10 @@ acceptedMobileDevices:
  - iPhone 6
  - iPhone 6s
 
-imgMaxSizeNumber: 200000
+imgMaxSizeNumber: 4000000
 imgWidthMin: 100
-imgHeightMin: 100
+imgLengthMin: 100
 imgWidthMax: 6000
-imgHeightMax: 6000
+imgLengthMax: 6000
 
 ...
