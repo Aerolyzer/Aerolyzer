@@ -13,7 +13,7 @@ import json
 import sys
 import os
 
-def getData(coord):
+def get_data(coord):
     name = coord + '.json'
 
     try:
@@ -28,12 +28,12 @@ def getData(coord):
         city = parsedConditions['location']['city']
         country = parsedConditions['location']['country']
         temp = parsedConditions['current_observation']['temp_f']
-        sunrise_min = parsedAstronomy['moon_phase']['sunrise']['minute']
-        sunrise_hr = parsedAstronomy['moon_phase']['sunrise']['hour']
-        sunrise = sunrise_hr + ":" + sunrise_min
-        sunset_min = parsedAstronomy['moon_phase']['sunset']['minute']
-        sunset_hr = parsedAstronomy['moon_phase']['sunset']['hour']
-        sunset = sunset_hr + ":" + sunset_min
+        sunriseMin = parsedAstronomy['moon_phase']['sunrise']['minute']
+        sunriseHr = parsedAstronomy['moon_phase']['sunrise']['hour']
+        sunrise = sunriseHr + ":" + sunriseMin
+        sunsetMin = parsedAstronomy['moon_phase']['sunset']['minute']
+        sunsetHr = parsedAstronomy['moon_phase']['sunset']['hour']
+        sunset = sunsetHr + ":" + sunsetMin
 
         weatherData = {'city': city, 'country': country, 'temp': temp,
             'sunrise': sunrise, 'sunset': sunset}
