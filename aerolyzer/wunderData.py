@@ -17,8 +17,8 @@ def get_data(coord):
     name = coord + '.json'
 
     try:
-        f = urllib2.urlopen('http://api.wunderground.com/api/622ff5c1b6d14ee0/geolookup/conditions/q/' + name)
-        m = urllib2.urlopen('http://api.wunderground.com/api/622ff5c1b6d14ee0/astronomy/q/' + name);
+        f = urllib2.urlopen('http://api.wunderground.com/api/3b566c79c371f7f4/geolookup/conditions/q/' + name)
+        m = urllib2.urlopen('http://api.wunderground.com/api/3b566c79c371f7f4/astronomy/q/' + name);
 
         conditions = f.read()
         parsedConditions = json.loads(conditions)
