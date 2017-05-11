@@ -11,12 +11,16 @@ selectTags:
  - EXIF ExifImageLength
  - GPS GPSLatitude
  - GPS GPSLongitude
+ - GPS GPSLatitudeRef
+ - GPS GPSLongitudeRef
 
 stringTags:
- - image model 
+ - image model
  - gps gpslatitude
  - gps gpslongitude
-   
+ - gps gpslatituderef
+ - gps gpslongituderef
+
 datetimeTags:
  - image datetime
  - exif datetimeoriginal

@@ -2,7 +2,7 @@
 Image Restriction Function File
 Description: This file contains all functions for the verifying image restrictions.
 '''
-
+import os
 import re
 import cv2
 import yaml
@@ -14,7 +14,7 @@ class imgRestFuncs(object):
     'Class containing all image restriction functions'
 
     def __init__(self):
-        self.criteria = self._import_yaml("config/image_restriction_conf.yaml")
+        self.criteria = self._import_yaml(os.getcwd() + "/app/config/image_restriction_conf.yaml")
 
     '''
     Purpose:        The purpose of this function is to determine whether or not the device the
@@ -25,7 +25,6 @@ class imgRestFuncs(object):
     Assumptions:    N/A
     '''
     def is_device(self, device):
-        assert (type(device) == str), "Device value not a string"
         if device in self.criteria['acceptedMobileDevices']:
             return True
         else:
@@ -41,9 +40,6 @@ class imgRestFuncs(object):
     Assumptions:    N/A
     '''
     def is_edited(self, created, modified):
-        assert (type(created) == datetime), "Image DateTime value not a datetime"
-        assert (type(modified) == datetime), "EXIF DateTimeOriginal value not a datetime"
-        
         if (created == modified):
             return True
         else:
@@ -58,7 +54,6 @@ class imgRestFuncs(object):
     Assumptions:    N/A
     '''
     def is_landscape(self, img):
-
         # Create a mask
         mask = np.zeros(img.shape[:2], np.uint8)
         mask[0:(img.shape[0]/2), 0:img.shape[1]] = 255
@@ -85,7 +80,7 @@ class imgRestFuncs(object):
             return False
         else:
             return True
-        
+
     '''
     Purpose:        The purpose of this function  is to determine whether or not the image is
                     an accepted file type.
@@ -95,8 +90,6 @@ class imgRestFuncs(object):
     Assumptions:    N/A
     '''
     def is_type(self, fileType):
-        assert (type(fileType) == str), "File Type value not a string"
-
         if fileType in self.criteria['acceptedFileTypes']:
             return True
         else:
@@ -111,26 +104,9 @@ class imgRestFuncs(object):
     Assumptions:    N/A
     '''
     def is_res(self, imageWidth, imageLength):
-        assert (type(imageWidth) == int), "EXIF ExifImageWidth value not an integer"
-        assert (type(imageLength) == int), "EXIF ExifImageLength value not an integer"
-
         if (imageWidth >= self.criteria['imgWidthMin']) and (imageLength >= self.criteria['imgLengthMin']):
             if (imageWidth <= self.criteria['imgWidthMax']) and (imageLength <= self.criteria['imgLengthMax']):
                 return True
-        else:
-            return False
-
-    '''
-    Purpose:        The purpose of this function is to determine whether or not the image was
-                    taken by a device with location services enabled for the camera.
-    Inputs:         string gpsLat, string gpsLon
-    Outputs:        None
-    Returns:        Boolean
-    Assumptions:    N/A
-    '''
-    def is_loc(self, gpsLat, gpsLon):
-        if (gpsLat != '' and gpsLon != ''):
-            return True
         else:
             return False
 
@@ -150,7 +126,7 @@ class imgRestFuncs(object):
 
         #insert code to determine if range of max values is accepted as a sky
 
-        return True 
+        return True
 
     '''
     Purpose:        The purpose of this function is to import the contents of the configuration file.
@@ -160,7 +136,6 @@ class imgRestFuncs(object):
     Assumptions:    N/A
     '''
     def _import_yaml(self, confFile):
-        assert (type(confFile) == str), "configuration file not passed as a string"        
         with open(confFile, 'r') as file:
             doc = yaml.load(file)
             file.close()
