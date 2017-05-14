@@ -136,7 +136,7 @@ class imgRestFuncs(object):
     Assumptions:    N/A
     '''
     def _import_yaml(self, confFile):
-        with open(confFile, 'r') as file:
-            doc = yaml.load(file)
-            file.close()
+        with open(confFile, 'r') as f:
+            doc = yaml.load(f)
+            f.close()
         return doc
