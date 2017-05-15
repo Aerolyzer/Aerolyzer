@@ -13,7 +13,7 @@ class RtrvData(object):
     'Class containing all image restriction functions'
 
     def __init__(self, pathPassed):
-        self.data = self._import_yaml("config/retrieve_image_data_conf.yaml")
+        self.data = self._import_yaml(os.getcwd() + "/app/config/retrieve_image_data_conf.yaml")
         try:
             os.path.exists(pathPassed)
         except ImportError:
@@ -36,18 +36,21 @@ class RtrvData(object):
     Purpose:        The purpose of this function is to retrieve the EXIF data from an
                     image.
     Inputs:         string pathname
+                    bool setTypes toggles conversion of types
+                    bool dateToString toggles conversion of dateToString
     Outputs:        None
     Returns:        dictionary of EXIF data tags
     Assumptions:    The image's path has been provided
     '''
-    def get_exif(self, pathname):
+    def get_exif(self, pathname, setTypes, dateToString):
         tags = {};
         allTags = self._get_all_exif(pathname)
         for key, value in allTags.iteritems():
             for entry in self.data['selectTags']:
                 if (key == entry):
                     tags[key.lower()] = value
-        tags = self._set_types(tags)
+        if setTypes is True:
+            tags = self._set_types(tags, dateToString)
         tags['file size'] = self._get_file_size(pathname)
         tags['file type'] = self._get_file_type(pathname).lower()
         return tags
@@ -72,12 +75,12 @@ class RtrvData(object):
     Assumptions:    N/A
     '''
     def _import_yaml(self, confFile):
-        assert (type(confFile) == str), "configuration file not passed as a string"        
+        assert (type(confFile) == str), "configuration file not passed as a string"
         with open(confFile, 'r') as file:
             doc = yaml.load(file)
             file.close()
         return doc
-    
+
     '''
     Purpose:        The purpose of this function is to determine the size of the image
     Inputs:         string pathname
@@ -87,7 +90,7 @@ class RtrvData(object):
     '''
     def _get_file_size(self, pathname):
         return os.path.getsize(pathname)
-    
+
     '''
     Purpose:        The purpose of this function is to determine the type of the image
     Inputs:         string pathname
@@ -98,16 +101,17 @@ class RtrvData(object):
     def _get_file_type(self, pathname):
         filename, fileExtension = os.path.splitext(pathname)
         return fileExtension
-    
+
     '''
     Purpose:        The purpose of this function is to set the tag values to the correct
                     data type
     Inputs:         string pathname
+                    bool dateToString toggles conversion of datetimeTags to strings
     Outputs:        None
     Returns:        string file type (.ext)
     Assumptions:    N/A
     '''
-    def _set_types(self, tags):
+    def _set_types(self, tags, dateToString):
         for key, value in tags.iteritems():
             for entry in self.data['stringTags']:
                 if(key == entry):
@@ -115,7 +119,10 @@ class RtrvData(object):
             for entry in self.data['datetimeTags']:
                 if(key == entry):
                     stringDate = str(value)
-                    tags[key] = datetime.strptime(stringDate, '%Y:%m:%d %H:%M:%S')
+                    if dateToString is True:
+                        tags[key] = stringDate
+                    else:
+                        tags[key] = datetime.strptime(stringDate, '%Y:%m:%d %H:%M:%S')
             for entry in self.data['intTags']:
                 if(key == entry):
                     strKey = str(value)

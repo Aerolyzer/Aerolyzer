@@ -18,13 +18,51 @@ Returns:        N/A
 Assumptions:    N/A
 '''
 def program(fxn, data, exifData, pathname):
-    assert fxn.is_device(exifData['image model']), "The image must be a mobile image from a supported device"
-    assert fxn.is_edited(exifData['image datetime'], exifData['exif datetimeoriginal']), "The image cannot be edited or filtered in any way"
-    assert fxn.is_landscape(data.get_rgb(pathname)), "The image must be of a direct landscape with a sky and view"
-    assert fxn.is_size(exifData['file size']), "The image must be no larger than 200kb"
-    assert fxn.is_type(exifData['file type']), "The file type of the image must be .jpg or .png"
-    assert fxn.is_res(exifData['exif exifimagewidth'], exifData['exif exifimagelength']), "The image must be in the resolution range 1X1-1000X1000"
-    assert fxn.is_loc(exifData['gps gpslatitude'], exifData['gps gpslongitude']), "Location services must be enabled for the camera"
+    if not 'image model' in exifData:
+        isVerified = {'meetsRest': False, 'error_message': "The image must be a mobile image from a supported device"}
+        return isVerified
+    if not fxn.is_device(exifData['image model']):
+        isVerified = {'meetsRest': False, 'error_message': "The image must be a mobile image from a supported device"}
+        return isVerified
+    if not fxn.is_edited(exifData['image datetime'], exifData['exif datetimeoriginal']):
+        isVerified = {'meetsRest': False, 'error_message': "The image cannot be edited or filtered in any way"}
+        return isVerified
+    if not fxn.is_landscape(data.get_rgb(pathname)):
+        isVerified = {'meetsRest': False, 'error_message': "The image must be of a direct landscape with a sky and view"}
+        return isVerified
+    if not fxn.is_size(exifData['file size']):
+        isVerified = {'meetsRest': False, 'error_message': "The image must be no larger than 400kb"}
+        return isVerified
+    if not fxn.is_type(exifData['file type']):
+        isVerified = {'meetsRest': False, 'error_message': "The file type of the image must be .jpg or .png"}
+        return isVerified
+    if not fxn.is_res(exifData['exif exifimagewidth'], exifData['exif exifimagelength']):
+        isVerified = {'meetsRest': False, 'error_message': "The image must be in the resolution range 1X1-1000X1000"}
+        return isVerified
+    if not 'gps gpslatitude' in exifData or not 'gps gpslongitude' in exifData:
+        isVerified = {'meetsRest': False, 'error_message': "Location services must be enabled for the camera"}
+        return isVerified
+    locExifData = data.get_exif(pathname, False, False)
+    exifData = data.get_exif(pathname, True, True)
+    isVerified = {'meetsRest': True, 'exifData': exifData, 'locExifData': locExifData}
+    return isVerified
+
+'''
+Purpose:        The purpose of this main function is to check all image restrictions
+                for use in the Aerolyzer app.
+Inputs:         string filename of image locally
+Outputs:        None
+Returns:        N/A
+Assumptions:    N/A
+'''
+def check_image(filename):
+    #instantiate classes
+    fxn     = Fxn()
+    #Retrieve exif data
+    data    = Data(filename)
+    exifData = data.get_exif(filename, True, False)
+    isVerified = program(fxn, data, exifData, filename)
+    return isVerified
 
 '''
 Purpose:        The purpose of this main function is to check all image restrictions and
@@ -42,11 +80,11 @@ def main():
     if(len(sys.argv) < 2):
         #use default image
         data    = Data("images/img2.jpg")
-        exifData = data.get_exif("images/img2.jpg")
+        exifData = data.get_exif("images/img2.jpg", True, False)
         program(fxn, data, exifData, "images/img2.jpg")
     elif(len(sys.argv) == 2):
         data    = Data(sys.argv[1])
-        exifData = data.get_exif(sys.argv[1])
+        exifData = data.get_exif(sys.argv[1], True, False)
         program(fxn, data, exifData, sys.argv[1])
     elif(len(sys.argv) > 2):
         #error
