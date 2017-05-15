@@ -13,7 +13,7 @@ class RtrvData(object):
     'Class containing all image restriction functions'
 
     def __init__(self, pathPassed):
-        self.data = self._import_yaml(os.getcwd() + "/app/config/retrieve_image_data_conf.yaml")
+        self.data = self._import_yaml(os.getcwd() + "/../../Aerolyzer/aerolyzer/config/retrieve_image_data_conf.yaml")
         try:
             os.path.exists(pathPassed)
         except ImportError:

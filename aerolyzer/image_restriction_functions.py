@@ -14,7 +14,7 @@ class imgRestFuncs(object):
     'Class containing all image restriction functions'
 
     def __init__(self):
-        self.criteria = self._import_yaml(os.getcwd() + "/app/config/image_restriction_conf.yaml")
+        self.criteria = self._import_yaml(os.getcwd() + "/../../Aerolyzer/aerolyzer/config/image_restriction_conf.yaml")
 
     '''
     Purpose:        The purpose of this function is to determine whether or not the device the
