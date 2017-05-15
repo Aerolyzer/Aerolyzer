@@ -30,8 +30,8 @@ _classifiers = [
     'Topic :: Software Development :: Libraries :: Python Modules',
 ]
 _description = 'Aerolyzer analyzes images to infer atmospheric composition'
-_download_url = 'https://github.com/Aerolyzer/Aerolyzer/archive/0.0.0.1.tar.gz'
-_requirements = ['exifread', 'numpy', 'opencv-python', 'yaml']
+_download_url = 'https://github.com/Aerolyzer/Aerolyzer/archive/0.0.0.2.tar.gz'
+_requirements = ['exifread', 'numpy>=1.8.0', 'opencv-python', 'pyyaml',]
 _keywords = ['atmospheric composition', 'sunsets', 'image analysis', 'aerosols']
 _license = 'Apache License, Version 2.0'
 _long_description = 'A Python suite for analyzing images to infer aerosol types in the image.'
@@ -40,7 +40,7 @@ _namespaces = []
 _packages = ['aerolyzer']
 _test_suite = 'aerolyzer.tests'
 _url = 'https://github.com/Aerolyzer/Aerolyzer'
-_version = '0.0.0.1'
+_version = '0.0.0.2'
 _zip_safe = False
 
 # Setup Metadata
