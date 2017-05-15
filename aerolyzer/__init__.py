@@ -1,4 +1,5 @@
-version = "0.0.0.1"
+version = "0.0.0.2"
 import image_restriction_functions
-import retrieve_weather_info
 import image_restriction_main
+import retrieve_image_data
+import wunderData
