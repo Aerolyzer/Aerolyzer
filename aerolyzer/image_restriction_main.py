@@ -7,8 +7,8 @@ all image restrictions have been met.
 
 import sys
 
-from image_restriction_functions import imgRestFuncs as Fxn
-from retrieve_image_data import RtrvData as Data
+from .image_restriction_functions import imgRestFuncs as Fxn
+from .retrieve_image_data import RtrvData as Data
 
 '''
 Purpose:        The purpose of this function is to assert each restriction check
@@ -88,7 +88,7 @@ def main():
         program(fxn, data, exifData, sys.argv[1])
     elif(len(sys.argv) > 2):
         #error
-        print "Please pass only 1 image to this program as an argument"
+        print("Please pass only 1 image to this program as an argument")
 
 if __name__ == '__main__':
     main()

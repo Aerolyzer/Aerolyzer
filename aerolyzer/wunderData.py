@@ -8,7 +8,7 @@
  Assumptions:    The wunderground API key is valid.
  '''
 
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 import json
 import sys
 import os
@@ -17,8 +17,8 @@ def get_data(coord):
     name = coord + '.json'
 
     try:
-        f = urllib2.urlopen('http://api.wunderground.com/api/3b566c79c371f7f4/geolookup/conditions/q/' + name)
-        m = urllib2.urlopen('http://api.wunderground.com/api/3b566c79c371f7f4/astronomy/q/' + name);
+        f = urllib.request.urlopen('http://api.wunderground.com/api/3b566c79c371f7f4/geolookup/conditions/q/' + name)
+        m = urllib.request.urlopen('http://api.wunderground.com/api/3b566c79c371f7f4/astronomy/q/' + name);
 
         conditions = f.read()
         parsedConditions = json.loads(conditions)
@@ -39,7 +39,7 @@ def get_data(coord):
             'sunrise': sunrise, 'sunset': sunset}
 
     except Exception:
-        print "Unable to retrieve data: ", sys.exc_info()[0]
+        print("Unable to retrieve data: ", sys.exc_info()[0])
         weatherData = None
 
     finally:

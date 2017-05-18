@@ -34,29 +34,29 @@ def main(argv):
 	    opts, arg = getopt.getopt(argv, "hf:")
 
 	    if len(opts) == 0:
-	        print 'Please run: python colorChannels.py -h'
+	        print('Please run: python colorChannels.py -h')
 	        sys.exit(2)
 
 	    for opt, arg in opts:
 	        if '-h' in opt:
-	            print 'This is a quick script to view the red, green, blue, yellow, magenta \
-	                   and cyan channels in an img'
-	            print 'To run: python colorChannels.py -f imageFileLoc'
-	            print 'For example: python colorChannels.py -f /tmp/myImg.jpg'
-	            print 'The image MUST BE JPG format.'
-	            print 'If needed, use http://image.online-convert.com/convert-to-png to convert to JPG.'
+	            print('This is a quick script to view the red, green, blue, yellow, magenta \
+	                   and cyan channels in an img')
+	            print('To run: python colorChannels.py -f imageFileLoc')
+	            print('For example: python colorChannels.py -f /tmp/myImg.jpg')
+	            print('The image MUST BE JPG format.')
+	            print('If needed, use http://image.online-convert.com/convert-to-png to convert to JPG.')
 	            sys.exit(2)
 	        elif '-f' in opt: 
 	            imgFile = arg
 	            if not os.path.exists(imgFile):
-	                print '!! File not found!!'
+	                print('!! File not found!!')
 	                sys.exit(2)
 	        else:
-	            print 'Please run: python colorChannels.py -h'
+	            print('Please run: python colorChannels.py -h')
 	            sys.exit(2)
 
 	except getopt.GetoptError:
-	    print 'Please run: python colorChannels.py -h'
+	    print('Please run: python colorChannels.py -h')
 
 
 	img2 = mpimg.imread(imgFile)
