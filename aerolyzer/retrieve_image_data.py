@@ -45,7 +45,7 @@ class RtrvData(object):
     def get_exif(self, pathname, setTypes, dateToString):
         tags = {};
         allTags = self._get_all_exif(pathname)
-        for key, value in allTags.iteritems():
+        for key, value in allTags.items():
             for entry in self.data['selectTags']:
                 if (key == entry):
                     tags[key.lower()] = value
@@ -112,7 +112,7 @@ class RtrvData(object):
     Assumptions:    N/A
     '''
     def _set_types(self, tags, dateToString):
-        for key, value in tags.iteritems():
+        for key, value in tags.items():
             for entry in self.data['stringTags']:
                 if(key == entry):
                     tags[key] = str(value)
