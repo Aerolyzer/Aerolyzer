@@ -1,0 +1,315 @@
+\documentclass[letterpaper,10pt,draftclsnofoot,onecolumn]{IEEEtran}
+
+\usepackage[margin=0.75in]{geometry}
+\setlength{\parindent}{0pt}
+
+\def\name{E. Reilly Collins, Sophia Liu, and Jesse Hanson}
+\def\team{Aerolyzer}
+\def\group{Group 22}
+\def\course{CS 461 Fall 2016}
+% Title page information
+\title{\team \assign}
+\author{\name}
+
+\begin{document}
+\begin{flushright}
+	\sffamily
+	\rule{16cm}{5pt}\vskip1cm
+	\begin{bfseries}
+		\Huge{Software Requirements\\ Specification}\\
+		\vspace{.9cm}
+		\LARGE for\\
+		\vspace{.9cm}
+		\Huge\team\\
+		\vspace{.9cm}
+		\Large{Version 1.0 approved}\\
+		\vspace{.9cm}
+		Prepared by \name\\
+		\vspace{.9cm}
+		\group\\
+		\vspace{.9cm}
+		\course\\
+		\vspace{.9cm}
+		\today\\
+	\end{bfseries}
+\end{flushright}
+\vfill
+\textbf{Abstract: }This document contains the software requirements specification for Aerolyzer.
+Aerolyzer is a mobile Web application capable of processing visible images and inferring atmospheric phenomena to provide the general public with near-real time monitoring of aerosol conditions.
+The goal of this document is to clearly specify the requirements for our mobile app to be developed.
+
+
+\begin{flushleft}
+\clearpage
+\tableofcontents
+\clearpage
+
+\section{Introduction}
+\subsection{Purpose}
+ The purpose of Aerolyzer is to develop a web application capable of analyzing an image
+ and inferring the corresponding aerosol content. To accomplish this, our image detection
+ will uniquely utilize color distribution within the image to identify features necessary for
+ analyzing said aerosol content.
+
+\subsection{Scope}
+This software will be a mobile web application for use by the general public.
+This application will be designed to uniquely utilize color distribution within an uploaded mobile image to identify features necessary for analyzing aerosol content.
+The eventual end product will be a full mobile web app that employs an open source algorithm translating how the human brain interprets images using RGB values.
+Citizens in the general public will be able to quantify color in images and use the resulting data to determine current aerosol content.
+
+More specifically, users will be able to upload an image of an outdoor scene taken on a mobile phone.
+The application will then give output detailing the EXIF Data based on the uploaded image.
+This software ultimately will provide average citizens with near-real time monitoring of atmospheric conditions.
+
+\subsection{Definitions, acronyms, and abbreviations}
+\textbf{Aerosol: }Minute particles suspended in the atmosphere.
+When these particles are sufficiently large, we notice their presence as they scatter and absorb sunlight.
+Their scattering of sunlight can reduce visibility (haze) and redden sunrises and sunsets. [1]
+
+\textbf{EXIF/exif: }Exchangeable image file format specifying the specs of digital/smartphone cameras.
+
+More definitions, acronyms, and abbreviations will be added as needed to this requirements specification document.
+\subsection{References}
+[1] Bob Allen. (1996) Atmospheric Aerosols: What Are They, and Why Are They So Important? [Online]. Available: http://www.nasa.gov/centers/langley/news/factsheets/Aerosols.html
+
+[2] WeatherAPI: Introductions. [Online]. Available: https://www.wunderground.com/weather/api/d/docs
+
+\subsection{Overview}
+The next section, Overall Description, of this document gives an overview of the functionality of the product.
+It describes the informal requirements and is used to establish a context for the technical requirements specification in the next section.
+The third section, Specific Requirements, of this document is written primarily for the developers and describes in technical terms the details of the functionality of the product.
+
+Both sections of the document describe the same software product in its entirety, but are intended for different audiences and thus use different language.
+
+\section{Overall Description}
+This section will give an overview of the whole application.
+The app will be explained in its context to show how it interacts within a larger system, as well as introduce basic functionality.
+It will also describe the type of stakeholders who will use the app and what functionality is available for them.
+At last, the constraints and assumptions for the system will be presented.
+
+\subsection{Product Perspective}
+Aerolyzer will be an independent and self-contained mobile web application.
+It is not designed to be a component of a larger system.
+Mobile images and associated metadata used for the color-analyzing algorithm will be from various online sources, such as Weather Underground.
+
+As a note, Aerolyzer will be similar to other citizen science applications, though not part of those applications, by allowing user images to be used in improving the machine learning of the algorithm.
+More information about the citizen science component of the system will be added as needed to this requirements specification document.
+
+\subsection{Product Functions}
+Within the mobile application, users will be able to upload an image of an outdoor scene with the sky in view from their phone’s camera roll.
+The application will return the image's EXIF and meteorological data. This output will be displayed on the screen for the user.
+
+\subsection{User Characteristics}
+\begin{enumerate}
+	\item Users will be smartphone owners.
+	\item Users will need technical knowledge about the basic functionality of their smartphones to take photos.
+	\item Users can access the application on their desktop computer or smartphone, but will need to know how to use a web browser and navigate to the Aerolyzer app for both interfaces.
+	\item Users will need to have access to mobile photos whether they are on the smartphone or desktop version of the web application.
+	\item Users’ educational levels can be anywhere across the board.
+\end{enumerate}
+
+\subsection{Constraints}
+\begin{enumerate}
+        \item The image must be a mobile image.
+        \item The image cannot be edited or filtered in any way.
+        \item The image must be a picture of a direct landscape with a sky and view.
+        \item The image must be no larger than 4mb.
+        \item The file type of the image must be .jpg or .png.
+        \item The image must exceed the minimum resolution.
+        \item Location services must be enabled for the camera.
+        \item The device used must be a supported device.
+\end{enumerate}
+
+\subsection{Assumptions and Dependencies}
+\begin{enumerate}
+	\item We assume users are willing to give permission for having their images accessed and processed.
+	\item We assume that users have access to at least one mobile image in their photo library to be uploaded.
+	\item We assume that users are connected to the Internet.
+	\item We assume users have access to a web browser.
+\end{enumerate}
+
+\section{Specific Requirements}
+This section will give an overview of specific requirements for the application.
+Links to external systems will be explained to show what other resources the application will use.
+The app's functions in terms of individual use cases will be described in detail.
+
+\subsection{External Interfaces}
+One link to an external system will be accessing weather information from the Weather Underground database using their Weather API.
+We will need this to gather astronomy data, almanac information, and current conditions (at a minimum).
+
+A final link to an external interface will be the access to stored images and associated output from the color-analyzing algorithm.
+More information about image and data storage will be added as needed to this requirements specification document.
+
+\subsection{Functional Requirements}
+
+\subsubsection{Web Application Interface} \ \\
+
+\textbf{Trigger: }
+Users access the Aerolyzer mobile web application.
+
+\textbf{Precondition: }
+Users are on a mobile device with access to a web browser and the Internet.
+
+\textbf{Basic Path: }
+\begin{enumerate}
+	\item The user opens a Web browser on his or her mobile device.
+	\item The user navigates to the Aerolyzer URL using the web browser.
+	\item The system shall load the start page on the user’s web browser.
+\end{enumerate}
+
+\textbf{Alternative Paths: }
+Users can access the system by clicking a link that opens up their mobile web browser.
+
+\textbf{Postcondition: }
+The user has access to the Aerolyzer mobile web application.
+
+\textbf{Exception Paths: }
+If the user does not have Internet access, the use case is abandoned.
+
+If the user is trying to access the system from a desktop device, the system alerts the user that only mobile images are allowed and the use case is abandoned.\\
+
+\subsubsection{Upload Photo} \ \\
+
+\textbf{Trigger: }
+User selects button to upload a photo to be analyzed.
+
+\textbf{Precondition: }
+Users are on a mobile device with at least one image in its photo library.
+
+The web browser used to access the system has access to the user’s mobile photos.
+
+\textbf{Basic Path: }
+\begin{enumerate}
+	\item The user selects the "Upload a Photo" option.
+	\item The mobile device’s photo library is displayed with the option to select one photo to be uploaded after selecting the "Choose file" button (which differs depending on the browser).
+	\item The user selects one photo to be uploaded and then selects the "Submit" button.
+\end{enumerate}
+
+\textbf{Alternative Paths: }
+None.
+
+\textbf{Postcondition: }
+The user is taken to the retrieval page.
+
+\textbf{Exception Paths: }
+If the photo being uploaded does not meet constraints identified in section 2.4, the image cannot be used as input. The user will be notified and the use case is abandoned.
+
+\bigskip
+
+\subsubsection{Display of Content}  \ \\
+
+\textbf{Trigger: }
+Photo has been analyzed and the resulting EXIF Data and meteorological content has been determined.
+
+\textbf{Precondition: }
+A photo has been successfully uploaded as per use case 2.
+
+\textbf{Basic Path: }
+\begin{enumerate}
+	\item The user selects the "Start" button to begin analysis/retrieval of data.
+	\item The photo is used as input for the resulting data.
+	\item The application outputs data for current weather conditions and EXIF data.
+\end{enumerate}
+
+\textbf{Alternative Paths: }
+None.
+
+\textbf{Postcondition: }
+The user is taken to a page where the resulting data from the photo uploaded is displayed.
+
+\textbf{Exception Paths: }
+None.
+\bigskip
+
+\subsubsection{Extract EXIF Information From Data}  \ \\
+
+\textbf{Trigger: }
+A script that extracts EXIF data from an uploaded image is run.
+
+\textbf{Precondition: }
+A photo has been successfully uploaded as per use case 2.
+
+\textbf{Basic Path: }
+\begin{enumerate}
+	\item The Aerolyzer developer receives images as input for the script.
+	\item The script outputs a JSON file containing the filename as a string, the category of/tags for the photo (e.g. clouds, fall colors, sunrise, etc.) as a list, and the EXIF data associated with the image as a dictionary.
+	\item The JSON file retrieved is stored in the central storing location and displayed to the user.
+\end{enumerate}
+
+\textbf{Alternative Paths: }
+Images and associated metadata from any source can be manually added to the central storing location.
+
+\textbf{Postcondition: }
+Aerolyzer's image repository includes retrieved images.
+
+\textbf{Exception Paths: }
+None.
+\bigskip
+
+\subsubsection{Using Weatherunderground API}  \ \\
+
+\textbf{Trigger: }
+Picture is uploaded and ready to be analyzed.
+
+\textbf{Precondition: }
+A photo has been successfully uploaded as per use case 2.
+
+\textbf{Basic Path: }
+\begin{enumerate}
+	\item Meteorological and astronomical data is retrieved from the Weather Underground API.
+	\item The information derived from the API is stored.
+	\item The uploaded image is analyzed and the resulting data is displayed.
+\end{enumerate}
+
+\textbf{Alternative Paths: }
+None.
+
+\textbf{Postcondition: }
+The Weather Underground API data is obtained and the user is taken to a page where the resulting weather information based on the photo uploaded is displayed.
+
+\textbf{Exception Paths: }
+If data is unable to be retrieved from the Weather Underground API, an error message will be displayed.
+
+\bigskip
+
+
+\subsection{Performance Requirements}
+The web application will have both mobile-scaled and desktop-scaled interfaces.
+
+The system will be able to analyze at most 500 images per day total and at most 10 images per minute total (meaning for all combined users, not each individual user).
+
+More performance requirements will be added to this requirements specification document after further development on this application.
+
+\clearpage
+
+\section*{Signatures}
+
+\subsection*{Kim Whitehall\\Client, NASA JPL} % Suppress subsection numbering with the *
+
+\begin{tabular}{ l p{10pt} l }
+Signature: && \hspace{0.5cm} \makebox[3in]{\hrulefill} \\ \\[3pt]
+Date: && \hspace{0.5cm} \today
+\end{tabular}
+
+\subsection*{E. Reilly Collins\\Student, Oregon State}
+
+\begin{tabular}{ l p{10pt} l }
+Signature: && \hspace{0.5cm} \makebox[3in]{\hrulefill} \\ \\[3pt]
+Date: && \hspace{0.5cm} \today
+\end{tabular}
+
+\subsection*{Sophia Liu\\Student, Oregon State}
+
+\begin{tabular}{ l p{10pt} l }
+Signature: && \hspace{0.5cm} \makebox[3in]{\hrulefill} \\ \\[3pt]
+Date: && \hspace{0.5cm} \today
+\end{tabular}
+
+\subsection*{Jesse Hanson\\Student, Oregon State}
+
+\begin{tabular}{ l p{10pt} l }
+Signature: && \hspace{0.5cm} \makebox[3in]{\hrulefill} \\ \\[3pt]
+Date: && \hspace{0.5cm} \today
+\end{tabular}
+\end{flushleft}
+\end{document}
