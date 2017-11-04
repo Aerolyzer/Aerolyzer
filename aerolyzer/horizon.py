@@ -1,4 +1,4 @@
-class test:
+class horizon:
 	def __init__(self):
 		self.message = "Hello World"
 	def _hello(self,i):
