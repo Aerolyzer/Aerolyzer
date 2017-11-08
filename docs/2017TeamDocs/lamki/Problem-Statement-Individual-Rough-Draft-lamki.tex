@@ -1,0 +1,72 @@
+\documentclass[letterpaper,10pt,draftclsnofoot,onecolumn]{IEEEtran}
+
+\usepackage[margin=0.75in]{geometry}
+
+\def\name{Kin-Ho Lam, Logan Wingrad, Daniel Ross \group}
+\def\team{Aerolyzer }
+\def\assign{Problem Statement}
+\def\group{(Group 19)}
+\def\course{CS 461 Fall 2017}
+% Title page information
+\title{\team \assign}
+\author{\name}
+\setlength{\parindent}{0pt}
+\begin{document}
+\maketitle
+\vspace*{10em}
+\centering
+\course
+\vspace*{4em}
+\begin{abstract} 
+Atmospheric aerosols are complex mixtures of solid and liquid particles from natural and unnatural sources. These tiny particulates play a major role in the chemistry of the global atmosphere, local weather, and general health. For the average citizen, getting accurate updates of local atmospheric conditions such as air quality is a challenge due to the limited availability of aerosol analysis. However, the prevalence of modern smart phones may present a unique solution to this problem. Through leveraging images of the horizon, namely sunrise and sunset images, and combining this data with image-recognition and third party APIs, one can use this untapped resource to infer local atmospheric phenomenon. 
+\end{abstract}
+
+\clearpage
+\begin{flushleft}
+\section{Problem Definition}
+Atmospheric aerosols are tiny particles suspended in the atmosphere. They originate from natural sources such as volcanic eruptions and unnatural source such as pollution. Concentrations of aerosols can act as sites for chemical reactions, some of which degrade the ozone layer, reflect sunlight, and cool or warm regions beyond their natural weather patterns. One can witness the effects of aerosols in their scattering effect of sunlight which visibly reddens sunset and sunrises. Generally, horizons with vibrant colors indicate a high concentration of aerosols. Aerosol analysis is performed through a combination of satellite, aircraft, and ground-based instruments. In the context of a typical citizen, the data collected by these instruments is largely unavailable or ambiguous to understand. Currently, there is no way to judge local atmospheric quality using regional aerosol analysis without in-depth atmospheric knowledge. Moreover, delayed or inaccurate atmospheric reports complicate getting reliable local atmospheric information. Atmospheric aerosols are constantly changing and interact with the Earth's climate. One strategy to bridge this information-gap is to analyze the horizon's color from a local location by crowd-sourcing cell phone images. 
+ 
+Currently, available mobile applications to judge air quality based on smart phone images use color-sensitive algorithms to approximate air quality. While this is useful, there is a need for a tool that a) focuses on images where aerosol analysis can be performed (namely clear images of the horizon), b) combines existing weather APIs to extrapolate greater information about the local weather, and c) compile said data into a central database for trend-analysis.
+
+\section{Proposed Solution}
+The purpose of this project is to develop a tool capable of processing visible images and inferring atmospheric (optical or otherwise) phenomena.A previous capstone team developed a front-end web platform to collect images of the horizon and display weather information. Our goal is to develop a back-end API for this  that will perform image analysis on submitted images. Said API shall be written in python and implement an algorithm to filter out images that are not of sunrises or sunsets.  
+Our proposed system will utilize machine learning image classification algorithms to filter out irrelevant images, and use 3rd party APIs to analyze aerosol content. 
+Images and other data from available sources will assist in the inferences of atmospheric aerosol composition, as well as aid in determining the type of atmospheric phenomenon the image displays.
+This ability to quantify color in images and use the resulting data to determine current aerosol content will provide average citizens with near-real time monitoring of atmospheric conditions.
+
+\section{Performance Metrics}
+We will measure whether our solution meets our defined needs and functions by creating a mobile application that correctly identifies sunsets and sunrises in pre-loaded images. We will verify the accuracy of our classifier by developing a set of regression unit tests.
+
+\clearpage
+
+\section*{Signatures}
+
+\subsection*{Kim Whitehall} % Suppress section numbering with the *
+
+\begin{tabular}{ l p{10pt} l }
+Signature: && \hspace{0.5cm} \makebox[3in]{\hrulefill} \\ \\[5pt]
+Date: && \hspace{0.5cm} \today
+\end{tabular}
+
+\subsection*{Kin-Ho Lam}
+
+\begin{tabular}{ l p{10pt} l }
+Signature: && \hspace{0.5cm} \makebox[3in]{\hrulefill} \\ \\[3pt]
+Date: && \hspace{0.5cm} \today
+\end{tabular}
+
+\subsection*{Logan Wingrad}
+
+\begin{tabular}{ l p{10pt} l }
+Signature: && \hspace{0.5cm} \makebox[3in]{\hrulefill} \\ \\[3pt]
+Date: && \hspace{0.5cm} \today
+\end{tabular}
+
+\subsection*{Daniel Ross}
+
+\begin{tabular}{ l p{10pt} l }
+Signature: && \hspace{0.5cm} \makebox[3in]{\hrulefill} \\ \\[3pt]
+Date: && \hspace{0.5cm} \today
+\end{tabular}
+\end{flushleft}
+\end{document}
