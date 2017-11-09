@@ -1,23 +1,18 @@
 import sys
 import cv2
+import os
 import numpy as np
 
 class horizon:
 	
-	def __init__(self):
-		self.message = "Hello World"
-	
+	def _testAnalyze(self, directory):
+		included_extensions = ['jpg']
+		files = [fn for fn in os.listdir(directory) if any(fn.endswith(ext) for ext in included_extensions)]
+		for image in files:
+			self.getHorizon(str(directory)+image)
 
-	def _hello(self,i):
-		x=0
-		while x<i:
-			print self.message
-			x = x + 1
-		return 0
-
-
-	def getHorizon(self):
-		img_noblur = cv2.imread("/home/aero/Desktop/Aerolyzer/images/A/1.jpg")
+	def getHorizon(image):
+		img_noblur = cv2.imread(image)
 		img = cv2.blur(img_noblur, (7,7))
 
 		edges = cv2.Canny(img,55,110) #magic numbers (min & max tolerance)
@@ -32,7 +27,6 @@ class horizon:
 		    y1 = int(y0 + 1000*(a))
 		    x2 = int(x0 - 1000*(-b))
 		    y2 = int(y0 - 1000*(a))
-		    cv2.line(img,(x1,y1),(x2,y2),(0,0,255),2)
-
-		cv2.imwrite('houghlines3.jpg',img)
+		    cv2.line(img_noblur,(x1,y1),(x2,y2),(0,0,255),2)
+		cv2.imwrite("H_"+str(image),img_noblur)
 			
