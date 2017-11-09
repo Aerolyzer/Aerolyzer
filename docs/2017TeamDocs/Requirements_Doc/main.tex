@@ -1,0 +1,310 @@
+\documentclass[journal,10pt,draftclsnofoot,onecolumn]{IEEEtran}
+
+\usepackage[doublespacing]{setspace}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{graphicx}
+\usepackage{rotating}
+\usepackage[lofdepth]{subfig}
+\usepackage{hyperref}
+\usepackage{pdflscape}
+\usepackage[round, sort, numbers]{natbib}
+
+\hbadness=1000 % suppress warnings
+
+\begin{document}
+	\begin{titlepage}
+
+	\center
+
+	\textsc{\LARGE Oregon State University}\\[1.5cm]
+	\textsc{\Large CS461 Fall 2017 }\\[0.5cm]
+	\textsc{\large Group 19}\\[0.5cm] % Minor heading such as course title
+
+	\vfill
+
+	{\huge\bfseries Aerolyzer Python Library Software Requirement Specification}\\[0.4cm]
+
+	\vfill
+
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushleft}
+			\large
+			\textit{Authors}\\
+			Kin-Ho \textsc{Lam}\\
+			Logan \textsc{Wingard}\\
+			Daniel \textsc{Ross}\\
+		\end{flushleft}
+	\end{minipage}
+	~
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushright}
+			\large
+			\textit{Supervisor}\\
+			Dr. Kim \textsc{Whitehall}
+		\end{flushright}
+	\end{minipage}
+
+	\vfill
+
+	\begin{abstract}
+		\begin{singlespace}
+			Monitoring atmospheric aerosols \ref{def:aerosol} is important due to their effects on the atmosphere's chemical composition and radiation distribution.
+			The presence of aerosols reduces air quality which can potentially lead to health complications such as bronchitis or respiratory inflammation.
+			Unfortunately, existing methods to gather aerosol data such as satellites, planes, and ground-based instruments provide data that are too complex to be useful for the average person to understand or do not provide data fast enough.
+
+
+			Aerolyzer is a web application that uses weather information and acceptable images \ref{def:accImg} of the horizon to infer local atmospheric phenomena in the United States. 
+			The following document details the software requirement specifications for Aerolyzer Aerosol Detection API.
+			The Aerosol Detection API will consist of  python classifiers that shall analyze user submitted images, and remove unacceptable images.
+		\end{singlespace}
+	\end{abstract}
+
+	\vfill
+	\vfill
+	\vfill
+	{\large10/25/17}
+	\vfill
+\end{titlepage}
+
+\section{Table of Contents}
+\tableofcontents
+\clearpage
+
+\begin{singlespace}
+
+\section{Introduction}
+
+	\subsection{Purpose}
+		The Aerolyzer Project serves as a new tool to infer local air quality using regional weather data and aerosol analysis.
+		Aerolyzer shall crowd-source images of the horizon to characterize aerosol \ref{def:aerosol} content in the atmosphere.
+		Achieving this functionality calls for the creation of a Python library \ref{def:lib} that identifies and analyzes acceptable images \ref{def:accImg}, stores relevant information for trend analysis, and compiles weather information with aerosol data. 
+
+	\subsection{Scope}
+		Bringing the Aerolyzer Project to a mainstream audience calls for an open-source back-end Python API to perform image analysis.
+		The Python library shall use image classification algorithms to characterize acceptable images.
+		The Aerolyzer project shall exclusively serve users in the United States.
+		If time permits, the existing front-end UI shall be modified to present the Aerolyzer library's weather and air quality inference based on analyzed images or by a requested location.
+		The UI shall also be modified to collect user-submitted cell phone images of the horizon \ref{def:horizon}, sunset \ref{def:sunset}, or sunrise \ref{def:sunrise} to be fed to the library for analysis.
+
+	\subsection{Definitions}
+		\begin{enumerate}
+			\item \label{def:aerosol} Aerosol:
+			Aerosols are tiny particles dispersed throughout the atmosphere.
+			These particles originate from natural sources such as volcanic eruptions, and unnatural sources such as pollution. 
+			One can visibly see the effects of aerosols in the 'Rayleigh scattering effect' \cite{allen_2015} which visibly reddens sunsets and sunrises.
+
+			\item \label{def:accImg} Acceptable Image:
+			An acceptable image is defined as an unedited image of the horizon \ref{def:horizon}, sunset \ref{def:sunset}, or sunrise \ref{def:sunrise}.
+			Images used in data collection must have valid EXIF meta data, while the images used in training classifiers only require relevant image content.
+
+			\item \label{def:horizon} Horizon:
+			The horizon is defined as the line at which the sky and earth's surface appear to meet.
+
+			\item \label{def:sunrise} Sunrise:
+			A sunrise is defined as the colors and light visible in the sky produced by the sun's first appearance in the morning.
+
+			\item \label{def:sunset} Sunset:
+			A sunset is defined as the colors and light visible in the sky produced when the sun disappears in the evening.
+
+			\item \label{def:exif} EXIF:
+			Exchangeable image file format.
+
+			\item \label{def:local} Local:
+			Local is defined as the circular area around an observer with the radius being the distance from an observer's position to the horizon.
+			For an observer on the ground, this distance is approximately 2.9 miles (4.7 km) and for an observer standing at an elevation of 100 ft (30 m) above ground level this distance is approximately 12.2 miles (19.6 km).
+
+			\item \label{def:lib} Library:
+			A library is defined a Python module. The terms "Python module" and "Python library" are used interchangeably.
+		\end{enumerate}
+
+	\nocite{*}
+	\bibliographystyle{plain}
+	\bibliography{ref}
+
+	\subsection{Overview}
+		The following Project Overview details the functionality of the Aerolyzer Library.
+		This functionality shall be explored through its planned work flow, expected user behavior, and general implementation in a larger system.
+		Finally, the Performance section details the expected state of the project when completed by the 2017-2018 team.
+
+\clearpage
+
+\section{Project Overview}
+	\subsection{Project Perspective}
+		Aerolyzer is a web-based tool that provides weather and air quality information based on zip codes and submitted images.
+		A back-end Python Library \ref{def:lib} shall provide the Aerolyzer project's functionality.
+		Functions in the library shall take images of the horizon, sunrise, sunset or a user's ZIP code as input.
+		Image classifiers shall be developed using tools such as OpenCV or Google Tensorflow.
+		Human-selected acceptable images from public sources shall be used to train and verify the accuracy of the classifiers.
+
+	\subsection{Project Functions}
+		Aerolyzer's web interface shall take a user's location, either from a submitted image's EXIF \ref{def:exif} data or a provided ZIP code, as the primary input.
+		If a user submits an acceptable image, the results of color analysis on that image are add to the application's data for their ZIP code.
+		The library then calls on weather API for meteorological data for their ZIP code.
+		The application then displays all data relevant to the user's ZIP code on their screen in an understandable format.
+
+\clearpage
+
+\section{Users \& Functionality}
+	
+	\subsection{User Stories}
+		Users shall either know their current ZIP code or have a mobile device that stores their location in an image's EXIF \ref{def:exif} data.
+
+	\subsection{Expected user characteristics}
+		\begin{enumerate}
+			\item The user is in the United States.
+			\item The user owns a smart phone or knows their ZIP code.
+			\item The user has a general idea of what aerosols are.
+			\item The user understands how to use their mobile device to capture an image of the horizon.
+			\item The user has a basic understanding of how to navigate a web browser in order to use the web application.
+			\item The user understands basic weather terminology such as temperature, wind speed, and humidity.
+		\end{enumerate}
+
+	\subsection{Input Constraints}
+		\begin{enumerate}
+			\item The image must be taken on a device with location tracking enabled.
+			\item The image must be unedited and have no filters applied.
+			\item The image must have EXIF data.
+			\item The image must contain a horizon.
+			\item The image must be a sunset or sunrise.
+			\item The image must be taken from a location inside the United States.
+		\end{enumerate}
+
+	\subsection{Assumptions and Dependencies}
+		\begin{enumerate}
+			\item Users submitting photos have given permission for having their image stored and used in further processing.
+			\item The user is connected to the Internet.
+			\item The user's web browser supports the application's interface.
+		\end{enumerate}
+
+	\subsection{External Interfaces}
+		\begin{enumerate}
+			\item The library shall make external calls to the Weather Underground API \cite{api_weather_underground} for current weather conditions at a certain ZIP code.
+			\item The library shall facilitate the storage of images onto an external database.
+			\item The library shall enable classifier task parallelization.
+		\end{enumerate}
+\clearpage
+
+\section{Functions}
+	\subsection{Classify photo} \label{def:classPh}
+		Trigger: A new, unclassified photo has been added to the central database.\\
+		Precondition: The image and its JSON meta data are accessible to the classifier per use case Extract EXIF \ref{def:extexif}.\\
+		Basic Path:
+		\begin{enumerate}
+			\item The image's latitude and longitude are read from the JSON meta data.
+			\item The latitude and longitude are used to identify the image's ZIP code.
+			\item The image is checked with the horizon classifier to confirm the presence of a horizon in the image.
+			\item If a horizon is confirmed, the image is checked using a sunset/sunrise classifier to confirm the presence of a sunset or sunrise.
+			\item The image is stored in the database with it's content and ZIP code identifying it.
+		\end{enumerate}
+		Alternative Paths: The image is checked with the horizon classifier and the image isn't confirmed to have the horizon in it. The user is notified, the image isn't stored. If case Extract EXIF \ref{def:extexif} is properly performed on an image and a ZIP code is extracted, then the UI transitions to case Call Weather API \ref{def:weathAPI}\\
+		If ZIP code cannot be retrieved from the EXIF data but the image is classified as an acceptable image, the use case transitions to Identify Aerosols \ref{def:idAero}.\\
+		Postcondition: The user's image is stored and categorized for further use.\\
+		Exception Paths: The latitude and longitude in the image JSON data is not in the United States, the user is notified and the use case abandoned. 
+	
+	
+	\subsection{Call Weather API} \label{def:weathAPI}
+		Trigger: The user's ZIP code is received.\\
+		Precondition: The user submits their ZIP code per use case ZIP Code Submission \ref{def:zip} or the user has submitted an image that was successfully identified as per use case Classify Photo \ref{def:classPh}.\\
+		Basic Path:
+		\begin{enumerate}
+			\item A request is made to the weather API for data on the received ZIP code.
+			\item The data received from the weather API is stored in the central database under the ZIP code it pertains to.
+		\end{enumerate}
+		Alternative Paths: None\\
+		Postcondition: The central database stores weather data for the user's ZIP code.\\
+		Exception Paths: If data is unable to be retrieved from the weather API, an error message will be displayed and the use case abandoned. 
+	\subsection{Identify Aerosols} \label{def:idAero}
+		Trigger: The user's ZIP code and their submitted image is received.\\
+		Precondition: The user submitted an image that was successfully identified as per use case Call Weather API \ref{def:weathAPI}.\\
+		Basic Path:
+		\begin{enumerate}
+			\item The colors in the image are analyzed.
+			\item The analysis returns the type of aerosol most likely to cause the colors in the image.
+			\item The type of aerosol and the current time are stored in the central database under the user's ZIP code.
+		\end{enumerate}
+		Alternative Paths: None\\
+		Postcondition: The central database has a type of aerosol at a particular time for a certain ZIP code.\\
+		Exception Paths: None
+
+	\subsection{Extract EXIF} \label{def:extexif}
+		Trigger: An image is passed to the EXIF function\\
+		Precondition: Photo has been successfully uploaded per use case Upload Photo \ref{def:upload}.\\
+		Basic Path:
+		\begin{enumerate} 
+			\item Aerolyzer library receives image as input for extraction script.
+			\item Script outputs the image's EXIF data as a JSON file.
+			\item The JSON file is stored with the image prior to classification.
+		\end{enumerate}
+		Alternative Paths: Images and their associated meta data can be added manually to the database.\\
+		Postcondition: The central database has access to the image and its meta data.\\
+		Exception Paths: None
+
+	\subsection{Web Application Interface} \label{def:webInt}
+		Trigger: User navigates to the Application site using a Web Browser\\
+		Precondition: User has access to a web browser and the Internet.\\
+		Basic Path:
+		\begin{enumerate}
+			\item User opens web browser
+			\item User navigates to the Aerolyzer URL in the web browser
+			\item System serves start page to the user
+		\end{enumerate}
+		Alternative Paths: Users can navigate to the Aerolyzer start page via a link\\
+		Postcondition: User has access to the Aerolyzer web interface.\\
+		Exception Paths: If the user isn't connected to the Internet or their web browser can't access the page, the use case is abandoned.
+	
+	\subsection{ZIP Code Submission} \label{def:zip}
+		Trigger: User clicks submit on form for ZIP code\\
+		Precondition: User's web browser correctly displays the form for ZIP input.\\
+		Basic Path:
+		\begin{enumerate}
+			\item User types ZIP code in form
+			\item User clicks "Submit" button on form
+		\end{enumerate}
+		Alternative Paths: Case Upload Photo \ref{def:upload}\\
+		Postcondition: User is navigated to output page.\\
+		Exception Paths: If the submitted ZIP code isn't a valid 5 digit ZIP, the user is notified and the use case is abandoned.
+	
+	\subsection{Upload Photo} \label{def:upload}
+		Trigger: User clicks the 'Upload a Photo” button\\
+		Precondition: Users have a picture from a mobile device and their web browser has access to this photo.\\
+		Basic Path:
+		\begin{enumerate}
+			\item User clicks the "Upload Photo" button on page.
+			\item User is prompted to select a photo from their device's storage.
+		\end{enumerate}
+		Alternative Paths: Case ZIP Code Submission \ref{def:zip}\\
+		Postcondition: The image is passed to the server\\
+		Exception Paths: If some connection error or other issue occurs, the user is informed and the case is abandoned.
+			
+	\subsection{Display data}
+		Trigger: Use case Identify Aerosols \ref{def:idAero} is completed.\\
+		Precondition: The central database has completed any updates in progress on the user's requested ZIP code.\\
+		Basic Path:
+		\begin{enumerate}
+			\item All of the most recent data for the user's ZIP code is fetched from the central database.
+		\end{enumerate}
+		Alternative Paths: None\\
+		Postcondition: The user is taken to a page to display the fetched data.\\
+		Exception Paths: None
+\clearpage
+
+\section{Performance}
+	\subsection{Performance Requirements}
+		This library shall identify horizons using Aerolyzer's classifier in a test-selection of images with a minimum accuracy of 66\% certainty.
+		Images of horizons that contain sunsets and sunrises shall be identified using Aerolyzer's classifier library with a minimum of 50\% certainty.
+		This certainty shall be verifiable through a series of regression tests to prove detection accuracy.
+
+	\subsection{Stretch Goals}
+		If time permits, the library shall be deployed onto the live Aerolyzer website.
+
+	\begin{landscape}
+		\subsection{Tentative Development Schedule}
+		\begin{figure}[h]
+			\includegraphics[width=9.5in]{gantt.png}
+			\caption{Tentative Gantt Chart Schedule}
+		    \label{fig:Tentative Schedule}
+	    \end{figure}
+	\end{landscape}
+
+\end{singlespace}
+\end{document}

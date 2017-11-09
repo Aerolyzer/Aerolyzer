@@ -1,0 +1,81 @@
+\documentclass[letterpaper,10pt, draftclsnofoot,onecolumn]{IEEEtran}
+
+\usepackage{graphicx}                                        
+\usepackage{amssymb}                                         
+\usepackage{amsmath}                                         
+\usepackage{amsthm}                                          
+
+\usepackage{alltt}                                           
+\usepackage{float}
+\usepackage{color}
+\usepackage{url}
+
+\usepackage{balance}
+\usepackage{enumitem}
+
+\usepackage{geometry}
+\geometry{textheight=8.5in, textwidth=6in}
+
+\newcommand{\cred}[1]{{\color{red}#1}}
+\newcommand{\cblue}[1]{{\color{blue}#1}}
+
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{titling}
+\usepackage{bookmark}
+\title{Capstone Fall 2017 Problem Statement}
+\def\authors{Logan Wingard}
+\date{October 9, 2017}
+\author{\authors}
+
+\hypersetup{
+  colorlinks = true,
+  urlcolor = blue,
+  pdfauthor = {\authors},
+  pdfkeywords = {Capstone Fall 2017 Problem Statement},
+  pdftitle = {Capstone Fall 2017 Problem Statement},
+  pdfsubject = {Problem Statement},
+  pdfpagemode = UseNone
+}
+
+\begin{document}
+
+\begin{titlepage}
+\maketitle
+\centering
+\begin{abstract}
+This document will discuss the problem statement of project Aerolyzer.
+This will include the main goal of Aerolyzer, the smaller problems that we will need to solve to reach this goal, 
+and the proposed solutions to these problems as well as the preformance metrics.  
+\end{abstract}
+\end{titlepage}
+
+\hrulefill
+
+\section{Problem Statement}
+The two main goals of project Aerolyzer are as follows:
+\begin{enumerate}
+\item Deliver an image classifier using OpenCV, Tensor flow by google, and preexisting machine learning tools to be able to detect fog, dust, vibrant sunsets/rises, with a priority on air quality.
+
+\item Relay information collected about air quality and weather back to end users.
+\end{enumerate}
+
+Some of the problems we need to tackle first include the following:
+\begin{enumerate}
+\item Use OpenCV to detect that a skyline/landscape is in the image
+
+\item Use a photograph's data to determine the location and time the photograph was taken.
+\item Use the data to better analyze air quality and also to determine if an image is of a sunset or sunrise. 
+\end{enumerate}
+
+\hrulefill
+
+\section{Proposed Solutions}
+Many of the tools we will need to solve these problems are out there through resources such as weatherground.com, OpenCV, and Tensor flow by google, and we just need to find a way to put these to use in a user friendly UI. We will be using Python 2.7 and Django to accomplish this goal. Communication throughout the project will aide in working through problems.
+
+\hrulefill
+
+\section{Preformance metrics}
+The finished product will be a completed app that will receive data from a photograph and relay air quality and weather information back to the user. This, however, will be the final step. We will have several goals to reach along the way such as successfully detecting skylines/landscapes. Then, we will reach the goal of detecting information from a photo, such as location and time.
+
+\end{document}
