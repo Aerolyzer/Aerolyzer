@@ -1,5 +1,4 @@
 from aerolyzer import horizon
 
-mytest = horizon()
-mytest.getHorizon()
+horizon()._testAnalyze("/home/aero/Desktop/Aerolyzer/A/")
 
