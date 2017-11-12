@@ -16,7 +16,8 @@ class horizon:
 		return 0
 
 
-	def getHorizon(self):
+	def getHorizon(self, directory):
+		for image in directory: 
 		img_noblur = cv2.imread("/home/aero/Desktop/Aerolyzer/images/A/1.jpg")
 		img = cv2.blur(img_noblur, (7,7))
 
