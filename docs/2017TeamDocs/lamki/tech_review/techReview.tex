@@ -6,6 +6,8 @@
 \usepackage{hyperref}
 \usepackage[round, sort, numbers]{natbib}
 
+\renewcommand\thesection{\arabic{section}}
+\renewcommand\thesubsection{\thesection.\arabic{subsection}}
 
 \hbadness=1000 % suppress warnings
 
@@ -29,6 +31,8 @@
 			\large
 			\textit{Authors}\\
 			Kin-Ho \textsc{Lam}\\
+			Logan \textsc{Wingard}\\
+			Daniel \textsc{Ross}\\
 		\end{flushleft}
 	\end{minipage}
 	~
@@ -36,8 +40,7 @@
 		\begin{flushright}
 			\large
 			\textit{Supervisor}\\
-			Dr.
-Kim \textsc{Whitehall}
+			Dr. Kim \textsc{Whitehall}
 		\end{flushright}
 	\end{minipage}
 
@@ -46,8 +49,6 @@ Kim \textsc{Whitehall}
 	\begin{abstract}
 		\begin{singlespace}
 			This document shall discuss possible technologies the Aerolyzer project shall leverage to accomplish horizon detection, aerosol content inference, and data regression analysis.
-Possible technologies to accomplish said goals include OpenCV, Google Tensorflow, and Amazon Rekognition.
-
 		\end{singlespace}
 	\end{abstract}
 
@@ -65,11 +66,13 @@ Possible technologies to accomplish said goals include OpenCV, Google Tensorflow
 \begin{singlespace}
 
 \section{Horizon Detection}
-	As specified in the SRS document, the Aerolyzer project requires an image-filter algorithm to detect horizons and reject images that are not suitable for aerosol analysis.
-	It follows that such a filter will need to leverage computer-vision technology such that the sky can be detected despite obscurement.
-    After obstructions are removed from the image, the Aerolyzer project will need to analyze the extrapolated sky to infer Aerosol content.
-    Finally, the Aerolyzer project will need to generate a trend analysis using the data it extrapolates. 
-	OpenCV, Google Tensorflow, R analysis, Matlab, and Amazon Rekognition are three potential candidates that can accomplish these tasks.
+	\subsection{Overview}
+	The Aerolyzer library requires an algorithm that detects horizons in user-submitted images.
+	Submitted images lacking a horizon are not suitable for Aerosol analysis and must be rejected.
+
+	\subsection{Criteria}
+	Detecting the horizon in images calls for leveraging computer-vision technology such that the horizon can be detected in images which may or may not contain obstructions.
+	Such technology's licensing must also be compatable with \href{https://www.apache.org/licenses/LICENSE-2.0}{Apache License 2.0}.
 
 	\subsection{OpenCV}
 	OpenCV is an unsupervised computer-vision library.
@@ -94,18 +97,33 @@ Possible technologies to accomplish said goals include OpenCV, Google Tensorflow
 	Rekognition performs analysis on Amazon’s AWS server, freeing up local resources for other processing.
 	Rekognition is a less preferable venu due to its processing cost.
 
+	\subsection{Conclusion}
+
 \section{Aerosol Content Inference}
+	\subsection{Overview}
+
+	\subsection{Criteria}
+	After obstructions are distinguished, the Aerolyzer project shall analyze the extrapolated sky to infer Aerosol content.
 
 	\subsection{OpenCV \& R \& Matlab Libraries}
 	Incorporating R and Matlab libraries, OpenCV can be programmed to perform aerosol inference.
 	However, a high level of atmospheric knowledge is required to create an accurate classifier.
 	This can be accomplished by performing bitmap pattern matching against pre-selected atmospheric gradients with known aerosol content.
 
+	\subsection{Conclusion}
+
 \section{Data Interpretation}
+	\subsection{Overview}
+
+	\subsection{Criteria}
+	The Aerolyzer project will need to generate a trend analysis using the data it extrapolates. 
+
 	\subsection{R \& Matlab Libraries}
 	Leveraging the statistical power of R and Matlab libraries will enable the Aerolyzer project to interpolate weather patterns from sampled images.
 	This shall be accomplished through regression analysis which shall consider dates of when images are taken, the inferred aerosol content of the image, patterns referenced from 3rd party APIs.
 	R and Matlab libraries are readily available modules in the Python library which can be applied to Aerolyzer’s future dataset. 
+
+	\subsection{Conclusion}
 
 
 \end{singlespace}

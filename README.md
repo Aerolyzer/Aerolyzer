@@ -6,8 +6,8 @@
 
 
 Oregon State University 2016 - 2017 Computer Science Capstone Project
-
-Group Members: E. Reilly Collins, Jesse Hanson, Sophia Liu
+Group Members: Kin-Ho Lam, Logan Wingard, Daniel Ross
+Contributors: E. Reilly Collins, Jesse Hanson, Sophia Liu
 <br>Project Managers: Dr. Kim Whitehall, Dr. Lewis McGibbney
 <br>Class lecturer: Dr. Kevin McGrath
 

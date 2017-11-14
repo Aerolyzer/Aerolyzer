@@ -67,10 +67,12 @@
 
 \section{Horizon Detection}
 	\subsection{Overview}
-	The Aerolyzer project requires an image-filter algorithm to detect horizons and reject images that are not suitable for aerosol analysis.
-	
+	The Aerolyzer library requires an algorithm that detects horizons in user-submitted images.
+	Submitted images lacking a horizon are not suitable for Aerosol analysis and must be rejected.
+
 	\subsection{Criteria}
-	Technology enabling horizon detection shall leverage computer-vision technology such that the sky can be detected despite obscurements.
+	Detecting the horizon in images calls for leveraging computer-vision technology such that the horizon can be detected in images which may or may not contain obstructions.
+	Such technology's licensing must also be compatable with \href{https://www.apache.org/licenses/LICENSE-2.0}{Apache License 2.0}.
 
 	\subsection{OpenCV}
 	OpenCV is an unsupervised computer-vision library.
