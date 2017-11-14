@@ -65,55 +65,46 @@ Possible technologies to accomplish said goals include OpenCV, Google Tensorflow
 
 \section{Horizon Detection}
 	As specified in the SRS document, the Aerolyzer project requires an image-filter algorithm to detect horizons and reject images that are not suitable for aerosol analysis.
-	It follows that such a filter will need to leverage computer-vision technology such that the sky can be detected despite objects obscuring the view.
+	It follows that such a filter will need to leverage computer-vision technology such that the sky can be detected despite obscurement.
+    After obstructions are removed from the image, the Aerolyzer project will need to analyze the extrapolated sky to infer Aerosol content.
+    Finally, the Aerolyzer project will need to generate a trend analysis using the data it extrapolates. 
 	OpenCV, Google Tensorflow, R analysis, Matlab, and Amazon Rekognition are three potential candidates that can accomplish these tasks.
 
 	\subsection{OpenCV}
 	OpenCV is an unsupervised computer-vision library.
-	Using pixel tolerances and image transformations, OpenCV uses algorithms such as applying canny-edge detection and Hough-line transformations to identify images.
-	Due to its unsupervised learning criteria, a programmer must manually tune the algorithm to detect the sky or horizon, OpenCV does not intelligently learn to understand the contents of images, but applies filters to the images and accepts an image based on color tolerances.
+	Using pixel tolerances and image transformations, OpenCV uses algorithms such as canny-edge detection and Hough-line transformations to identify images.
+	Due to its unsupervised learning criteria, a programmer must manually tune the algorithm to detect the sky or horizon.
+	OpenCV does not intelligently learn to understand the contents of images, but applies filters to the images and accepts an image based on color tolerances.
 	OpenCV has promise to deliver a successful image-classifier filter due to its scalability and feature-rich library.
 	However, one may struggle to find an algorithm to classify all images of the horizon all the time as the variance in acceptable horizon images are infinite.
 
 	\subsection{Google Tensorflow}
-	Google Tensorflow is a supervised machine learning library.
+	Google Tensorflow is a supervised machine learning library and may be an alternative to OpenCV.
+	The library is broad and contains tools to accurately characterize a wide variety of potential weather conditions provided an adequate data set.
 	This program has been proven to identify patterns in images with a high rate of consistency.
 	Tensorflow requires a large set of training data to classify images.
 	Generally, supervised machine learning libraries have a higher success rate than unsupervised libraries.
-
+	One will need to prove and compare the performance of OpenCV and Tensorflow.
 
 	\subsection{Amazon Rekognition}
 	Amazon Rekognition is a supervised machine learning library that focuses on ease of use.
 	It excels in object detection in images, but incurs a fee to process every 1,000 images.
 	Amazon has built a large back-end library that is largely opaque to a user, the back-end classification algorithms are proprietary and cannot be directly modified.
 	Rekognition performs analysis on Amazon’s AWS server, freeing up local resources for other processing.
-
-
-\clearpage
+	Rekognition is a less preferable venu due to its processing cost.
 
 \section{Aerosol Content Inference}
-	
-	\subsection{Google Tensorflow}
-	Google Tensorflow is well suited for analyzing images to infer atmospheric aerosol content.
-	The library is broad and contains tools to accurately characterize a wide variety of potential weather conditions provided an adequate data set.
 
 	\subsection{OpenCV \& R \& Matlab Libraries}
 	Incorporating R and Matlab libraries, OpenCV can be programmed to perform aerosol inference.
 	However, a high level of atmospheric knowledge is required to create an accurate classifier.
 	This can be accomplished by performing bitmap pattern matching against pre-selected atmospheric gradients with known aerosol content.
 
-
-\clearpage
-
 \section{Data Interpretation}
 	\subsection{R \& Matlab Libraries}
 	Leveraging the statistical power of R and Matlab libraries will enable the Aerolyzer project to interpolate weather patterns from sampled images.
 	This shall be accomplished through regression analysis which shall consider dates of when images are taken, the inferred aerosol content of the image, patterns referenced from 3rd party APIs.
 	R and Matlab libraries are readily available modules in the Python library which can be applied to Aerolyzer’s future dataset. 
-\clearpage
-
-\section{Performance}
-
 
 
 \end{singlespace}
