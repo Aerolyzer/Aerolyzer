@@ -48,8 +48,6 @@ Kim \textsc{Whitehall}
 	\begin{abstract}
 		\begin{singlespace}
 			This document shall discuss possible technologies the Aerolyzer project shall leverage to accomplish horizon detection, aerosol content inference, and data regression analysis.
-Possible technologies to accomplish said goals include OpenCV, Google Tensorflow, and Amazon Rekognition.
-
 		\end{singlespace}
 	\end{abstract}
 
@@ -68,11 +66,8 @@ Possible technologies to accomplish said goals include OpenCV, Google Tensorflow
 
 \section{Horizon Detection}
 	\subsection{Overview}
-	As specified in the SRS document, the Aerolyzer project requires an image-filter algorithm to detect horizons and reject images that are not suitable for aerosol analysis.
-	It follows that such a filter will need to leverage computer-vision technology such that the sky can be detected despite obscurement.
-    After obstructions are removed from the image, the Aerolyzer project will need to analyze the extrapolated sky to infer Aerosol content.
-    Finally, the Aerolyzer project will need to generate a trend analysis using the data it extrapolates. 
-	OpenCV, Google Tensorflow, R analysis, Matlab, and Amazon Rekognition are three potential candidates that can accomplish these tasks.
+	The Aerolyzer project requires an image-filter algorithm to detect horizons and reject images that are not suitable for aerosol analysis.
+	It follows that such a filter shall leverage computer-vision technology such that the sky can be detected despite obscurements.
 
 	\subsection{Criteria}
 
@@ -105,6 +100,7 @@ Possible technologies to accomplish said goals include OpenCV, Google Tensorflow
 	\subsection{Overview}
 
 	\subsection{Criteria}
+	After obstructions are distinguished, the Aerolyzer project shall analyze the extrapolated sky to infer Aerosol content.
 
 	\subsection{OpenCV \& R \& Matlab Libraries}
 	Incorporating R and Matlab libraries, OpenCV can be programmed to perform aerosol inference.
@@ -117,6 +113,7 @@ Possible technologies to accomplish said goals include OpenCV, Google Tensorflow
 	\subsection{Overview}
 
 	\subsection{Criteria}
+	The Aerolyzer project will need to generate a trend analysis using the data it extrapolates. 
 
 	\subsection{R \& Matlab Libraries}
 	Leveraging the statistical power of R and Matlab libraries will enable the Aerolyzer project to interpolate weather patterns from sampled images.
