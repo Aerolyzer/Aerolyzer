@@ -62,26 +62,27 @@
 
 \begin{singlespace}
 
-\section{Horizon Detection}
+\section{Horizon, Sunset, and Sunrise Detection}
 	\subsection{Overview}
 		Horizon detection in still images is a complex task due to many factors that affect image quality.
 		Such variables include camera perspective, camera manufacturer, camera post-processing, image format, lighting, and many others.
 		Aerolyzer's horizon detection classifier serves as a filter to detect and remove images unsuitable for analysis.
 		Such a classifier must be capable of performing an analysis on a submitted image in a reasonable amount of time while satisfying classification with 66\% certainty.
-		The algorithm must determine whether obstructions in the image will prevent proper Aerosol analysis, and reject unsuitable images accordingly.
+		The algorithm must determine whether obstructions in the image will prevent proper aerosol analysis, and reject unsuitable images accordingly.
 	
 	\subsection{Criteria}
 		Third-party tools or libraries to be used in Aerolyzer's horizon classifier shall be compared by availability and utility.
 		The Aerolyzer project shall ideally use non-proprietary software to perform image analysis.
 		Such libraries are preferably open source with usage licenses compatible with \href{https://www.apache.org/licenses/LICENSE-2.0}{Apache License 2.0}.
-		Additionally, such desirable libraries shall compliment the project with powerful image analysis tools such as proven algorithms or deep-learning frameworks.
 
-		\begin{tabular}{|l|p{3cm}|p{5cm}|p{5cm}|}
-		\hline \textbf{} & \textbf{Cost} & \textbf{License} & \textbf{Tools/Advantages} \\\hline
-		OpenCV & Free & Open Source, BSD License & Robust computer-vision library\\\hline
-		Google Tensorflow & Free & Creative Commons Attribution 3.0 License, Apache License 2.0 & Supervised machine learning library with proven image-recognition modules\\\hline
-		Amazon Rekognition & \$0.01 per 1,000 images analyzed per month & & Supervised machine learning library with cloud platform processing\\\hline
-		\end{tabular}
+		\begin{center}
+			\begin{tabular}{|l|p{3cm}|p{4cm}|p{5cm}|}
+			\hline \textbf{} & \textbf{Cost} & \textbf{License} & \textbf{Tools/Advantages} \\\hline
+			OpenCV & Free & Open Source, BSD License & Robust computer-vision library\\\hline
+			Google Tensorflow & Free & Creative Commons Attribution 3.0 License, Apache License 2.0 & Supervised machine learning library with proven image-recognition modules\\\hline
+			Amazon AWS Rekognition & \$0.01/1,000 images & Proprietary \& Closed source& Supervised machine learning library with cloud platform processing\\\hline
+			\end{tabular}
+		\end{center}
 
 	\subsection{OpenCV}
 		OpenCV is a BSD-licensed computer-vision library with many relevant modules.
@@ -98,36 +99,46 @@
 		Generally, supervised machine learning libraries have a higher success rate than unsupervised libraries due to its ability to scale and adjust its algorithm when presented with new criteria.
 		Tensorflow is a preferable alternative to OpenCV due to its widespread use and proven scope.
 
-	\subsection{Amazon Rekognition}
-		Amazon Rekognition is a supervised machine learning library that focuses on ease of use.
-		Rekognition excels in object detection in images, but incurs a fee to process every 1,000 images.
-		Amazon has built a large back-end library that is largely opaque to a user, the back-end classification algorithms are proprietary and cannot be directly modified.
-		Rekognition performs analysis on Amazon’s AWS server, freeing up local resources for other processing.
-		Rekognition is a less preferable alternative to OpenCV and Tensorflow due to its processing cost of \$1.00 per 1,000 images, and its closed-source development which restricts tuning the algorithm.
+	\subsection{Amazon AWS Rekognition}
+		Amazon Rekognition is a supervised machine learning library with a focus on usability.
+		Rekognition performs analysis on Amazon’s servers, its API is set up to service image recognition calls on-demand.
+		When provided an image, Rekognition will simply return a JSON data structure containing elements detected in the image as well as a confidence score.
+		Rekognition is a less preferable alternative to OpenCV and Tensorflow due to its processing cost, and closed-source proprietary algorithm.		
 
 	\subsection{Conclusion}
 		At the request of Dr. Whitehall, horizon classification development shall focus on OpenCV algorithms with Tensorflow incorporation as necessary.
 		Justification for this decision is based on the benefits of using open source libraries and the contributing team's experience with machine-vision libraries.
 
-\section{Aerosol Content Inference}
+\section{Aerosol Inference}
 	\subsection{Overview}
+		Monitoring atmospheric aerosols is important due to their effects on the atmosphere's chemical composition and radiation distribution.
+		The Aerolyzer library hopes to feature a module that infers aerosol size based on the hue distribution in acceptable horizon images.
+		Creating such a library will require incorporating machine learning and statical libraries to perform regression and hypothesis testing for trend analysis.
+		A trained classifier with an optimized model shall be able to perform some basic aerosol inference.
 
 	\subsection{Criteria}
-	After obstructions are distinguished, the Aerolyzer project shall analyze the extrapolated sky to infer Aerosol content.
+		Third-party tools or libraries to be used in Aerolyzer's aerosol inference module shall be compared by utility.
+		Desirable libraries shall incorporate statistical analysis or machine learning to identify patterns.
 
-		\begin{tabular}{|l|p{3cm}|p{5cm}|p{5cm}|}
-		\hline \textbf{} & \textbf{Cost} & \textbf{License} & \textbf{Tools/Advantages} \\\hline
-		R \& Matlab & Free & & Powerful statical calculators\\\hline
-		Google Tensorflow & Free & Creative Commons Attribution 3.0 License, Apache License 2.0 & Supervised machine learning library with proven regression-analysis modules\\\hline
-		& & & \\\hline
-		\end{tabular}
-
-	\subsection{R \& Matlab Libraries}
-	Incorporating R and Matlab libraries, OpenCV can be programmed to perform aerosol inference.
-	However, a high level of atmospheric knowledge is required to create an accurate classifier.
-	This can be accomplished by performing bitmap pattern matching against pre-selected atmospheric gradients with known aerosol content.
+		\begin{center}
+			\begin{tabular}{|l|p{3cm}|p{5cm}|p{5cm}|}
+			\hline \textbf{} & \textbf{Cost} & \textbf{License} & \textbf{Tools/Advantages} \\\hline
+			Google Tensorflow & Free & Creative Commons Attribution 3.0 License, Apache License 2.0 & Supervised machine learning library with proven regression-analysis modules\\\hline
+			OpenCV & Free & Open Source, BSD License & Support Vector Machine library\\\hline
+			& & & \\\hline
+			\end{tabular}
+		\end{center}
 
 	\subsection{Google Tensorflow}
+
+
+	\subsection{OpenCV}
+		OpenCV's Support Vector Machine (SVM) library is a supervised machine learning algorithm.
+		Given a sample dataset, SVM generates an optimized hyperplane model to categorize future input.
+		For example, an SVM can be trained by providing several pre-sorted sets of images of sunsets and sunrises.
+		This can be applied to the Aerolyzer project by training an SVM with a set of horizons with known aerosol content.
+
+	\subsection{}
 
 	\subsection{Conclusion}
 
