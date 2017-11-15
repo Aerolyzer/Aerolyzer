@@ -1,13 +1,10 @@
-\documentclass[journal,10pt,draftclsnofoot,onecolumn]{IEEEtran}
+\documentclass[onecolumn, draftclsnofoot,10pt, compsoc]{IEEEtran}
 
 \usepackage[doublespacing]{setspace}
 \usepackage[margin=0.75in]{geometry}
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage[round, sort, numbers]{natbib}
-
-\renewcommand\thesection{\arabic{section}}
-\renewcommand\thesubsection{\thesection.\arabic{subsection}}
 
 \hbadness=1000 % suppress warnings
 
@@ -67,35 +64,46 @@
 
 \section{Horizon Detection}
 	\subsection{Overview}
-	The Aerolyzer library requires an algorithm that detects horizons in user-submitted images.
-	Submitted images lacking a horizon are not suitable for Aerosol analysis and must be rejected.
-
+		Horizon detection in still images is a complex task due to infinite factors that affect image quality including camera perspectives, camera manufacturer, lighting, and many others.
+		Aerolyzer's horizon detection classifier serves as a filter to detect and remove images unsuitable for analysis.
+		Such a classifier must be capable of performing an analysis on a submitted image in a reasonable amount of time while satisfying classification with 66\% certainty.
+		The algorithm must determine whether obstructions in the image will prevent proper Aerosol analysis, and reject unsuitable images accordingly.
+	
 	\subsection{Criteria}
-	Detecting the horizon in images calls for leveraging computer-vision technology such that the horizon can be detected in images which may or may not contain obstructions.
-	Such technology's licensing must also be compatable with \href{https://www.apache.org/licenses/LICENSE-2.0}{Apache License 2.0}.
+		Third-party tools or libraries to be used in Aerolyzer's horizon classifier shall be compared by availability and utility.
+		The Aerolyzer project shall ideally use non-proprietary software to perform image analysis.
+		Such libraries are preferably open source with usage licenses compatible with \href{https://www.apache.org/licenses/LICENSE-2.0}{Apache License 2.0}.
+		Additionally, such desirable libraries shall compliment the project with powerful image analysis tools such as proven algorithms or deep-learning frameworks.
+		\vfill
+		\begin{tabular}{|l|p{3cm}|p{5cm}|p{5cm}|}
+		\hline \textbf{} & \textbf{Cost} & \textbf{License} & \textbf{Tools/Advantages} \\\hline
+		OpenCV & Free & Open Source, BSD License & Robust computer-vision library\\\hline
+		Google Tensorflow & Free & Creative Commons Attribution 3.0 License, Apache License 2.0 & Supervised machine learning library with proven image-recognition modules\\\hline
+		Amazon Rekognition & \$0.01 per 1,000 images analyzed per month & & Supervised machine learning library with cloud platform processing\\\hline
+		\end{tabular}
+
 
 	\subsection{OpenCV}
-	OpenCV is an unsupervised computer-vision library.
-	Using pixel tolerances and image transformations, OpenCV uses algorithms such as canny-edge detection and Hough-line transformations to identify images.
-	Due to its unsupervised learning criteria, a programmer must manually tune the algorithm to detect the sky or horizon.
-	OpenCV does not intelligently learn to understand the contents of images, but applies filters to the images and accepts an image based on color tolerances.
-	OpenCV has promise to deliver a successful image-classifier filter due to its scalability and feature-rich library.
-	However, one may struggle to find an algorithm to classify all images of the horizon all the time as the variance in acceptable horizon images are infinite.
+		OpenCV is a BSD-licensed computer-vision library with many relevant modules.
+		Containing over 2,500 algorithms, OpenCV is capable of analyzing images and videos to recognize faces, identify objects, perform visual transformations, and much more.
+		OpenCV's \textit{imgproc} module is an image processing component enabling image filtering, geometrical image transformations, and color space conversion. 
+		Additionally, OpenCV's \textit{objdetect} module is able to detect predefined classes such as faces, eyes, and cars.
+		These modules present useful frameworks that will be able to detect horizons given the proper tolerances and algorithms.
+		OpenCV has promise to deliver a successful image-classifier filter due to its scalability and feature-rich library.
 
 	\subsection{Google Tensorflow}
-	Google Tensorflow is a supervised machine learning library and may be an alternative to OpenCV.
-	The library is broad and contains tools to accurately characterize a wide variety of potential weather conditions provided an adequate data set.
-	This program has been proven to identify patterns in images with a high rate of consistency.
-	Tensorflow requires a large set of training data to classify images.
-	Generally, supervised machine learning libraries have a higher success rate than unsupervised libraries.
-	One will need to prove and compare the performance of OpenCV and Tensorflow.
+		Google Tensorflow is a supervised machine learning library created and distributed by Alphabet \textsuperscript{Inc.}.
+		The library is broad and contains tools to accurately characterize a wide variety of potential weather conditions provided an adequate data set.
+		This program has been proven to identify patterns in images with a high rate of consistency.
+		Tensorflow requires a large set of training data to classify images.
+		Generally, supervised machine learning libraries have a higher success rate than unsupervised libraries.
 
 	\subsection{Amazon Rekognition}
-	Amazon Rekognition is a supervised machine learning library that focuses on ease of use.
-	It excels in object detection in images, but incurs a fee to process every 1,000 images.
-	Amazon has built a large back-end library that is largely opaque to a user, the back-end classification algorithms are proprietary and cannot be directly modified.
-	Rekognition performs analysis on Amazon’s AWS server, freeing up local resources for other processing.
-	Rekognition is a less preferable venu due to its processing cost.
+		Amazon Rekognition is a supervised machine learning library that focuses on ease of use.
+		Rekognition excels in object detection in images, but incurs a fee to process every 1,000 images.
+		Amazon has built a large back-end library that is largely opaque to a user, the back-end classification algorithms are proprietary and cannot be directly modified.
+		Rekognition performs analysis on Amazon’s AWS server, freeing up local resources for other processing.
+		Rekognition is a less preferable venue due to its processing cost of \$1.00 per 1,000 images, and its closed-source development which restricts tuning the algorithm.
 
 	\subsection{Conclusion}
 
