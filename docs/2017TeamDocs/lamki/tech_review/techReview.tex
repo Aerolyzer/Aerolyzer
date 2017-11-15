@@ -64,11 +64,11 @@
 
 \section{Horizon, Sunset, and Sunrise Detection}
 	\subsection{Overview}
-		Horizon detection in still images is a complex task due to many factors that affect image quality.
-		Such variables include camera perspective, camera manufacturer, camera post-processing, image format, lighting, and many others.
-		Aerolyzer's horizon detection classifier serves as a filter to detect and remove images unsuitable for analysis.
+		Due to many factors, horizon detection in images is a complex task.
+		Variables such as camera perspective, camera manufacturer, camera post-processing, image format, obstructions, uneven lighting, and others prevents a simple algorithm from classifying all possible horizon variations.
+		The Aerolyzer library requires a horizon detection classifier to act as a filter; detecting and removing images unsuitable for analysis.
 		Such a classifier must be capable of performing an analysis on a submitted image in a reasonable amount of time while satisfying classification with 66\% certainty.
-		The algorithm must determine whether obstructions in the image will prevent proper aerosol analysis, and reject unsuitable images accordingly.
+		The classifier is intended to determine whether obstructions in the image will prevent proper aerosol analysis, and reject unsuitable images accordingly.
 	
 	\subsection{Criteria}
 		Third-party tools or libraries to be used in Aerolyzer's horizon classifier shall be compared by availability and utility.
