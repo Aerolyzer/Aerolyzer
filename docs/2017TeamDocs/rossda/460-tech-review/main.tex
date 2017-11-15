@@ -30,7 +30,7 @@
 \par\vspace{-12pt} \textit{\tiny\noindent
 \makebox[2.75in]{} \hfil		\makebox[3.25in]{\makebox[2.25in][r]{Signature} \hfill	\makebox[.75in][r]{Date}}}}
 % 3. If the document is not to be signed, uncomment the RENEWcommand below
-%\renewcommand{\NameSigPair}[1]{#1}
+\renewcommand{\NameSigPair}[1]{#1}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
@@ -52,7 +52,7 @@
             {\large Prepared for}\par
             \Huge \CapstoneSponsorCompany\par
             \vspace{5pt}
-            {\Large\CapstoneSponsorPerson\par}
+            {\Large\NameSigPair{\CapstoneSponsorPerson}\par}
             {\large Prepared by }\par
             \GroupMemberOne\par
             % 5. comment out the line below this one if you do not wish to name your team
@@ -136,7 +136,7 @@ Django also supports clean URL designs and in framework templating.
 The Aerolyzer project already has a Django web application developed, and this is ideal because integrating the Aerolyzer Python Library into Rails or Express would be more difficult. 
 \subsection{Conclusion}
 blah
-\section{Visualization & Display}
+\section{Visualization \& Display}
 \subsection{Overview}
 Presenting the output from the Aerolyzer library is the key step in making the user understand the project.
 Having unclear or unappealing visuals to show the results could potentially be worse than simple outputs.
@@ -157,7 +157,7 @@ With a wide library of customization, CanvasJS claims to make the developer's ch
 \subsubsection{ChartJS}
 ChartJS renders charts into HTML5, like CanvasJS, but is open source.
 ChartJS only has 8 chart types, but offers custimization that lets developers mix chart types.
-\subsection{Web Framework Discussion}
+\subsection{Visualization \& Display Discussion}
 CanvasJS is the most robust JavaScript of the 3, which may take some additional code to get the desired results, but the end product will most likely be closer to the ideal visualization. 
 \subsection{Conclusion}
 blah
