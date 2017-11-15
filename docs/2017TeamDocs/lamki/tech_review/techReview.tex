@@ -75,7 +75,7 @@
 		The Aerolyzer project shall ideally use non-proprietary software to perform image analysis.
 		Such libraries are preferably open source with usage licenses compatible with \href{https://www.apache.org/licenses/LICENSE-2.0}{Apache License 2.0}.
 		Additionally, such desirable libraries shall compliment the project with powerful image analysis tools such as proven algorithms or deep-learning frameworks.
-		\vfill
+
 		\begin{tabular}{|l|p{3cm}|p{5cm}|p{5cm}|}
 		\hline \textbf{} & \textbf{Cost} & \textbf{License} & \textbf{Tools/Advantages} \\\hline
 		OpenCV & Free & Open Source, BSD License & Robust computer-vision library\\\hline
@@ -115,10 +115,19 @@
 	\subsection{Criteria}
 	After obstructions are distinguished, the Aerolyzer project shall analyze the extrapolated sky to infer Aerosol content.
 
-	\subsection{OpenCV \& R \& Matlab Libraries}
+		\begin{tabular}{|l|p{3cm}|p{5cm}|p{5cm}|}
+		\hline \textbf{} & \textbf{Cost} & \textbf{License} & \textbf{Tools/Advantages} \\\hline
+		R \& Matlab & Free & & Powerful statical calculators\\\hline
+		Google Tensorflow & Free & Creative Commons Attribution 3.0 License, Apache License 2.0 & Supervised machine learning library with proven regression-analysis modules\\\hline
+		& & & \\\hline
+		\end{tabular}
+
+	\subsection{R \& Matlab Libraries}
 	Incorporating R and Matlab libraries, OpenCV can be programmed to perform aerosol inference.
 	However, a high level of atmospheric knowledge is required to create an accurate classifier.
 	This can be accomplished by performing bitmap pattern matching against pre-selected atmospheric gradients with known aerosol content.
+
+	\subsection{Google Tensorflow}
 
 	\subsection{Conclusion}
 
