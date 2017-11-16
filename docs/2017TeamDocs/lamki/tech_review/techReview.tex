@@ -122,9 +122,8 @@
 	\subsection{Overview}
 		Monitoring atmospheric aerosols is important due to their effects on the atmosphere's chemical composition and radiation distribution.
 		The Aerolyzer library hopes to feature a module that infers aerosol size based on the hue distribution in acceptable horizon images.
-		Creating such a library will require incorporating machine learning and statical libraries to perform regression and hypothesis testing for trend analysis.
-		A trained classifier with an optimized model shall perform some basic aerosol inference.
-
+		Creating such a library will require incorporating machine learning and statical libraries to perform regression and hypothesis testing.
+		
 	\subsection{Criteria}
 		Third-party tools or libraries to be used in Aerolyzer's aerosol inference module shall be compared by utility.
 		Desirable libraries shall incorporate statistical analysis or machine learning to identify patterns and analyze trends.
@@ -140,11 +139,13 @@
 
 	\subsection{Google Tensorflow}
 		Google Tensorflow supports deep-learning data regression.
-		This enables an individual to train Tensorflow's supervised machine learning algorithm to recognize and predict trends.
-		Tensorflow can be trained to recognize the presence of aerosols by feeding the algorithm hundreds of images which features aerosols of similar sizes.
+		This enables an individual to train Tensorflow's supervised machine learning algorithm to recognize and predict trends by following models such as drawing the line of best fit in a given set of data.
+		Google Tensorflow is a possible candidate to perform aerosol analysis due to its proven library.  		
+		One would apply Tensorflow to the Aerolyzer project by feeding the algorithm hundreds of images which features aerosols of known sizes.
 		A large quantity of training images is necessary to improve accuracy.
 		After given a large selection of example images, Tensorflow will generate a classifier.
 		When the generated Tensorflow classifier is fed an image, it will give its approximation as a confidence score as to how well the image aligns with its training data.
+		
 
 	\subsection{TFLearn}
 		TFLearn is a wrapper built around Google Tensorflow.
