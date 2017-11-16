@@ -65,7 +65,7 @@
 \section{Horizon, Sunset, and Sunrise Detection}
 	\subsection{Overview}
 		Due to many factors, horizon detection in images is a complex task.
-		Variables such as camera perspective, camera manufacturer, post-processing, image format, obstructions, uneven lighting, and others prevents a simple algorithm from classifying all possible horizon variations.
+		Variables such as camera manufacturer, perspective, post-processing, image format, obstructions, lighting, and others prevents a simple algorithm from classifying all possible horizon variations.
 		The Aerolyzer library requires a horizon detection classifier to act as a filter; detecting and removing images unsuitable for analysis.
 		Such a classifier must be capable of performing an analysis on a submitted image in a reasonable amount of time while classifying horizons with a rate of 66\% certainty.
 		The classifier is intended to determine whether obstructions in the image will prevent proper aerosol analysis, and reject unsuitable images accordingly.
@@ -132,6 +132,9 @@
 	\subsection{Google Tensorflow}
 		Google Tensorflow supports deep-learning data regression.
 		This enables an individual to train Tensorflow's supervised machine learning algorithm to recognize and predict trends.
+		Tensorflow can be trained to recognize the presence of aerosols by feeding the algorithm hundreds of images which features aerosols of similar sizes.
+		A large quantity of training images will increase accuracy.
+		
 
 	\subsection{OpenCV}
 		OpenCV's Support Vector Machine (SVM) library is a supervised machine learning algorithm.
