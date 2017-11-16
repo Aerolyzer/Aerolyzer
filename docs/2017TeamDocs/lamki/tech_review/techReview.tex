@@ -109,6 +109,8 @@
 		At the request of Dr. Whitehall, horizon classification development shall focus on OpenCV algorithms with Tensorflow incorporation as necessary.
 		Justification for this decision is based on the benefits of using open source libraries and the contributing team's experience with machine-vision libraries.
 
+\clearpage
+
 \section{Aerosol Inference}
 	\subsection{Overview}
 		Monitoring atmospheric aerosols is important due to their effects on the atmosphere's chemical composition and radiation distribution.
@@ -124,8 +126,8 @@
 			\begin{tabular}{|l|p{3cm}|p{5cm}|p{5cm}|}
 			\hline \textbf{} & \textbf{Cost} & \textbf{License} & \textbf{Tools/Advantages} \\\hline
 			Google Tensorflow & Free & Creative Commons Attribution 3.0 License, Apache License 2.0 & Supervised machine learning library with proven regression-analysis modules\\\hline
+			TF Learn & Free & Creative Commons Attribution 3.0 License, Apache License 2.0 & High-level API wrapper for Tensorflow\\\hline
 			OpenCV & Free & Open Source, BSD License & Support Vector Machine library\\\hline
-			& & & \\\hline
 			\end{tabular}
 		\end{center}
 
@@ -135,7 +137,12 @@
 		Tensorflow can be trained to recognize the presence of aerosols by feeding the algorithm hundreds of images which features aerosols of similar sizes.
 		A large quantity of training images is necessary to improve accuracy.
 		After given a large selection of example images, Tensorflow will generate a classifier.
-		When the generated Tensorflow classifier is fed an image, it will give its approximation as a \% confidence score as to how well the image aligns with its training data.
+		When the generated Tensorflow classifier is fed an image, it will give its approximation as a confidence score as to how well the image aligns with its training data.
+
+	\subsection{TFLearn}
+		TFLearn is a wrapper built around Google Tensorflow.
+		It features a modular deep learning library with an easy-to-use higher-level API to enable faster algorithm prototyping.
+		While the underlying algorithms are still Tensorflow, TFLearn is advantageous in that it simplifies Tensorflow functions into less verbose calls. 
 
 	\subsection{OpenCV}
 		OpenCV's Support Vector Machine (SVM) library is a supervised machine learning algorithm.
@@ -143,9 +150,11 @@
 		For example, an SVM can be trained by providing several pre-sorted sets of images of sunsets and sunrises.
 		This can be applied to the Aerolyzer project by training an SVM with a set of horizons with known aerosol content.
 
-	\subsection{}
-
 	\subsection{Conclusion}
+		While the overall software focus is subject to change throughout the development of the Aerolyzer library, some supervised machine learning library is an optimum choice for performing aerosol analysis.
+		The wide variation of inputs makes designing a simple horizon hue classifier inadequate for approximating aerosol size.
+
+\clearpage
 
 \section{Data Interpretation}
 	\subsection{Overview}
