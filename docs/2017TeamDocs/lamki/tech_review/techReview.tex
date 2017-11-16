@@ -62,9 +62,16 @@
 
 \begin{singlespace}
 
+\section{Introduction}
+	The following sections shall discuss three distinct classifiers required for the Aerolyzer project.
+	Although sharing similar tools, the needs for each classifier remain distinct and complex.
+	Horizon, Sunset, and Sunrise detection calls for computer vision components to classify the line at which the sky meets the Earth.
+	Aerosol Inference requires deep learning tools to estimate the presence of Aerosols.
+	Finally, data interpretation calls for tools to approximate trends in collected data.
+
 \section{Horizon, Sunset, and Sunrise Detection}
 	\subsection{Overview}
-		Due to many factors, horizon detection in images is a complex task.
+		Horizon detection in images is a complex task.
 		Variables such as camera manufacturer, perspective, post-processing, image format, obstructions, lighting, and others prevents a simple algorithm from classifying all possible horizon variations.
 		The Aerolyzer library requires a horizon detection classifier to act as a filter; detecting and removing images unsuitable for analysis.
 		Such a classifier must be capable of performing an analysis on a submitted image in a reasonable amount of time while classifying horizons with a rate of 66\% certainty.
