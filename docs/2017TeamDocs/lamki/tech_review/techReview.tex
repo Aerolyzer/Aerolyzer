@@ -77,7 +77,7 @@
 			\begin{tabular}{|l|p{3cm}|p{4cm}|p{5cm}|}
 			\hline \textbf{} & \textbf{Cost} & \textbf{License} & \textbf{Tools/Advantages} \\\hline
 			OpenCV & Free & Open Source, BSD License & Robust computer-vision library\\\hline
-			Google Tensorflow & Free & Creative Commons Attribution 3.0 License, Apache License 2.0 & Supervised machine learning library with proven image-recognition modules\\\hline
+			Tensorflow & Free & Creative Commons Attribution 3.0 License, Apache License 2.0 & Supervised machine learning library with proven image-recognition modules\\\hline
 			Amazon AWS Rekognition & \$0.01/1,000 images & Proprietary \& Closed source& Supervised machine learning library with cloud platform processing\\\hline
 			\end{tabular}
 		\end{center}
@@ -94,8 +94,7 @@
 		These modules present useful tools that are capable of horizon detection given proper tolerances and algorithms.
 		One can use image transformations to normalize image data such that a classifier can more easily distinguish what is in the picture.
 		Pre-defined classes are useful in detecting obstructions that may block a good view of the horizon.
-		OpenCV is a potential candidate for horizon/sunset/sunrise detection due to its feature-rich library, ample documentation, and pedigree of successful image classifiers.
-		\cite{matthill}
+		OpenCV is a potential candidate for horizon/sunset/sunrise detection due to its feature-rich library, ample documentation, and pedigree of successful image classifiers. \cite{matthill}
 
 	\subsection{Tensorflow Inception}
 		One of the most advanced machine learning libraries, Tensorflow can build versatile and accurate predictive data models.
@@ -103,9 +102,7 @@
 		Rohan Verma’s Galaxy Image Classifier is an example of a classification library built with Tensorflow Inception.
 		This library can detect whether a submitted image contains a spiral or elliptical galaxy.
 		Verma’s galaxy classifier is conceptually like Aerolyzer’s planned horizon/sunset/sunrise classifier in that both can feed images into Tensorflow to build a predictive model, and both have specific criterion which can be reflected in a training dataset.
-		Tensorflow’s ease of use, proven library, and ample documentation makes it a potential candidate to create a powerful image classifier.
-
-		\cite{rhnvrm}
+		Tensorflow’s ease of use, proven library, and ample documentation makes it a potential candidate to create a powerful image classifier. \cite{rhnvrm}
 		
 
 	\subsection{Amazon Rekognition}
@@ -113,15 +110,13 @@
 		Rekognition performs analysis on Amazons servers; its API is set up to service image recognition calls on-demand.
 		When provided an image, Rekognition will simply return a JSON data structure containing elements detected in the image as well as a confidence score.
 		Rekognition can be readily deployed onto the Aerolyzer AWS server, setup is minimal as most of the computation and complex algorithms are hidden to the developer.
-		Rekognition is a less preferable alternative to OpenCV and Tensorflow due to its processing cost, limited library, and closed-source proprietary algorithm.	
+		Rekognition is a less preferable alternative to OpenCV and Tensorflow due to its processing cost, limited library, and closed-source proprietary algorithm.	\cite{amazon}
 
 	\subsection{Conclusion}
 		Tensorflow and OpenCV are strong image recognition platforms.
 		Their powerful libraries make building a predictive model to filter unacceptable images possible.
 		Although the final algorithm and its components are subject to change; at the request of Dr.
 		Whitehall, horizon classification development shall focus on OpenCV algorithms.
-	
-\clearpage
 
 \section{Aerosol Inference}
 	\subsection{Overview}
@@ -130,15 +125,12 @@
 		Called the "Rayleigh scattering effect", aerosol particles whose diameter is smaller than the wavelengths of visible light scatter the sun’s beams.
 		During the daytime when the sun is almost directly above an observer, the shortest wavelengths of sunlight (blues and violets) refract, resulting in the typical blue color of the sky.
 		For an observer looking at the sun as it approaches the horizon during sunrise or sunset, the Sun’s light rays travel further through the atmosphere.
-		This lengthened path scatters an increased amount of violet and blue light to out of the beam, noticeably reddening sunsets or sunrises.
+		This lengthened path scatters an increased amount of violet and blue light to out of the beam, noticeably reddening sunsets or sunrises. \cite{corfidi_2014}
 		
-
 
 		The presence of airborne aerosol pollutants, typically 0.5 to 1 μm in diameter, diminishes the vibrancy of sunsets or sunrises, resulting in hazy colors.
-		Red or deep orange sunrises or sunsets typically indicate larger aerosols which can suggest of poor air quality.
-		The Aerolyzer library hopes to feature a module that infers aerosol size based on the hue distribution in acceptable horizon images.
-		
-
+		Red or deep orange sunrises or sunsets typically indicate larger aerosols which can suggest of poor air quality. \cite{corfidi_2014}
+		The Aerolyzer library hopes to feature a module that infers aerosol size based on the hue distribution in acceptable horizon images. 
 		
 	\subsection{Criteria}
 		Third-party tools or libraries to be used in Aerolyzer's aerosol inference module shall be compared by utility.
@@ -147,7 +139,7 @@
 		\begin{center}
 			\begin{tabular}{|l|p{3cm}|p{5cm}|p{5cm}|}
 			\hline \textbf{} & \textbf{Cost} & \textbf{License} & \textbf{Tools/Advantages} \\\hline
-			Google Tensorflow & Free & Creative Commons Attribution 3.0 License, Apache License 2.0 & Supervised machine learning library with proven regression-analysis modules\\\hline
+			Tensorflow & Free & Creative Commons Attribution 3.0 License, Apache License 2.0 & Supervised machine learning library with proven regression-analysis modules\\\hline
 			TF Learn & Free & Creative Commons Attribution 3.0 License, Apache License 2.0 & High-level API wrapper for Tensorflow\\\hline
 			OpenCV & Free & Open Source, BSD License & Support Vector Machine library\\\hline
 			\end{tabular}
@@ -159,37 +151,34 @@
 		The image training dataset shall be comprised of horizons whose colors exemplify characteristics of the presence of larger aerosols.
 		The Tensorflow Inception model can be described as a chain of modules comprised of deep layers of convolutions and concatenations.
 		During training, these modules will re-organize themselves to form a final classification model that fits its training set.
-		When fed an image as input during classification, this model will produce a label and certainty percentage of how well the input image matched the model.
+		When fed an image as input during classification, this model will produce a label and certainty percentage of how well the input image matched the model. \cite{tensorflow}
 
 		
 		The Xvision library uses a Tensorflow generated model to detect nodular growth in chest x-rays.
-		Xvision’s classification scope is like Aerolyzer’s aerosol detection in that the difference between high atmospheric aerosols vs low aerosols and nodular growth vs normal x-rays are discernable through analyzing color vibrancy.
-
+		Xvision’s classification scope is like Aerolyzer’s aerosol detection in that the difference between high atmospheric aerosols vs low aerosols and nodular growth vs normal x-rays are discernable through analyzing color vibrancy. \cite{xvision}
 
 	\subsection{TFLearn}
-		TFLearn is a wrapper built around Google Tensorflow.
+		TFLearn is a wrapper built around Tensorflow.
 		It features a modular deep learning library with an easy-to-use higher-level API to enable faster algorithm prototyping.
 		While the underlying algorithms are still Tensorflow, TFLearn is advantageous in that it simplifies complex Tensorflow functions into less verbose calls.
 		This can be combined with a Tensorflow Inception module implementation by simplifying lower-level algorithms to higher-level system calls.
-		This simplification will make the overall inference algorithm more accurate.
+		This simplification will make the overall inference algorithm more accurate. \cite{TFLearn}
 
 	\subsection{OpenCV}
 		OpenCV's Support Vector Machine (SVM) library is a supervised machine learning algorithm.
 		Given a sample dataset, SVM generates an optimized hyper-plane model to categorize future input.
 		For example, an SVM can be trained by providing several pre-sorted sets of images of sunsets and sunrises.
-		This can be applied to the Aerolyzer project by training an SVM with a set of horizons with known aerosol content.
+		This can be applied to the Aerolyzer project by training an SVM with a set of horizons with known aerosol content. \cite{svm}
 
 	\subsection{Conclusion}
 		While the overall software focus is subject to change throughout the development of the Aerolyzer library, a supervised machine learning library is an optimum choice for performing aerosol analysis on images of the horizon.
-		
 
-\clearpage
-
-\section{Data Interpretation}
+\section{Data Trend Prediction}
 	\subsection{Overview}
+		The Aerolyzer project hopes to perform trend analysis and predict future aerosol data as a stretch-goal.
 		Predicting air quality based on aerosol data requires in-depth atmospheric knowledge.
-		The Aerolyzer project hopes to use the data it gathers to perform trend analysis on air quality.
-		To accomplish this task, Aerolyzer library requires algorithms that utilize deep statistical analysis libraries to interpret and present Aerosol information in an understandable format.
+		However, one can expect that a trained neural-network can generate a probabilistic model given a large dataset.
+		To accomplish this stretch-goal, Aerolyzer library requires algorithms that utilize deep statistical analysis libraries to interpret and present Aerosol information in an understandable format.
 
 	\subsection{Criteria}
 		The Aerolyzer project will need to generate a trend analysis using a large dataset.
@@ -197,9 +186,9 @@
 		\begin{center}
 			\begin{tabular}{|l|p{3cm}|p{5cm}|p{5cm}|}
 			\hline \textbf{} & \textbf{Cost} & \textbf{License} & \textbf{Tools/Advantages} \\\hline
-			R \& Matlab Libraries & Free & Apache License 2.0 & \\\hline
-			Apache Hadoop & Free & Apache License 2.0 & Scales R \& Matlab to work with large sets of data\\\hline
-			& & & \\\hline
+			Tensorflow RNN & Free & Creative Commons Attribution 3.0 License, Apache License 2.0 & Supervised machine learning library Recurrent Neural Network module\\\hline
+			Tensorflow LSTM& Free & Creative Commons Attribution 3.0 License, Apache License 2.0 & Supervised machine learning library with proven Long Short-Term Memory module\\\hline
+			R \& Matlab Libraries & Free & Apache License 2.0 & Proven statistical libraries. Widely used in academia.\\\hline
 			\end{tabular}
 		\end{center}
 
@@ -211,7 +200,7 @@
 		When new data is added to the RNN, Tensorflow will apply its computational graph and adjust its trend analysis accordingly.
 		In this way, one can use a Tensorflow RNN to generate a probabilistic model to approximate aerosol distribution or air quality from large amounts of data.
 		However, the data fed into the Tensorflow RNN must be managed and organized such that understanding new data does not rely on extremely old data.
-		As more information is added, this "data gap" grows which will prevent an RNN from learning to connect new information.
+		As more information is added, this "data gap" grows which will prevent an RNN from learning to connect new information. \cite{RNN}
 
 	\subsection{Tensorflow LSTM}
 		Tensorflow Long Short-Term Memory networks are a special type of Recurrent Neural Network that avoid the long-term learning dependency problem encountered in some RNNs.
@@ -221,20 +210,18 @@
 		The result is a predictive model that adds, modifies, and concatenates information as new data re-shapes old models.
 		Tensorflow LTSMs are widely used and have been proven to work in many probabilistic models.
 		LTSM models have successfully been applied to shape prediction.
-		One can surmise that given adequate testing data, the same can be done for aerosol weather trend inference.
+		One can surmise that given adequate testing data, the same can be done for aerosol weather trend inference. \cite{LSTM} \cite{LSTM_REG}
 
 	\subsection{R \& Matlab Libraries}
 		Leveraging the statistical power of R and Matlab libraries will enable the Aerolyzer project to interpolate weather patterns from sampled images.
 		This shall be accomplished through regression analysis which shall consider dates of when images are taken, the inferred aerosol content of the image, patterns referenced from 3rd party APIs.
-		R and Matlab libraries are readily available modules in the Python library which can be applied to Aerolyzer’s future dataset.
+		R and Matlab libraries are readily available modules in the Python library which can be applied to Aerolyzer’s future dataset. \cite{R} \cite{matlab}
 
 	\subsection{Conclusion}
 		Data interpretation is a challenging task.
 		This will require a large dataset of weather information, and a correct implementation of RNN, LTSM, or a universal weather statistical model.
 		Included as a "stretch-goal", complete implementation of a predictive model may be out of the scope of this project given the time constrains and lack of training data.
-		Current research efforts shall focus on Tensorflow LTSM which has ample documentation.
-
-	\clearpage
+		Current research efforts shall focus on Tensorflow LTSM.
 	\nocite{*}
 	\bibliographystyle{plain}
 	\bibliography{ref}
