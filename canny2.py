@@ -6,7 +6,7 @@ def nothing(x):
     pass
 
 
-img_noblur = cv2.imread('../test_images/1484949763_23_447.jpg', 0)
+img_noblur = cv2.imread('../test_images/2.jpg', 0)
 img = cv2.blur(img_noblur, (7,7))
 
 canny_edge = cv2.Canny(img, 0, 0)
@@ -25,7 +25,6 @@ while(1):
     max_value = cv2.getTrackbarPos('max_value', 'canny_edge')
 
     canny_edge = cv2.Canny(img, min_value, max_value)
-    canny_edge = cv2.HoughLines(canny_edge,1,np.pi/180,10) #magic numbers (min line length)
 
     k = cv2.waitKey(37)
     if k == 27:

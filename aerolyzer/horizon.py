@@ -2,6 +2,7 @@ import sys
 import cv2
 import os
 import numpy as np
+from matplotlib import pyplot as plt
 
 class horizon:
 	
@@ -9,7 +10,7 @@ class horizon:
 		included_extensions = ['jpg']
 		files = [fn for fn in os.listdir(directory) if any(fn.endswith(ext) for ext in included_extensions)]
 		for image in files:
-			self.test_algo(str(directory), image)
+			self.getHorizon(str(directory), image)
 
 	def getHorizon(self, directory, image):
 		img_noblur = cv2.imread(str(directory)+image)
@@ -31,16 +32,17 @@ class horizon:
 			
 
 	def test_algo(self, directory, image):
-		img_noblur = cv2.imread(str(directory)+image)
-		img = cv2.blur(img_noblur, (7,7))
-		edges = cv2.Canny(img,50,150,apertureSize = 3) #magic numbers (min & max tolerance)
-		#lines = cv2.HoughLinesP(edges,1,np.pi/180,80, 30, 10) #magic numbers (min line length)
+		img_original = cv2.imread(str(directory)+image) # Read image
+		img = cv2.blur(img_original, (7,7))
+		edges = cv2.Canny(img,00,130) #magic numbers (min & max tolerance)
 
-		minLineLength=100
-		lines = cv2.HoughLinesP(edges,10,np.pi/180, threshold=1,lines=np.array([]), minLineLength=minLineLength,maxLineGap=80)
-		#lines = cv2.HoughLines(edges,1,np.pi/180,10)
-		#print(str(lines))
-		a,b,c = lines.shape
-		for i in range(a):
-			cv2.line(img_noblur, (lines[i][0][0], lines[i][0][1]), (lines[i][0][2], lines[i][0][3]), (0,255,0), 3, cv2.LINE_AA)
-			cv2.imwrite("/media/sf_transfer/results/H_"+image,img_noblur)
+		cv2.imwrite("/media/sf_transfer/results/H_"+image,edges)
+
+
+	def get_contour(self, directory, image):
+		img_original = cv2.imread(str(directory)+image) # Read image
+		grey = cv2.cvtColor(img_original,cv2.COLOR_BGR2GRAY)
+		ret,thresh = cv2.threshold(grey,127,255,0)
+		img, contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+		img = cv2.drawContours(img, contours, -1, (0,255,0), 3)
+		cv2.imwrite("/media/sf_transfer/results/H_"+image,img)
