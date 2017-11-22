@@ -1,6 +1,6 @@
-version = "0.0.0.4"
+version = "0.0.0.5"
 #import image_restriction_functions
 #import image_restriction_main
 #import retrieve_image_data
-from wunderData import *
-from horizon import *
+import wunderData
+from horizon import horizon
