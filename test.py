@@ -1,5 +1,4 @@
-from aerolyzer import horizon
+import aerolyzer
 
-mytest = horizon()
-mytest._hello(3)
+aerolyzer.test()
 
