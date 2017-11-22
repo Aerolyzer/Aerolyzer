@@ -6,3 +6,4 @@ exifdict = mytest.get_exif("/home/aero/Documents/Aerolyzer/Aerolyzer/aerolyzer/i
 coords = get_coords(exifdict)
 print coords
 
+
