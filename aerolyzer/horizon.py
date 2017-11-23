@@ -12,13 +12,18 @@ class horizon:
 			self.getHorizon(str(directory), image, output)
 
 	def getHorizon(self, directory, image, output):
-		img_original = cv2.imread(str(directory)+image) # Read image
+		imgOg = cv2.imread(str(directory)+image) # Read image
 
-		ycrcb = cv2.cvtColor(img_original,cv2.COLOR_BGR2YCR_CB) # Convert to ycrb
+		img_YUV = cv2.cvtColor(imgOg,cv2.COLOR_BGR2YCR_CB) # Convert to ycrb
 
-		b,g,r = cv2.split(ycrcb)
-		equ = cv2.equalizeHist(b)
-		cv2.imwrite(output+"H_"+image,equ) # Write to file
+		b, r, g = cv2.split(img_YUV) # Split into blue-green-red channels
+		equ = cv2.equalizeHist(b) # Equalize Blue Channel
+		imgBlueEqu = cv2.merge((b, r, g)) # Merge blue back into RGB
+
+		img_BGR = cv2.cvtColor(imgOg,cv2.COLOR_YCR_CB2BGR) # Convert to BGR
+
+		cv2.imwrite(output+"H_"+image,img_BGR) # Write to file
+
 		#ret,thresh = cv2.threshold(grey,127,255,0)
 
 		#img, contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
