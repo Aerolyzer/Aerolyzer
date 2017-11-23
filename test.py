@@ -14,4 +14,4 @@ directory = "../test_images/"
 output = ""
 all_images(directory, output)
 
-#aerolyzer.getHorizon(directory, "92.jpg", output)
+#aerolyzer.getHorizon(directory, "92.jpg")
