@@ -1,8 +1,7 @@
-import sys
 import cv2
 import os
+import sys
 import numpy as np
-from matplotlib import pyplot as plt
 
 class horizon:
 	
@@ -14,8 +13,17 @@ class horizon:
 
 	def getHorizon(self, directory, image, output):
 		img_original = cv2.imread(str(directory)+image) # Read image
-		grey = cv2.cvtColor(img_original,cv2.COLOR_BGR2GRAY)
-		ret,thresh = cv2.threshold(grey,127,255,0)
-		img, contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
-		img = cv2.drawContours(img, contours, -1, (0,255,0), 3)
-		cv2.imwrite(output+"H_"+image,img)
+
+		ycrcb = cv2.cvtColor(img_original,cv2.COLOR_BGR2YCR_CB) # Convert to ycrb
+
+		b,g,r = cv2.split(ycrcb)
+		equ = cv2.equalizeHist(b)
+		cv2.imwrite(output+"H_"+image,equ) # Write to file
+		#ret,thresh = cv2.threshold(grey,127,255,0)
+
+		#img, contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+
+		#img = cv2.drawContours(img, contours, -1, (0,255,0), 3)
+
+
+		#cv2.imwrite(output+"H_"+image,img) # Write to file
