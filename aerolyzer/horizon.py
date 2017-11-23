@@ -16,7 +16,7 @@ def Horizon(directory, image, output=0):
 
 	img_GREY = cv2.cvtColor(blur,cv2.COLOR_BGR2GRAY)	# Convert to Greyscale
 
-	ret, thresh = cv2.threshold(img_GREY,115,120,cv2.THRESH_BINARY)	# Threshold image to segment sky
+	ret, thresh = cv2.threshold(img_GREY,120,125,cv2.THRESH_BINARY)	# Threshold image to segment sky
 
 	# Perform erosian and dialiation to isolate the sky
 	kernel = cv2.getStructuringElement(cv2.MORPH_RECT,(5,5), (3,3))

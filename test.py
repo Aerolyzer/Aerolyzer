@@ -8,10 +8,8 @@ def all_images(directory, output):
 		aerolyzer.Horizon(directory, image)
 
 
-
-directory = "../test_images/"
-#output ="/media/sf_transfer/results/"
+directory = "images/"
 output = ""
 all_images(directory, output)
 
-#aerolyzer.Horizon(directory, "92.jpg")
+#aerolyzer.Horizon(directory, "51.jpg", output)
