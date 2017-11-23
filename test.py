@@ -4,8 +4,8 @@ def all_images(directory, output):
 	included_extensions = ['jpg']
 	files = [fn for fn in os.listdir(directory) if any(fn.endswith(ext) for ext in included_extensions)]
 	for image in files:
-		#aerolyzer.getHorizon(directory, image, output)
-		aerolyzer.getHorizon(directory, image)
+		#aerolyzer.Horizon(directory, image, output)
+		aerolyzer.Horizon(directory, image)
 
 
 
@@ -14,4 +14,4 @@ directory = "../test_images/"
 output = ""
 all_images(directory, output)
 
-#aerolyzer.getHorizon(directory, "92.jpg")
+#aerolyzer.Horizon(directory, "92.jpg")

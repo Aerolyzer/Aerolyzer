@@ -3,7 +3,7 @@ import sys
 import numpy as np
 
 	
-def getHorizon(directory, image, output=0):
+def Horizon(directory, image, output=0):
 	imgOg = cv2.imread(str(directory)+image) # Read image
 	
 	img_YUV = cv2.cvtColor(imgOg,cv2.COLOR_BGR2YCR_CB)	# Convert from BGR to YCRCB
