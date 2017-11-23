@@ -1,22 +1,16 @@
-<<<<<<< HEAD
 import os
-from aerolyzer import horizon
+import aerolyzer
 def all_images(directory, output):
 	included_extensions = ['jpg']
 	files = [fn for fn in os.listdir(directory) if any(fn.endswith(ext) for ext in included_extensions)]
 	for image in files:
-		horizon().getHorizon(str(directory), image, output)
-
-=======
-import aerolyzer
-
-aerolyzer.test()
->>>>>>> upstream/master
+		aerolyzer.getHorizon(directory, image, output)
 
 
 
 directory = "../test_images/"
-output = "/media/sf_transfer/results/"
+#output ="/media/sf_transfer/results/"
+output = ""
 all_images(directory, output)
 
-#horizon().getHorizon(directory, "92.jpg", output)
+#aerolyzer.getHorizon(directory, "92.jpg", output)
