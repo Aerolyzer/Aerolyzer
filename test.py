@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import os
 from aerolyzer import horizon
 def all_images(directory, output):
@@ -6,6 +7,11 @@ def all_images(directory, output):
 	for image in files:
 		horizon().getHorizon(str(directory), image, output)
 
+=======
+import aerolyzer
+
+aerolyzer.test()
+>>>>>>> upstream/master
 
 
 
