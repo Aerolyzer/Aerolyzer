@@ -30,7 +30,7 @@ def getHorizon(directory, image, output=0):
 	if len(contour_sizes) > 0:
 		biggest_contour = max(contour_sizes, key=lambda x: x[0])[1]
 		print "\t"+str(image)+"\t"+str(cv2.contourArea(biggest_contour))+" \t\tPASS"
-		if (output != 0):
+		if output != 0:
 			final = cv2.drawContours(imgOg, biggest_contour, -1, (0,255,0), 3) # Outline elements that may be the sky
 			cv2.imwrite(output+"H_"+image,final)				# Write to file
 	else:
