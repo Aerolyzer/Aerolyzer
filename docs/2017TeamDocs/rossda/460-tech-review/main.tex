@@ -1,0 +1,171 @@
+\documentclass[onecolumn, draftclsnofoot,10pt, compsoc]{IEEEtran}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{setspace}
+
+\usepackage{geometry}
+\geometry{textheight=9.5in, textwidth=7in}
+
+% 1. Fill in these details
+\def \CapstoneTeamName{		Aerolyzer}
+\def \CapstoneTeamNumber{		19}
+\def \GroupMemberOne{			Daniel Ross}
+\def \GroupMemberTwo{			Kin-Ho Lam}
+\def \GroupMemberThree{			Logan Wingard}
+\def \CapstoneProjectName{		Aerolyzer}
+\def \CapstoneSponsorCompany{	NASA JPL}
+\def \CapstoneSponsorPerson{		Kim Whitehall}
+
+
+% 2. Uncomment the appropriate line below so that the document type works
+\def \DocType{		%Problem Statement
+				%Requirements Document
+				Technology Review
+				%Design Document
+				%Progress Report
+				}
+			
+\newcommand{\NameSigPair}[1]{\par
+\makebox[2.75in][r]{#1} \hfil 	\makebox[3.25in]{\makebox[2.25in]{\hrulefill} \hfill		\makebox[.75in]{\hrulefill}}
+\par\vspace{-12pt} \textit{\tiny\noindent
+\makebox[2.75in]{} \hfil		\makebox[3.25in]{\makebox[2.25in][r]{Signature} \hfill	\makebox[.75in][r]{Date}}}}
+% 3. If the document is not to be signed, uncomment the RENEWcommand below
+\renewcommand{\NameSigPair}[1]{#1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{titlepage}
+    \pagenumbering{gobble}
+    \begin{singlespace}
+    	\includegraphics[height=4cm]{coe_v_spot1}
+        \hfill 
+        % 4. If you have a logo, use this includegraphics command to put it on the coversheet.
+        %\includegraphics[height=4cm]{CompanyLogo}   
+        \par\vspace{.2in}
+        \centering
+        \scshape{
+            \huge CS Capstone \DocType \par
+            {\large\today}\par
+            \vspace{.5in}
+            \textbf{\Huge\CapstoneProjectName}\par
+            \vfill
+            {\large Prepared for}\par
+            \Huge \CapstoneSponsorCompany\par
+            \vspace{5pt}
+            {\Large\NameSigPair{\CapstoneSponsorPerson}\par}
+            {\large Prepared by }\par
+            \GroupMemberOne\par
+            % 5. comment out the line below this one if you do not wish to name your team
+            \CapstoneTeamName\par 
+            \vspace{5pt}
+            {\large
+                \NameSigPair{\GroupMemberOne}\par
+                \NameSigPair{\GroupMemberTwo}\par
+                \NameSigPair{\GroupMemberThree}\par
+            }
+            \vspace{20pt}
+        }
+        \begin{abstract}
+        % 6. Fill in your abstract    
+        	Virtualbox is a straight forward solution for development environment.
+			Django is ideal for python library integration.
+			CanvasJS is the most appealing visualization tool.
+        \end{abstract}     
+    \end{singlespace}
+\end{titlepage}
+\newpage
+\pagenumbering{arabic}
+\tableofcontents
+% 7. uncomment this (if applicable). Consider adding a page break.
+%\listoffigures
+%\listoftables
+\clearpage
+
+\begin{singlespace}
+\section{Piece 1}
+\subsection{Overview}
+For the Aerolyzer project's development, the enviroment will need to be consistent, fast, and it must be capable of updating utilities quickly.
+\subsection{Criteria}
+\begin{enumerate}
+\item
+\end{enumerate}
+\subsection{Options}
+\subsubsection{AWS Box}
+Amazon Web Services offers Amazon EC2 as a virtual computing environment.
+Amazon EC2 would be fast since it's hosted on Amazon servers.
+EC2 would provide a consistency to our team during development, since the whole team would be accessing a single environment.
+The main issue with EC2 comes with keeping the environment up to date or making changes to the environment, since the entire team is working in the same space any changes to the environment could have serious impacts on development. 
+The other issue to consider is that Amazon EC2 isn't free, the amount of processing that is done in the EC2 instance is relfected in a monthly bill.
+\subsubsection{Ubuntu VirtualBox}
+VirtualBox is a Ubuntu System emulator that allows for a Virtual Machine to host a operating system seperate from the host operating system.
+As far as speed is concerned, it depends on the hardware of the system running VirtualBox so it's performance could be detrimented here.
+Consistency in the enviroment would require that the team is using the same virtual machine at any given time, this might be difficult if utilities are updated or changed during development.
+Updating the virtual machine would be as easy as updating one image and sharing it amongst the team. 
+\subsubsection{Docker}
+Docker is the container platform, that circumvents virtual machines. Containers are executable packages that contain the code and it's required libraries.
+This would make it so that any changes to the environment can just be pushed as updates to the container.
+This would be as fast as the host OS and require less processing power since there isn't a guest OS acting as a middle man.
+Docker would enable super consistent development since the team would always have the same environment if they have the same code.
+\subsection{Development Environment Discussion}
+Docker is the development platform most suited for application development, but since the majority of the Aerolyzer project is the development of a Python library it would be time consuming to update entire containers rather than a library of code.
+\subsection{Conclusion}
+This would make the VirtualBox the most practical since the virtual machine can simply access the git of the pyhton library.
+
+\section{Web Framework}
+\subsection{Overview}
+Web frameworks are what will enable the Aerolyzer library to interact with the users, so the framework's performance will directly affect the end product of the Aerolyzer app.
+\subsection{Criteria}
+\begin{enumerate}
+\item
+\end{enumerate}
+\subsection{Options}
+\subsubsection{Express.Js}
+Express is a streamlined version of Node.js.
+Express itself doesn't have database support, but is capable of running third-party modules to interface with the database.
+Express is useful for API development as it includes the neccesary http functionality to provide users functions.
+\subsubsection{Ruby on Rails}
+ Ruby on Rails, 'Rails' for short, is a Ruby based web framework.
+Rails claims to value web application conventions and will default to many of those conventions in the case that the developer didn't make custom configurations.
+This hopes to make Rails code shorter and less buggy than other frameworks that require minutiae from the developer.
+Rails runs off of a SQLite3 database and is best suited for interfacing with that type of database.
+\subsubsection{Django}
+Django is a python based framework that claims to make database-driven Web development fast and easy.
+The first step to using Django is writing the model which maps out your database layout.
+Django also supports clean URL designs and in framework templating.
+\subsection{Web Framework Discussion}
+The Aerolyzer project already has a Django web application developed, and this is ideal because integrating the Aerolyzer Python Library into Rails or Express would be more difficult. 
+\subsection{Conclusion}
+blah
+\section{Visualization \& Display}
+\subsection{Overview}
+Presenting the output from the Aerolyzer library is the key step in making the user understand the project.
+Having unclear or unappealing visuals to show the results could potentially be worse than simple outputs.
+Most of the presentation can be acheived with HTML alone, but the main display will need a script to insert charts.
+\subsection{Criteria}
+\begin{enumerate}
+\item
+\end{enumerate}
+\subsection{Options}
+\subsubsection{Google Charts}
+Google Charts is a JavaScript that is inserted into the web page and is then fed the data to be charted.
+There are 28 different types of charts and they all are rendered as SVG or VML.
+Google Charts lets the chart make a query to the database directly and displays customizable tooltips when moused over.
+\subsubsection{CanvasJS}
+CanvasJS, in addition to having 30 types of charts, claims to be an ultra fast HTML5 charting library.
+Rather than render SVG charts, CanvasJS inserts HTML code when rendered.
+With a wide library of customization, CanvasJS claims to make the developer's charts work on Chrome, Firefox, Safari, and Internet Explorer.
+\subsubsection{ChartJS}
+ChartJS renders charts into HTML5, like CanvasJS, but is open source.
+ChartJS only has 8 chart types, but offers custimization that lets developers mix chart types.
+\subsection{Visualization \& Display Discussion}
+CanvasJS is the most robust JavaScript of the 3, which may take some additional code to get the desired results, but the end product will most likely be closer to the ideal visualization. 
+\subsection{Conclusion}
+blah
+
+\nocite{*}
+\bibliographystyle{IEEEtran}
+\bibliography{ref}
+
+
+\end{singlespace}
+\end{document}

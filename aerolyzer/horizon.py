@@ -1,45 +1,35 @@
-import sys
 import cv2
-import os
+import sys
 import numpy as np
-from matplotlib import pyplot as plt
 
-def test():
-	print "hi"
-def _testAnalyze(self, directory):
-	included_extensions = ['jpg','JPG']
-	files = [fn for fn in os.listdir(directory) if any(fn.endswith(ext) for ext in included_extensions)]
-	for image in files:
-		img_noblur = cv2.imread(str(directory)+image)
-		img_noblur = cv2.cvtColor(img_noblur, cv2.COLOR_BGR2GRAY)
-		self.getHorizon(str(directory), img_noblur,image)
+	
+def Horizon(directory, image, output=0):
+	imgOg = cv2.imread(str(directory)+image) # Read image
+	
+	img_YUV = cv2.cvtColor(imgOg,cv2.COLOR_BGR2YCR_CB)	# Convert from BGR to YCRCB
+	b, r, g = cv2.split(img_YUV) 						# Split into blue-green-red channels
+	imgBlueEqu = cv2.merge((cv2.equalizeHist(b), r, g))	# Equalize Blue Channel & Merge channels back
+	img_BGR = cv2.cvtColor(imgOg,cv2.COLOR_YCR_CB2BGR)	# Convert from YCRCB to BGR
 
-def getHorizon(self, directory, img_noblur,image):
-	img = cv2.blur(img_noblur, (10,10))
-	img = cv2.equalizeHist(img)
-	img = cv2.equalizeHist(img)
-	img = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)
-	edges = cv2.Canny(img,150,200) #magic numbers (min & max tolerance)
-	plt.subplot(121),plt.imshow(img,cmap = 'gray')
-	plt.title('Original Image'), plt.xticks([]), plt.yticks([])
-	plt.subplot(122),plt.imshow(edges,cmap = 'gray')
-	plt.title('Edge Image'), plt.xticks([]), plt.yticks([])
-	plt.show()
-	lines = cv2.HoughLines(edges,1,np.pi/180,10) #magic numbers (min line length)
-	print(str(lines))
-	for rho,theta in lines[0]:
-	    if (theta > 5.49  or theta < 0.78) or (theta > 2.35 and theta < 3.92): #limiting angle so that it is not more than 45 deg or less than -45
-		continue
-	    a = np.cos(theta)
-	    b = np.sin(theta)
-	    x0 = a*rho
-	    y0 = b*rho
-	    x1 = int(x0 + 1000*(-b))
-	    y1 = int(y0 + 1000*(a))
-	    x2 = int(x0 - 1000*(-b))
-	    y2 = int(y0 - 1000*(a))
-	    cv2.line(img_noblur,(x1,y1),(x2,y2),(0,255,0),2)
-	cv2.imwrite("results/H_"+image,img_noblur)
+	blur = cv2.GaussianBlur(img_BGR,(5,5),0)			# Perform a gaussian blur
 
-#horizon()._testAnalyze("./images/")
-			
+	img_GREY = cv2.cvtColor(blur,cv2.COLOR_BGR2GRAY)	# Convert to Greyscale
+
+	ret, thresh = cv2.threshold(img_GREY,120,125,cv2.THRESH_BINARY)	# Threshold image to segment sky
+
+	# Perform erosian and dialiation to isolate the sky
+	kernel = cv2.getStructuringElement(cv2.MORPH_RECT,(5,5), (3,3))
+	img_erode = cv2.erode(thresh, kernel)
+	img_dilate = cv2.dilate(img_erode, kernel)
+
+	img, contours, hierarchy = cv2.findContours(img_dilate,cv2.RETR_LIST,cv2.CHAIN_APPROX_NONE)
+
+	contour_sizes = [(cv2.contourArea(contour), contour) for contour in contours]
+	if len(contour_sizes) > 0:
+		biggest_contour = max(contour_sizes, key=lambda x: x[0])[1]
+		print "\t"+str(image)+"\t"+str(cv2.contourArea(biggest_contour))+" \t\tPASS"
+		if output != 0:
+			final = cv2.drawContours(imgOg, biggest_contour, -1, (0,255,0), 3) # Outline elements that may be the sky
+			cv2.imwrite(output+"H_"+image,final)				# Write to file
+	else:
+		print "\t"+str(image)+"\t\t\tFAIL"

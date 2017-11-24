@@ -7,9 +7,10 @@
 
 Oregon State University 2016 - 2017 Computer Science Capstone Project
 
-Group Members: E. Reilly Collins, Jesse Hanson, Sophia Liu
+Group Members: Kin-Ho Lam, Logan Wingard, Daniel Ross
+<br>Contributors: E. Reilly Collins, Jesse Hanson, Sophia Liu
 <br>Project Managers: Dr. Kim Whitehall, Dr. Lewis McGibbney
-<br>Class lecturer: Dr. Kevin McGrath
+
 
 ## Introduction and motivation
 Millions of digital images are taken on mobile phones daily, some of which contain outdoor scenes. Combining this volume
