@@ -8,8 +8,7 @@ def Horizon(directory, image, output=0):
 	
 	img_YUV = cv2.cvtColor(imgOg,cv2.COLOR_BGR2YCR_CB)	# Convert from BGR to YCRCB
 	b, r, g = cv2.split(img_YUV) 						# Split into blue-green-red channels
-	cv2.equalizeHist(b)									# Equalize Blue Channel
-	imgBlueEqu = cv2.merge((b, r, g))					# Merge channels back
+	imgBlueEqu = cv2.merge((cv2.equalizeHist(b), r, g))	# Equalize Blue Channel & Merge channels back
 	img_BGR = cv2.cvtColor(imgOg,cv2.COLOR_YCR_CB2BGR)	# Convert from YCRCB to BGR
 
 	blur = cv2.GaussianBlur(img_BGR,(5,5),0)			# Perform a gaussian blur
