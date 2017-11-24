@@ -1,0 +1,130 @@
+\documentclass[journal,10pt,draftclsnofoot,onecolumn]{IEEEtran}
+
+\usepackage[doublespacing]{setspace}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[round, sort, numbers]{natbib}
+
+\renewcommand\thesection{\arabic{section}}
+\renewcommand\thesubsection{\thesection.\arabic{subsection}}
+
+\hbadness=1000 % suppress warnings
+
+\begin{document}
+	\begin{titlepage}
+
+	\center
+
+	\textsc{\LARGE Oregon State University}\\[1.5cm]
+	\textsc{\Large CS461 Fall 2017 }\\[0.5cm]
+	\textsc{\large Group 19}\\[0.5cm] % Minor heading such as course title
+
+	\vfill
+
+	{\huge\bfseries Aerolyzer Library Technology Review}\\[0.4cm]
+
+	\vfill
+
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushleft}
+			\large
+			\textit{Authors}\\
+			Kin-Ho \textsc{Lam}\\
+			Logan \textsc{Wingard}\\
+			Daniel \textsc{Ross}\\
+		\end{flushleft}
+	\end{minipage}
+	~
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushright}
+			\large
+			\textit{Supervisor}\\
+			Dr. Kim \textsc{Whitehall}
+		\end{flushright}
+	\end{minipage}
+
+	\vfill
+
+	\begin{abstract}
+		\begin{singlespace}
+			This document shall discuss possible technologies the Aerolyzer project shall leverage to accomplish horizon detection, aerosol content inference, and data regression analysis.
+		\end{singlespace}
+	\end{abstract}
+
+	\vfill
+	\vfill
+	\vfill
+	{\large11/12/17}
+	\vfill
+\end{titlepage}
+
+\section{Table of Contents}
+\tableofcontents
+\clearpage
+
+\begin{singlespace}
+
+\section{Horizon Detection}
+	\subsection{Overview}
+	The Aerolyzer library requires an algorithm that detects horizons in user-submitted images.
+	Submitted images lacking a horizon are not suitable for Aerosol analysis and must be rejected.
+
+	\subsection{Criteria}
+	Detecting the horizon in images calls for leveraging computer-vision technology such that the horizon can be detected in images which may or may not contain obstructions.
+	Such technology's licensing must also be compatable with \href{https://www.apache.org/licenses/LICENSE-2.0}{Apache License 2.0}.
+
+	\subsection{OpenCV}
+	OpenCV is an unsupervised computer-vision library.
+	Using pixel tolerances and image transformations, OpenCV uses algorithms such as canny-edge detection and Hough-line transformations to identify images.
+	Due to its unsupervised learning criteria, a programmer must manually tune the algorithm to detect the sky or horizon.
+	OpenCV does not intelligently learn to understand the contents of images, but applies filters to the images and accepts an image based on color tolerances.
+	OpenCV has promise to deliver a successful image-classifier filter due to its scalability and feature-rich library.
+	However, one may struggle to find an algorithm to classify all images of the horizon all the time as the variance in acceptable horizon images are infinite.
+
+	\subsection{Google Tensorflow}
+	Google Tensorflow is a supervised machine learning library and may be an alternative to OpenCV.
+	The library is broad and contains tools to accurately characterize a wide variety of potential weather conditions provided an adequate data set.
+	This program has been proven to identify patterns in images with a high rate of consistency.
+	Tensorflow requires a large set of training data to classify images.
+	Generally, supervised machine learning libraries have a higher success rate than unsupervised libraries.
+	One will need to prove and compare the performance of OpenCV and Tensorflow.
+
+	\subsection{Amazon Rekognition}
+	Amazon Rekognition is a supervised machine learning library that focuses on ease of use.
+	It excels in object detection in images, but incurs a fee to process every 1,000 images.
+	Amazon has built a large back-end library that is largely opaque to a user, the back-end classification algorithms are proprietary and cannot be directly modified.
+	Rekognition performs analysis on Amazon’s AWS server, freeing up local resources for other processing.
+	Rekognition is a less preferable venu due to its processing cost.
+
+	\subsection{Conclusion}
+
+\section{Aerosol Content Inference}
+	\subsection{Overview}
+
+	\subsection{Criteria}
+	After obstructions are distinguished, the Aerolyzer project shall analyze the extrapolated sky to infer Aerosol content.
+
+	\subsection{OpenCV \& R \& Matlab Libraries}
+	Incorporating R and Matlab libraries, OpenCV can be programmed to perform aerosol inference.
+	However, a high level of atmospheric knowledge is required to create an accurate classifier.
+	This can be accomplished by performing bitmap pattern matching against pre-selected atmospheric gradients with known aerosol content.
+
+	\subsection{Conclusion}
+
+\section{Data Interpretation}
+	\subsection{Overview}
+
+	\subsection{Criteria}
+	The Aerolyzer project will need to generate a trend analysis using the data it extrapolates. 
+
+	\subsection{R \& Matlab Libraries}
+	Leveraging the statistical power of R and Matlab libraries will enable the Aerolyzer project to interpolate weather patterns from sampled images.
+	This shall be accomplished through regression analysis which shall consider dates of when images are taken, the inferred aerosol content of the image, patterns referenced from 3rd party APIs.
+	R and Matlab libraries are readily available modules in the Python library which can be applied to Aerolyzer’s future dataset. 
+
+	\subsection{Conclusion}
+
+
+\end{singlespace}
+\end{document}
