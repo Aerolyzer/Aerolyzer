@@ -53,18 +53,18 @@ def get_coord(tags):
  Assumptions:    The EXIF data is valid.
  '''
 
-def coord_to_zip(coord):
+#def coord_to_zip(coord):
 
-    try:
-        c = urllib2.urlopen('https://maps.googleapis.com/maps/api/geocode/json?latlng='+coord[0]+','+coord[1]'&key=YOUR_API_KEY')
-        results = c.read()
-        parsedResults = json.loads(results)
-	ZIP = parsedResults['address_components']['postal_code']['long_name']
+#    try:
+#        c = urllib2.urlopen('https://maps.googleapis.com/maps/api/geocode/json?latlng='+coord[0]+','+coord[1]'&key=YOUR_API_KEY')
+#        results = c.read()
+#        parsedResults = json.loads(results)
+#	ZIP = parsedResults['address_components']['postal_code']['long_name']
 
-    except Exception:
-        print "Unable to retrieve data: ", sys.exc_info()[0]
-        ZIP = "99999"
+#    except Exception:
+#        print "Unable to retrieve data: ", sys.exc_info()[0]
+#        ZIP = "99999"
 
-    finally:
-        return ZIP
+#    finally:
+#        return ZIP
 

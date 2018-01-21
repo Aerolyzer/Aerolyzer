@@ -1,9 +1,20 @@
-from aerolyzer import location
-from aerolyzer import retrieve_image_data
+from aerolyzer.retrieve_image_data import RtrvData as Data
+import os
 
-mytest = RtrvData()
+mytest = Data("./")
 exifdict = mytest.get_exif("/home/aero/Documents/Aerolyzer/Aerolyzer/aerolyzer/images/img1.jpg",True,True)
-coords = get_coords(exifdict)
-print coords
+lat = 0.0
+if 'GPSLatitudeRef' in exifdict:
+    if 'GPSLatitude' in exifdict:
+        d = exifdict['GPSLatitude'][0]
+        m = exifdict['GPSLatitude'][1]
+        s = exifdict['GPSLatitude'][2]
+        lat = d + m/60 + s/3600
+        if tags['GPSLatitudeRef'] == 'S':
+            lat = lat*(-1)
+    else:
+        print "GPSLatitude not found: ", sys.exc_info()[0]
+        lat = 0.0
+print lat
 
 

@@ -1,4 +1,4 @@
-Metadata-Version: 1.1
+Metadata-Version: 1.2
 Name: aerolyzer
 Version: 0.0.0.5
 Summary: Aerolyzer analyzes images to infer atmospheric composition
@@ -7,6 +7,7 @@ Author: Aerolyzer Developers
 Author-email: aerolyzer@googlegroups.com
 License: Apache License, Version 2.0
 Download-URL: https://github.com/Aerolyzer/Aerolyzer/archive/0.0.0.4.tar.gz
+Description-Content-Type: UNKNOWN
 Description: A Python suite for analyzing images to infer aerosol types in the image.
 Keywords: atmospheric composition,sunsets,image analysis,aerosols
 Platform: UNKNOWN
@@ -20,3 +21,4 @@ Classifier: License :: OSI Approved :: Apache Software License
 Classifier: Operating System :: OS Independent
 Classifier: Programming Language :: Python
 Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=2.7.12

@@ -42,4 +42,8 @@ def getHorizon(self, directory, img_noblur,image):
 	cv2.imwrite("results/H_"+image,img_noblur)
 
 #horizon()._testAnalyze("./images/")
+<<<<<<< HEAD
 
+=======
+			
+>>>>>>> 6e1a1f1... finished the get_coord function

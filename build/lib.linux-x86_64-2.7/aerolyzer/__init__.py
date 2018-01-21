@@ -1,6 +1,10 @@
 version = "0.0.0.5"
-from image_restriction_functions import *
+#import image_restriction_functions
 #import image_restriction_main
 #import retrieve_image_data
 from wunderData import *
+<<<<<<< HEAD
+=======
+from horizon import *
+>>>>>>> 6e1a1f1... finished the get_coord function
 

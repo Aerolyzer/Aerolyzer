@@ -1,3 +1,4 @@
+README.md
 setup.cfg
 setup.py
 aerolyzer/__init__.py
@@ -12,4 +13,5 @@ aerolyzer.egg-info/SOURCES.txt
 aerolyzer.egg-info/dependency_links.txt
 aerolyzer.egg-info/namespace_packages.txt
 aerolyzer.egg-info/not-zip-safe
+aerolyzer.egg-info/requires.txt
 aerolyzer.egg-info/top_level.txt

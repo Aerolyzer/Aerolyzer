@@ -1,7 +1,7 @@
 default: uninstall install
 
 uninstall:clean
-	pip uninstall aerolyzer
+	pip2.7 uninstall aerolyzer
 
 install:
 	python setup.py sdist
