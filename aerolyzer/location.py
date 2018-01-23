@@ -66,7 +66,7 @@ def get_coord(tags):
 #def coord_to_zip(coord):
 
 #    try:
-#        c = urllib2.urlopen('https://maps.googleapis.com/maps/api/geocode/json?latlng='+coord[0]+','+coord[1]'&key=YOUR_API_KEY')
+#        c = urllib2.urlopen('https://maps.googleapis.com/maps/api/geocode/json?latlng='+coord[0]+','+coord[1]'&key=AIzaSyD0SIrsNBNbE9-hSnfa6gMHALCdLZWJ6uI')
 #        results = c.read()
 #        parsedResults = json.loads(results)
 #	ZIP = parsedResults['address_components']['postal_code']['long_name']
