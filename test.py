@@ -1,20 +1,19 @@
-from aerolyzer.retrieve_image_data import RtrvData as Data
-import os
+#!/usr/bin/env python2.7
+# encoding: utf-8
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
 
-mytest = Data("./")
-exifdict = mytest.get_exif("/home/aero/Documents/Aerolyzer/Aerolyzer/aerolyzer/images/img1.jpg",True,True)
-lat = 0.0
-if 'GPSLatitudeRef' in exifdict:
-    if 'GPSLatitude' in exifdict:
-        d = exifdict['GPSLatitude'][0]
-        m = exifdict['GPSLatitude'][1]
-        s = exifdict['GPSLatitude'][2]
-        lat = d + m/60 + s/3600
-        if tags['GPSLatitudeRef'] == 'S':
-            lat = lat*(-1)
-    else:
-        print "GPSLatitude not found: ", sys.exc_info()[0]
-        lat = 0.0
-print lat
-
-
+print('Welcome to Aerolyzer test bed!')
