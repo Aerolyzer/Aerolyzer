@@ -1,4 +1,0 @@
-exifread
-numpy>=1.13.3
-opencv-python>=3.3.0
-pyyaml

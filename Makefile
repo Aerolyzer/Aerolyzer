@@ -9,5 +9,6 @@ install:
 
 clean:
 	rm -rf aerolyzer.egg-info/
+	rm -rf build/
 	rm -rf dist/
 	rm -f aerolyzer/*.pyc
