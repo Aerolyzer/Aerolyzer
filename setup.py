@@ -41,7 +41,7 @@ _namespaces = []
 _packages = ['aerolyzer']
 _test_suite = 'aerolyzer.tests'
 _url = 'https://github.com/Aerolyzer/Aerolyzer'
-_version = '0.0.0.4'
+_version = '0.0.0.5'
 _zip_safe = False
 
 # Setup Metadata

@@ -1,19 +1,21 @@
-'''
- Purpose:        The purpose of this script is to retrieve meteorological data
-                 of a given comma-separated latitude and longitute
-				 coordinates via the wunderground API.
- Inputs:         coord: string representing comma-separated coordinates.
- Outputs:        weatherData: tuple of city, country, temp in F, sunrise time, sunset time.
- Returns:        dictionary with 5 keys.
- Assumptions:    The wunderground API key is valid.
- '''
-
 import urllib2
 import json
 import sys
 import os
 
+#def get_wunderkey()
+
 def get_data(coord):
+    '''
+    Purpose:        The purpose of this script is to retrieve meteorological data 
+    of a given comma-separated latitude and longitute coordinates via the
+    wunderground API.
+    Inputs:         coord: string representing comma-separated coordinates.
+    Outputs:        weatherData: tuple of city, country, temp in F, sunrise time, sunset time.
+    Returns:        dictionary with 5 keys.
+    Assumptions:    The wunderground API key is valid.
+    '''
+
     name = coord + '.json'
 
     try:
