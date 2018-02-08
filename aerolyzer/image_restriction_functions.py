@@ -10,6 +10,7 @@ from datetime import datetime
 import exifread
 import numpy as np
 
+
 class imgRestFuncs(object):
     'Class containing all image restriction functions'
 
@@ -140,3 +141,5 @@ class imgRestFuncs(object):
             doc = yaml.load(f)
             f.close()
         return doc
+
+
