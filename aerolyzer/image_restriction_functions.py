@@ -39,7 +39,7 @@ class imgRestFuncs(object):
     Returns:        Boolean
     Assumptions:    N/A
     '''
-    def is_edited(self, created, modified):
+    def is_edited(self, modified, created):
         if (created == modified):
             return True
         else:
@@ -55,15 +55,14 @@ class imgRestFuncs(object):
     '''
     def is_landscape(self, img):
         # Create a mask
-        mask = np.zeros(img.shape[:2], np.uint8)
-        mask[0:(img.shape[0]/2), 0:img.shape[1]] = 255
-        masked_img = cv2.bitwise_and(img,img,mask = mask)
+        #mask = np.zeros(img.shape[:2], np.uint8)
+        #mask[0:(img.shape[0]/2), 0:img.shape[1]] = 255
+        #masked_img = cv2.bitwise_and(img,img,mask = mask)
 
         # Create histograms with 16 bins in range 0-255
-        hist_blue = cv2.calcHist([img],[0],mask,[16],[0,255])
-        hist_green = cv2.calcHist([img],[1],mask,[16],[0,255])
-        hist_red = cv2.calcHist([img],[2],mask,[16],[0,255])
-
+        #hist_blue = cv2.calcHist([img],[0],mask,[16],[0,255])
+        #hist_green = cv2.calcHist([img],[1],mask,[16],[0,255])
+        #hist_red = cv2.calcHist([img],[2],mask,[16],[0,255])
         return self._is_sky(hist_blue, hist_green, hist_red)
 
     '''
