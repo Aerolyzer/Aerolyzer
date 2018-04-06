@@ -61,10 +61,10 @@ class RtrvData(object):
                     image's haze layer.
     Inputs:         string pathname
     Outputs:        None
-    Returns:        tuple of lists of lists containing RGB values
+    Returns:        list of lists containing HSV values
     Assumptions:    The image's path has been provided
     '''
-    def get_rgb(self, pathname):
+    def get_hsv(self, pathname):
         img = cv2.imread(pathname,1)
         mask = np.zeros(img.shape[:2], np.uint8)
         mask[0:(img.shape[0] / 2), 0:img.shape[1]] = 255
@@ -94,19 +94,13 @@ class RtrvData(object):
         hsv = cv2.cvtColor(h2, cv2.COLOR_BGR2HSV)
         clrlst = []
         dimy, dimx = h2.shape[:2]
-        for t in range(1000):
+        for t in range(1000): #getting 1000 random pixels
             temp = []
             x = int(np.random.random()*10000) % dimx
             y = int(np.random.random()*10000) % dimy
             for k in xrange(len(hsv[y][x])):
                 temp.append(hsv[y][x][k])
             clrlst.append(temp)
-        '''for i in xrange(len(hsv)):
-            for j in xrange(len(hsv[i])):
-                a = []
-                for k in xrange(len(hsv[i][j])):
-                    a.append(hsv[i][j][k])
-                clrlst.append(a)'''
         return clrlst
 
     '''
