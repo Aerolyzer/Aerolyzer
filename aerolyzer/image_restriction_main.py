@@ -27,7 +27,7 @@ def program(fxn, data, exifData, pathname):
     if not fxn.is_edited(exifData['image datetime'], exifData['exif datetimeoriginal']):
         isVerified = {'meetsRest': False, 'error_message': "The image cannot be edited or filtered in any way"}
         return isVerified
-    if not fxn.is_landscape(data.get_rgb(pathname)):
+    if not fxn.is_landscape(pathname):
         isVerified = {'meetsRest': False, 'error_message': "The image must be of a direct landscape with a sky and view"}
         return isVerified
     if not fxn.is_size(exifData['file size']):
