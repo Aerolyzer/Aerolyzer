@@ -13,8 +13,8 @@ def network(X,y):
 		l1_delta = l2_delta.dot(syn1.T) * (l1 * (1-l1))
 		syn1 += l1.T.dot(l2_delta)
 		syn0 += X.T.dot(l1_delta)
-        print syn0
-        print syn1
+        print syn0.tolist()
+        print syn1.tolist()
 	l1dup = sigm(np.dot(X,syn0))
 	l2dup = sigm(np.dot(l1dup,syn1))
 '''
