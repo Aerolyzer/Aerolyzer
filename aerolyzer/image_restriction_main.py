@@ -42,7 +42,6 @@ def program(fxn, data, exifData, pathname):
     if not 'gps gpslatitude' in exifData or not 'gps gpslongitude' in exifData:
         isVerified = {'meetsRest': False, 'error_message': "Location services must be enabled for the camera"}
         return isVerified
-    print isVerified
     locExifData = data.get_exif(pathname, False, False)
     exifData = data.get_exif(pathname, True, True)
     isVerified = {'meetsRest': True, 'exifData': exifData, 'locExifData': locExifData}
