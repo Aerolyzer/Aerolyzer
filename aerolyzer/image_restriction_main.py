@@ -10,6 +10,8 @@ import sys
 from image_restriction_functions import imgRestFuncs as Fxn
 from retrieve_image_data import RtrvData as Data
 
+
+def program(fxn, data, exifData, pathname):
 '''
 Purpose:        The purpose of this function is to assert each restriction check
 Inputs:         dict exifData, object functions
@@ -17,7 +19,6 @@ Outputs:        restriction check results
 Returns:        N/A
 Assumptions:    N/A
 '''
-def program(fxn, data, exifData, pathname):
     if not 'image model' in exifData:
         isVerified = {'meetsRest': False, 'error_message': "The image must be a mobile image from a supported device"}
         return isVerified
@@ -47,15 +48,16 @@ def program(fxn, data, exifData, pathname):
     isVerified = {'meetsRest': True, 'exifData': exifData, 'locExifData': locExifData}
     return isVerified
 
+
+def check_image(filename):
 '''
 Purpose:        The purpose of this main function is to check all image restrictions
                 for use in the Aerolyzer app.
 Inputs:         string filename of image locally
 Outputs:        None
-Returns:        N/A
+Returns:        isVerified
 Assumptions:    N/A
 '''
-def check_image(filename):
     #instantiate classes
     fxn     = Fxn()
     #Retrieve exif data
@@ -64,6 +66,8 @@ def check_image(filename):
     isVerified = program(fxn, data, exifData, filename)
     return isVerified
 
+
+def main():
 '''
 Purpose:        The purpose of this main function is to check all image restrictions and
                 produce the correct error message should one occur.
@@ -72,7 +76,6 @@ Outputs:        None
 Returns:        N/A
 Assumptions:    N/A
 '''
-def main():
     #instantiate classes
     fxn     = Fxn()
 
