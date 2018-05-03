@@ -20,6 +20,8 @@ class RtrvData(object):
         except ImportError:
             pass
 
+
+    def _get_all_exif(self, pathname):
     '''
     Purpose:        The purpose of this function is to retrieve the EXIF data from an
                     image.
@@ -28,11 +30,12 @@ class RtrvData(object):
     Returns:        dictionary of EXIF data tags
     Assumptions:    The image's path has been provided
     '''
-    def _get_all_exif(self, pathname):
         img = open(pathname, 'rb')
         tags = exifread.process_file(img)
         return tags
 
+
+    def get_exif(self, pathname, setTypes, dateToString):
     '''
     Purpose:        The purpose of this function is to retrieve the EXIF data from an
                     image.
@@ -43,7 +46,6 @@ class RtrvData(object):
     Returns:        dictionary of EXIF data tags
     Assumptions:    The image's path has been provided
     '''
-    def get_exif(self, pathname, setTypes, dateToString):
         tags = {};
         allTags = self._get_all_exif(pathname)
         for key, value in allTags.iteritems():
@@ -56,15 +58,16 @@ class RtrvData(object):
         tags['file type'] = self._get_file_type(pathname).lower()
         return tags
 
+
+    def get_hsv(self, pathname):
     '''
     Purpose:        The purpose of this function is to retrieve the HSV values from an
                     image's haze layer.
     Inputs:         string pathname
     Outputs:        None
-    Returns:        tuple of lists of lists containing RGB values
+    Returns:        list of lists containing HSV values
     Assumptions:    The image's path has been provided
     '''
-    def get_rgb(self, pathname):
         img = cv2.imread(pathname,1)
         mask = np.zeros(img.shape[:2], np.uint8)
         mask[0:(img.shape[0] / 2), 0:img.shape[1]] = 255
@@ -94,21 +97,17 @@ class RtrvData(object):
         hsv = cv2.cvtColor(h2, cv2.COLOR_BGR2HSV)
         clrlst = []
         dimy, dimx = h2.shape[:2]
-        for t in range(1000):
+        for t in range(1000): #getting 1000 random pixels
             temp = []
             x = int(np.random.random()*10000) % dimx
             y = int(np.random.random()*10000) % dimy
             for k in xrange(len(hsv[y][x])):
                 temp.append(hsv[y][x][k])
             clrlst.append(temp)
-        '''for i in xrange(len(hsv)):
-            for j in xrange(len(hsv[i])):
-                a = []
-                for k in xrange(len(hsv[i][j])):
-                    a.append(hsv[i][j][k])
-                clrlst.append(a)'''
         return clrlst
 
+
+    def _import_yaml(self, confFile):
     '''
     Purpose:        The purpose of this function is to import the contents of the configuration file.
     Inputs:         string conf_file
@@ -116,13 +115,14 @@ class RtrvData(object):
     Returns:        reference to configuration file
     Assumptions:    N/A
     '''
-    def _import_yaml(self, confFile):
         assert (type(confFile) == str), "configuration file not passed as a string"
         with open(confFile, 'r') as file:
             doc = yaml.load(file)
             file.close()
         return doc
 
+
+    def _get_file_size(self, pathname):
     '''
     Purpose:        The purpose of this function is to determine the size of the image
     Inputs:         string pathname
@@ -130,9 +130,10 @@ class RtrvData(object):
     Returns:        int size of file in bytes
     Assumptions:    N/A
     '''
-    def _get_file_size(self, pathname):
         return os.path.getsize(pathname)
 
+
+    def _get_file_type(self, pathname):
     '''
     Purpose:        The purpose of this function is to determine the type of the image
     Inputs:         string pathname
@@ -140,10 +141,11 @@ class RtrvData(object):
     Returns:        string file type (.ext)
     Assumptions:    N/A
     '''
-    def _get_file_type(self, pathname):
         filename, fileExtension = os.path.splitext(pathname)
         return fileExtension
 
+
+    def _set_types(self, tags, dateToString):
     '''
     Purpose:        The purpose of this function is to set the tag values to the correct
                     data type
@@ -153,7 +155,6 @@ class RtrvData(object):
     Returns:        string file type (.ext)
     Assumptions:    N/A
     '''
-    def _set_types(self, tags, dateToString):
         for key, value in tags.iteritems():
             for entry in self.data['stringTags']:
                 if(key == entry):
