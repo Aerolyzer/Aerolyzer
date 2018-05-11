@@ -14,7 +14,15 @@ class RtrvData(object):
     'Class containing all image restriction functions'
 
     def __init__(self, pathPassed):
-        self.data = self._import_yaml(os.getcwd() + "/../../Aerolyzer/aerolyzer/config/retrieve_image_data_conf.yaml")
+        retrieve_conf = {'selectTags': ['Image Model', 'Image DateTime', 'EXIF DateTimeOriginal', 'EXIF ExifImageWidth', 'EXIF ExifImageLength', 'GPS GPSLatitude', 'GPS GPSLongitude', 'GPS GPSLatitudeRef', 'GPS GPSLongitudeRef'], 'intTags': ['exif exifimagewidth', 'exif exifimagelength'], 'datetimeTags': ['image datetime', 'exif datetimeoriginal'], 'stringTags': ['image model', 'gps gpslatitude', 'gps gpslongitude', 'gps gpslatituderef', 'gps gpslongituderef']}
+        if os.path.exists(pathPassed + "/config/retrieve_image_data_conf.yaml"):
+            self.data = self._import_yaml(pathPassed + "/config/retrieve_image_data_conf.yaml")
+        else:
+            if not os.path.exists(pathPassed + "/config/"):
+                os.makedirs(os.getcwd() + pathPassed + "/config/")
+            with open(pathPassed + "/config/retrieve_image_data_conf.yaml", 'w') as outfile:
+                yaml.dump(retrieve_conf, outfile, default_flow_style=False)
+        self.data = self._import_yaml(pathPassed + "/config/retrieve_image_data_conf.yaml")
         try:
             os.path.exists(pathPassed)
         except ImportError:
@@ -22,34 +30,34 @@ class RtrvData(object):
 
 
     def _get_all_exif(self, pathname):
-    '''
-    Purpose:        The purpose of this function is to retrieve the EXIF data from an
-                    image.
-    Inputs:         string pathname
-    Outputs:        None
-    Returns:        dictionary of EXIF data tags
-    Assumptions:    The image's path has been provided
-    '''
+        '''
+        Purpose:        The purpose of this function is to retrieve the EXIF data from an
+                        image.
+        Inputs:         string pathname
+        Outputs:        None
+        Returns:        dictionary of EXIF data tags
+        Assumptions:    The image's path has been provided
+        '''
         img = open(pathname, 'rb')
         tags = exifread.process_file(img)
         return tags
 
 
     def get_exif(self, pathname, setTypes, dateToString):
-    '''
-    Purpose:        The purpose of this function is to retrieve the EXIF data from an
-                    image.
-    Inputs:         string pathname
-                    bool setTypes toggles conversion of types
-                    bool dateToString toggles conversion of dateToString
-    Outputs:        None
-    Returns:        dictionary of EXIF data tags
-    Assumptions:    The image's path has been provided
-    '''
+        '''
+        Purpose:        The purpose of this function is to retrieve the EXIF data from an
+                        image.
+        Inputs:         string pathname
+                        bool setTypes toggles conversion of types
+                        bool dateToString toggles conversion of dateToString
+        Outputs:        None
+        Returns:        dictionary of EXIF data tags
+        Assumptions:    The image's path has been provided
+        '''
         tags = {};
         allTags = self._get_all_exif(pathname)
         for key, value in allTags.iteritems():
-            for entry in self.data['selectTags']:
+            for entry in self.data["selectTags"]:
                 if (key == entry):
                     tags[key.lower()] = value
         if setTypes is True:
@@ -60,14 +68,14 @@ class RtrvData(object):
 
 
     def get_hsv(self, pathname):
-    '''
-    Purpose:        The purpose of this function is to retrieve the HSV values from an
-                    image's haze layer.
-    Inputs:         string pathname
-    Outputs:        None
-    Returns:        list of lists containing HSV values
-    Assumptions:    The image's path has been provided
-    '''
+        '''
+        Purpose:        The purpose of this function is to retrieve the HSV values from an
+                        image's haze layer.
+        Inputs:         string pathname
+        Outputs:        None
+        Returns:        list of lists containing HSV values
+        Assumptions:    The image's path has been provided
+        '''
         img = cv2.imread(pathname,1)
         mask = np.zeros(img.shape[:2], np.uint8)
         mask[0:(img.shape[0] / 2), 0:img.shape[1]] = 255
@@ -108,13 +116,13 @@ class RtrvData(object):
 
 
     def _import_yaml(self, confFile):
-    '''
-    Purpose:        The purpose of this function is to import the contents of the configuration file.
-    Inputs:         string conf_file
-    Outputs:        None
-    Returns:        reference to configuration file
-    Assumptions:    N/A
-    '''
+        '''
+        Purpose:        The purpose of this function is to import the contents of the configuration file.
+        Inputs:         string conf_file
+        Outputs:        None
+        Returns:        reference to configuration file
+        Assumptions:    N/A
+        '''
         assert (type(confFile) == str), "configuration file not passed as a string"
         with open(confFile, 'r') as file:
             doc = yaml.load(file)
@@ -123,50 +131,50 @@ class RtrvData(object):
 
 
     def _get_file_size(self, pathname):
-    '''
-    Purpose:        The purpose of this function is to determine the size of the image
-    Inputs:         string pathname
-    Outputs:        None
-    Returns:        int size of file in bytes
-    Assumptions:    N/A
-    '''
+        '''
+        Purpose:        The purpose of this function is to determine the size of the image
+        Inputs:         string pathname
+        Outputs:        None
+        Returns:        int size of file in bytes
+        Assumptions:    N/A
+        '''
         return os.path.getsize(pathname)
 
 
     def _get_file_type(self, pathname):
-    '''
-    Purpose:        The purpose of this function is to determine the type of the image
-    Inputs:         string pathname
-    Outputs:        None
-    Returns:        string file type (.ext)
-    Assumptions:    N/A
-    '''
+        '''
+        Purpose:        The purpose of this function is to determine the type of the image
+        Inputs:         string pathname
+        Outputs:        None
+        Returns:        string file type (.ext)
+        Assumptions:    N/A
+        '''
         filename, fileExtension = os.path.splitext(pathname)
         return fileExtension
 
 
     def _set_types(self, tags, dateToString):
-    '''
-    Purpose:        The purpose of this function is to set the tag values to the correct
-                    data type
-    Inputs:         string pathname
-                    bool dateToString toggles conversion of datetimeTags to strings
-    Outputs:        None
-    Returns:        string file type (.ext)
-    Assumptions:    N/A
-    '''
+        '''
+        Purpose:        The purpose of this function is to set the tag values to the correct
+                        data type
+        Inputs:         string pathname
+                        bool dateToString toggles conversion of datetimeTags to strings
+        Outputs:        None
+        Returns:        string file type (.ext)
+        Assumptions:    N/A
+        '''
         for key, value in tags.iteritems():
-            for entry in self.data['stringTags']:
+            for entry in self.data["stringTags"]:
                 if(key == entry):
                     tags[key] = str(value)
-            for entry in self.data['datetimeTags']:
+            for entry in self.data["datetimeTags"]:
                 if(key == entry):
                     stringDate = str(value)
                     if dateToString is True:
                         tags[key] = stringDate
                     else:
                         tags[key] = datetime.strptime(stringDate, '%Y:%m:%d %H:%M:%S')
-            for entry in self.data['intTags']:
+            for entry in self.data["intTags"]:
                 if(key == entry):
                     strKey = str(value)
                     tags[key] = int(strKey)
