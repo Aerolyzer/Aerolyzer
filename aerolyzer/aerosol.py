@@ -10,13 +10,13 @@ import wavelength as wave
 class AeroData(object):
     'Class containing all aerosol analysis functions'
 
-    def __init__(self, pathname):
+    def __init__(self, pathname, confPath = '.'):
         '''
         Class Constructor
-        Inputs: pathname(location of the image being analyzed)
+        Inputs: pathname(location of the image being analyzed), confPath(location of config file)
         '''
         self.imagePath = pathname
-        self.imager = retrieve_image_data.RtrvData(pathname)
+        self.imager = retrieve_image_data.RtrvData(confPath)
         pass
 
     def scoreSize(target, minS, maxS):

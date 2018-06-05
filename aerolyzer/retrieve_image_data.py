@@ -19,7 +19,7 @@ class RtrvData(object):
             self.data = self._import_yaml(pathPassed + "/config/retrieve_image_data_conf.yaml")
         else:
             if not os.path.exists(pathPassed + "/config/"):
-                os.makedirs(os.getcwd() + pathPassed + "/config/")
+                os.makedirs(pathPassed + "/config/")
             with open(pathPassed + "/config/retrieve_image_data_conf.yaml", 'w') as outfile:
                 yaml.dump(retrieve_conf, outfile, default_flow_style=False)
         self.data = self._import_yaml(pathPassed + "/config/retrieve_image_data_conf.yaml")

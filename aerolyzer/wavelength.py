@@ -30,9 +30,9 @@ def get_wavelength(abc, mode):
     min_wavelength = 380
     ValArray = comparisonArray(mode)
     while i < (len(ValArray) - 1):
-        a_diff = math.fabs(ValArray[i][0] - abc[0])
-        b_diff = math.fabs(ValArray[i][1] - abc[1])
-        c_diff = math.fabs(ValArray[i][2] - abc[2])
+        a_diff = math.fabs(int(ValArray[i][0]) - int(abc[0]))
+        b_diff = math.fabs(int(ValArray[i][1]) - int(abc[1]))
+        c_diff = math.fabs(int(ValArray[i][2]) - int(abc[2]))
         if mode == 1:
             a_diff = a_diff*6
         dist = math.sqrt((a_diff*a_diff)+(b_diff*b_diff)+(c_diff*c_diff))
